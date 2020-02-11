@@ -1,0 +1,51 @@
+{
+  "name": "hospital-surveys",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@material-ui/core": "^4.7.2",
+    "@material-ui/icons": "^4.5.1",
+    "axios": "^0.19.1",
+    "bootstrap": "^4.4.1",
+    "chart.js": "^2.9.3",
+    "mdbootstrap": "^4.10.1",
+    "mdbreact": "^4.23.1",
+    "querystring": "^0.2.0",
+    "react": "^16.12.0",
+    "react-bootstrap": "^1.0.0-beta.16",
+    "react-bootstrap-dialog": "^0.13.0",
+    "react-bootstrap-sidebar": "0.0.1",
+    "react-chartjs-2": "^2.9.0",
+    "react-dom": "^16.12.0",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "^3.3.0",
+    "react-sidebar": "^3.0.2",
+    "uuid": "^3.3.3"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "postinstall": "npm run build"
+  },
+  "engines": {
+    "node": "13.1.0",
+    "npm": "6.4.1"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
