@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import QuestionnaireContent, Questionnaire
+from .models import QuestionnaireContent, Questionnaire, AnswerContent, QuestionAnswer
 
 
 class QuestionnaireContentSerializers(serializers.ModelSerializer):
@@ -26,3 +26,16 @@ class QuestionnaireListSerializers(serializers.ModelSerializer):
         model = Questionnaire
         fields = ('uid', 'title')
 
+
+class QuestionAnswerSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = QuestionAnswer
+        fields = ('qid', 'answerType', 'answer')
+
+
+class AnswerContentSerializers(serializers.ModelSerializer):
+    questionAnswer = QuestionAnswerSerializers(many=True)
+
+    class Meta:
+        model = AnswerContent
+        fields = ('uid', 'date', 'age', 'questionAnswer')

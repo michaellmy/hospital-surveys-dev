@@ -8,8 +8,8 @@ export class Statistics extends Component {
         return (
             <div style={statisticsStyle}>
                 <br></br>
-                <a href="/"><Image style={trends} src={trendlogo}></Image></a>
-                <a href="/"><Image style={analyzeResults} src={analyzelogo}></Image></a>
+                <a href="/statistics"><Image style={trends} src={trendlogo}></Image></a>
+                <a href="/statistics"><Image style={analyzeResults} src={analyzelogo}></Image></a>
             </div>
         )
     }
