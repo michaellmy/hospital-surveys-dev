@@ -4,6 +4,7 @@ import axios from 'axios';
 import uuid from 'uuid';
 
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
 import './App.css';
 
 import Header from './components/layout/Header';
@@ -15,12 +16,16 @@ import Questionnaires from './components/manage/Questionnaires';
 import Edit from './components/manage/Edit.js';
 import SearchBar from './components/manage/SearchBar';
 import PageNumbers from './components/manage/PageNumbers';
+import Login from './components/manage/Login';
+import Signup from './components/manage/Signup';
+import AdminPanel from './components/manage/AdminPanel';
 
 import Trends from './components/statistics/Trends';
 
 import About from './components/pages/About';
 import Statistics from './components/pages/Statistics';
 
+import * as actions from './store/actions/auth';
 
 class App extends Component {
   constructor(props) {
@@ -36,6 +41,7 @@ class App extends Component {
   }
 
   componentDidMount(){
+    this.props.onTryAutoSignup();
     this.setState({pageHost: window.location.origin});
     axios.get(this.state.pageHost + '/api/getAllQuestionnaires/')
       .then(res => this.setState({questionnaires: res.data, filteredQuestionnaires: res.data})); 
@@ -115,12 +121,12 @@ class App extends Component {
  
     return (
       <Router>
-        <div className="App">
+        <div>
           <Route exact path="/manage" render={props => (
             <React.Fragment>
-              <Header />
+              <Header {...this.props}/>
 
-              <Breadcrumb style={{marginTop: '1%'}}>
+              {/* <Breadcrumb style={{marginTop: '1%'}}>
                   <Breadcrumb.Item href="#">Home</Breadcrumb.Item>
                   <Breadcrumb.Item href="#">
                     Dashboard
@@ -136,7 +142,11 @@ class App extends Component {
                 <PageNumbers states={this.state} handlePageClick={this.handlePageClick} />
                 <br></br>&nbsp;
                 <Statistics />
-              </div>
+              </div> */}
+              <AdminPanel currentQuestionnaires={currentQuestionnaires} indexOfFirstTodo={indexOfFirstTodo} 
+               indexOfLastTodo={indexOfLastTodo} refresh={this.refresh} delQuestionnaire={this.delQuestionnaire}
+               addQuestionnaire={this.addQuestionnaire} states={this.state} handlePageClick={this.handlePageClick}
+               questionnaires={this.state.questionnaires} {...this.props}/>
 
               <Footer /> 
             </React.Fragment>
@@ -144,9 +154,13 @@ class App extends Component {
 
           <Route exact path="/" component={About}></Route>
 
+          <Route exact path="/login/" component={Login}></Route>
+
+          <Route exact path="/signup/" component={Signup}></Route>
+
           <Route path="/manage/edit/:uid" render={props => (
             <React.Fragment>
-              <Header />
+              <Header {...this.props}/>
               <Edit key={"questionnaires"} questionnaires={this.state.questionnaires} updateInfo={this.updateInfo} {...props} />
             </React.Fragment>
           )} />
@@ -164,4 +178,16 @@ const listStyle = {
   marginRight: '7%',
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    isAuthenticated: state.token !== null
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onTryAutoSignup: () => dispatch(actions.authCheckState())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

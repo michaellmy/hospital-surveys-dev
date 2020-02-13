@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from django.http import JsonResponse
 from rest_framework import viewsets
 from rest_framework.parsers import JSONParser
+from django.views.decorators.csrf import csrf_exempt
 from .models import Questionnaire, QuestionnaireContent, AnswerContent
 from .serializers import QuestionnaireSerializers, QuestionnaireContentSerializers, QuestionnaireListSerializers, \
     AnswerContentSerializers
@@ -73,6 +74,7 @@ def addQuestionnaire(request):
 # class QuestionnaireContentViewSet(viewsets.ModelViewSet):
 #     queryset = QuestionnaireContent.objects.all().order_by('pk')
 #     serializer_class = QuestionnaireContentSerializers
+
 
 def editQuestionnaireByUid(request, id):
     try:
