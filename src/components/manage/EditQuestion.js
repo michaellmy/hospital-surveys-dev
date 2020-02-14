@@ -47,8 +47,10 @@ export class EditQuestion extends Component {
 
     renderSwitch = (answerType) => {
         if (answerType === "Text Area") {
-            this.setState({choices: [""]})
-            return
+            return <div>
+                <Button style={addChoiceStyle} onClick={() => this.props.shiftQuestionDown(this.props.questionNum)}
+                 variant="info"><b>Shift Down</b></Button>
+            </div>
         }
         else {
             try{
@@ -58,7 +60,7 @@ export class EditQuestion extends Component {
                         this.state.choices.map((choice, index) =>
                             <div>
                                 <Form.Row>
-                                    <Form.Group as={Col} controlId="formGridCity">
+                                    <Form.Group as={Col}>
                                         <Form.Control name={index} onChange={this.handleChoices} defaultValue={choice} />
                                     </Form.Group>
                                     
@@ -69,7 +71,7 @@ export class EditQuestion extends Component {
                     <Form.Row>
                         <Button style={addChoiceStyle} onClick={this.addChoice} variant="info"><b>+ Add Selection</b></Button>
                         <Button style={removeChoiceStyle} onClick={this.deleteChoice} variant="danger"><b>Remove 1 Selection</b></Button>
-                        &nbsp;
+                        &nbsp; &nbsp;
                         <Button style={addChoiceStyle} onClick={() => this.props.shiftQuestionDown(this.props.questionNum)} variant="info"><b>Shift Down</b></Button>
                     </Form.Row>
                 </div>
@@ -84,7 +86,7 @@ export class EditQuestion extends Component {
             <div>
                 <Form.Row>
 
-                    <Form.Group as={Col} controlId="formGridCity">
+                    <Form.Group as={Col} >
                         <Form.Label><b>Question {parseInt(this.props.questionNum) + 1}.</b></Form.Label>
                         <Form.Control name="questionText" onChange={this.handleChange} defaultValue={this.state.questionText} />
                     </Form.Group>

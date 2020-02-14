@@ -127,7 +127,7 @@ class App extends Component {
               <AdminPanel currentQuestionnaires={currentQuestionnaires} indexOfFirstTodo={indexOfFirstTodo} 
                indexOfLastTodo={indexOfLastTodo} refresh={this.refresh} delQuestionnaire={this.delQuestionnaire}
                addQuestionnaire={this.addQuestionnaire} states={this.state} handlePageClick={this.handlePageClick}
-               questionnaires={this.state.questionnaires} {...this.props}/>
+               questionnaires={this.state.questionnaires} {...this.props}/> 
 
               <Footer /> 
             </React.Fragment>
@@ -142,7 +142,7 @@ class App extends Component {
           <Route path="/manage/edit/:uid" render={props => (
             <React.Fragment>
               <Header {...this.props}/>
-              <Edit key={"questionnaires"} questionnaires={this.state.questionnaires} updateInfo={this.updateInfo} {...props} />
+              <Edit key={"questionnaires"} {...props} {...this.props} />
             </React.Fragment>
           )} />
 
