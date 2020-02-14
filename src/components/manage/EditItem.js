@@ -7,7 +7,8 @@ export class EditItem extends Component {
             <div>
                 <div style={listStyle}>
                     <EditQuestion key={question.qid} question={question} updateChange={this.props.updateChange} 
-                    qaireId={this.props.qaireId} delQuestion={this.props.delQuestion} questionNum={index} />
+                    qaireId={this.props.qaireId} delQuestion={this.props.delQuestion} questionNum={index} 
+                    shiftQuestionDown={this.props.shiftQuestionDown}/>
                 </div>
                 <br></br>
             </div>

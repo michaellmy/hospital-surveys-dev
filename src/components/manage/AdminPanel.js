@@ -12,6 +12,7 @@ import Statistics from '../pages/Statistics';
 
 
 export class AdminPanel extends Component {
+
     render() {
         return (
             <div>
@@ -20,18 +21,18 @@ export class AdminPanel extends Component {
 
                     <div>
                         <Breadcrumb style={{ marginTop: '1%' }}>
-                            <Breadcrumb.Item href="#">Home</Breadcrumb.Item>
-                            <Breadcrumb.Item href="#">
-                                Dashboard
-                            </Breadcrumb.Item>
+                            <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
                             <Breadcrumb.Item active>Manage Questionnaires</Breadcrumb.Item>
                         </Breadcrumb>
 
                         <div style={listStyle}>
                             <SearchBar questionnaires={this.props.currentQuestionnaires} filterSearch={this.props.filterSearch}/>
+
                             <ListTitle refresh={this.props.refresh} />
                             <Questionnaires questionnaires={this.props.currentQuestionnaires} delQuestionnaire={this.props.delQuestionnaire}/>
-                            <ListFooter addQuestionnaire={this.props.addQuestionnaire} indexOfFirstTodo={this.props.indexOfFirstTodo} indexOfLastTodo={this.props.indexOfLastTodo} questionnaires={this.props.questionnaires}/>
+                            <ListFooter addQuestionnaire={this.props.addQuestionnaire} indexOfFirstTodo={this.props.indexOfFirstTodo} 
+                             indexOfLastTodo={this.props.indexOfLastTodo} questionnaires={this.props.questionnaires}/>
+                             
                             <PageNumbers states={this.props.states} handlePageClick={this.props.handlePageClick} />
                             <br></br>&nbsp;
                             <Statistics />

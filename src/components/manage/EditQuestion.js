@@ -9,7 +9,7 @@ export class EditQuestion extends Component {
         qid: this.props.question.qid,
         questionText: this.props.question.questionText,
         answerType: this.props.question.answerType,
-        choices: this.props.question.choices.split(" | ")
+        choices: this.props.question.choices.split(" | ") // Array - Parsing 'choices' in this class
     }
 
     handleChange = e => {
@@ -34,9 +34,6 @@ export class EditQuestion extends Component {
         choicesCopy.pop();
         this.setState({ choices: choicesCopy})
         this.props.updateChange("choices", choicesCopy.join(" | "), this.state.qid, this.state.qaireId);
-        /* this.state.choices.pop()
-        this.setState({ choices: this.state.choices})
-        console.log(this.state.choices) */
     }
 
     addChoice = () => {
@@ -46,15 +43,11 @@ export class EditQuestion extends Component {
             this.setState({choices: choicesCopy});
         }
         this.props.updateChange("choices", choicesCopy.join(" | "), this.state.qid, this.state.qaireId);
-        /* if(this.state.choices.length < this.state.MAX_CHOICES){
-            this.state.choices.push("")
-            this.setState({choices: this.state.choices})
-        }
-        console.log(this.state.choices) */
     }
 
-    renderSwitch = (title, answerType, question) => {
+    renderSwitch = (answerType) => {
         if (answerType === "Text Area") {
+            this.setState({choices: [""]})
             return
         }
         else {
@@ -74,9 +67,10 @@ export class EditQuestion extends Component {
                         )
                     } 
                     <Form.Row>
-                        <Button style={buttonStyle} onClick={this.addChoice} variant="info"><b>+ Add Selection</b></Button>
-                        <Button style={buttonStyle} onClick={this.deleteChoice} variant="danger"><b>Remove 1 Selection</b></Button>
-                        {/* <button style={buttonStyle} onClick={this.deleteChoice}>X</button> */}
+                        <Button style={addChoiceStyle} onClick={this.addChoice} variant="info"><b>+ Add Selection</b></Button>
+                        <Button style={removeChoiceStyle} onClick={this.deleteChoice} variant="danger"><b>Remove 1 Selection</b></Button>
+                        &nbsp;
+                        <Button style={addChoiceStyle} onClick={() => this.props.shiftQuestionDown(this.props.questionNum)} variant="info"><b>Shift Down</b></Button>
                     </Form.Row>
                 </div>
             } catch(err){
@@ -89,20 +83,24 @@ export class EditQuestion extends Component {
         return (
             <div>
                 <Form.Row>
+
                     <Form.Group as={Col} controlId="formGridCity">
                         <Form.Label><b>Question {parseInt(this.props.questionNum) + 1}.</b></Form.Label>
                         <Form.Control name="questionText" onChange={this.handleChange} defaultValue={this.state.questionText} />
                     </Form.Group>
+
                     <Form.Group as={Col} controlId="formGridState">
                         <Form.Label><b>Answer Type</b></Form.Label>
                         <Form.Control as="select" name="answerType" onChange={this.handleChange} defaultValue={this.state.answerType}>
                             <option>Text Area</option>
                             <option>Selections</option>
                         </Form.Control>
+
                     </Form.Group>
-                    <Button variant="danger" onClick={this.props.delQuestion.bind(this, this.state.qid)}>X</Button>
+                    <Button style={{backgroundColor: '#990000'}} onClick={this.props.delQuestion.bind(this, this.state.qid)}>X</Button>
+
                 </Form.Row>
-                {this.renderSwitch(this.state.questionText, this.state.answerType, this.state.question)}
+                {this.renderSwitch(this.state.answerType)}
                 <br />
             </div>
         )
@@ -110,8 +108,14 @@ export class EditQuestion extends Component {
     }
 }
 
-const buttonStyle = {
-    marginLeft: '10px'
+const addChoiceStyle = {
+    marginLeft: '10px',
+    backgroundColor: '#009999'
+}
+
+const removeChoiceStyle = {
+    marginLeft: '10px',
+    backgroundColor: '#990000'
 }
 
 

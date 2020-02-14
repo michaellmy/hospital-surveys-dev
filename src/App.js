@@ -31,7 +31,6 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      pageHost: '',
       questionnaires: [],
       currentPage: 1,
       questionnairesPerPage: 7,
@@ -42,8 +41,7 @@ class App extends Component {
 
   componentDidMount(){
     this.props.onTryAutoSignup();
-    this.setState({pageHost: window.location.origin});
-    axios.get(this.state.pageHost + '/api/getAllQuestionnaires/')
+    axios.get(window.location.origin + '/api/getAllQuestionnaires/')
       .then(res => this.setState({questionnaires: res.data, filteredQuestionnaires: res.data})); 
   }
 
@@ -56,7 +54,7 @@ class App extends Component {
   delQuestionnaire = (id) => {
     axios({
       method: 'post',
-      url: this.state.pageHost + '/api/deleteQuestionnaireByUid/' + id,
+      url: window.location.origin + '/api/deleteQuestionnaireByUid/' + id,
       headers: {'Content-Type': 'multipart/form-data' }
       })
       .then(function (response) {
@@ -84,7 +82,7 @@ class App extends Component {
     bodyFormData.append('1', JSON.stringify(newQuestionnaire));
     axios({
       method: 'post',
-      url: this.state.pageHost + '/api/addQuestionnaire/',
+      url: window.location.origin + '/api/addQuestionnaire/',
       data: bodyFormData,
       headers: {'Content-Type': 'multipart/form-data' }
       })
@@ -126,23 +124,6 @@ class App extends Component {
             <React.Fragment>
               <Header {...this.props}/>
 
-              {/* <Breadcrumb style={{marginTop: '1%'}}>
-                  <Breadcrumb.Item href="#">Home</Breadcrumb.Item>
-                  <Breadcrumb.Item href="#">
-                    Dashboard
-                  </Breadcrumb.Item>
-                  <Breadcrumb.Item active>Manage Questionnaires</Breadcrumb.Item>
-              </Breadcrumb>
-
-              <div style={listStyle}>
-                <SearchBar questionnaires={currentQuestionnaires} filterSearch={this.filterSearch} />
-                <ListTitle refresh={this.refresh}></ListTitle>
-                <Questionnaires questionnaires={currentQuestionnaires} delQuestionnaire={this.delQuestionnaire} />
-                <ListFooter addQuestionnaire={this.addQuestionnaire} indexOfFirstTodo={indexOfFirstTodo} indexOfLastTodo={indexOfLastTodo} questionnaires={this.state.questionnaires}/>
-                <PageNumbers states={this.state} handlePageClick={this.handlePageClick} />
-                <br></br>&nbsp;
-                <Statistics />
-              </div> */}
               <AdminPanel currentQuestionnaires={currentQuestionnaires} indexOfFirstTodo={indexOfFirstTodo} 
                indexOfLastTodo={indexOfLastTodo} refresh={this.refresh} delQuestionnaire={this.delQuestionnaire}
                addQuestionnaire={this.addQuestionnaire} states={this.state} handlePageClick={this.handlePageClick}
@@ -170,12 +151,6 @@ class App extends Component {
       </Router>
     )
   }
-}
-
-const listStyle = {
-  marginTop: '1%',
-  marginLeft: '7%',
-  marginRight: '7%',
 }
 
 const mapStateToProps = state => {
