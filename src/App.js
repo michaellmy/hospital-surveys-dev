@@ -127,7 +127,7 @@ class App extends Component {
               <AdminPanel currentQuestionnaires={currentQuestionnaires} indexOfFirstTodo={indexOfFirstTodo} 
                indexOfLastTodo={indexOfLastTodo} refresh={this.refresh} delQuestionnaire={this.delQuestionnaire}
                addQuestionnaire={this.addQuestionnaire} states={this.state} handlePageClick={this.handlePageClick}
-               questionnaires={this.state.questionnaires} {...this.props}/> 
+               questionnaires={this.state.questionnaires} filterSearch={this.filterSearch} {...this.props}/> 
 
               <Footer /> 
             </React.Fragment>
