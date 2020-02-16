@@ -47,15 +47,20 @@ export class EditQuestion extends Component {
 
     renderSwitch = (answerType) => {
         if (answerType === "Text Area") {
-            return <div>
+            return (
+            <div>
                 <Button style={addChoiceStyle} onClick={() => this.props.shiftQuestionDown(this.props.questionNum)}
-                 variant="info"><b>Shift Down</b></Button>
-            </div>
+                variant="info"><b>Shift Down</b></Button>
+            </div> )
         }
-        else {
-            try{
+        else 
+        {
+            try {
                 return <div>
-                    <Form.Label><b>Edit Selections: </b></Form.Label>
+                    <Form.Label>
+                        <b>Edit Selections: </b>
+                    </Form.Label>
+
                     {
                         this.state.choices.map((choice, index) =>
                             <div>
@@ -68,6 +73,7 @@ export class EditQuestion extends Component {
                             </div>
                         )
                     } 
+
                     <Form.Row>
                         <Button style={addChoiceStyle} onClick={this.addChoice} variant="info"><b>+ Add Selection</b></Button>
                         <Button style={removeChoiceStyle} onClick={this.deleteChoice} variant="danger"><b>Remove 1 Selection</b></Button>
@@ -75,7 +81,9 @@ export class EditQuestion extends Component {
                         <Button style={addChoiceStyle} onClick={() => this.props.shiftQuestionDown(this.props.questionNum)} variant="info"><b>Shift Down</b></Button>
                     </Form.Row>
                 </div>
+                
             } catch(err){
+                console.log("caught error EditQuestion:81");
                 this.setState({choices: ["","","",""]});
             }
         }
@@ -106,7 +114,6 @@ export class EditQuestion extends Component {
                 <br />
             </div>
         )
-        
     }
 }
 

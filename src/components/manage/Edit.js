@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
+import { Button, Form, Col, Breadcrumb, Nav, Jumbotron, Container } from 'react-bootstrap';
+import { animateScroll as scroll } from 'react-scroll';
+import { Link } from 'react-router-dom';
+
 import uuid from 'uuid';
 import axios from 'axios';
 
-import EditItem from './EditItem'
 import Footer from '../layout/Footer';
-import { Button, Form, Col, Breadcrumb, Nav, Jumbotron, Container } from 'react-bootstrap'
-import { Link } from 'react-router-dom';
-import { animateScroll as scroll } from 'react-scroll';
+import EditItem from './EditItem'
+
 
 class Edit extends Component {
     constructor(props) {
@@ -18,31 +20,28 @@ class Edit extends Component {
     }
 
     componentDidMount() {
-        const pageUrl = window.location.origin;
         // Get questionnaire id from URL parameter
+        const pageUrl = window.location.origin;
         axios.get(pageUrl + '/api/getQuestionnaireByUid/' + this.props.match.params.uid + "/") 
          .then(res => this.setState({questionnaires: [res.data]}));
     }
 
     // Handle changes dynamically for selection choices
     updateChange = (fieldName, value, id, qaireId) => {
-        const questionnaireCopy = this.state.questionnaires;
-        questionnaireCopy[0].questionnaireContent.forEach((question) => {
+        const questionnaireCopy = this.state.questionnaires[0];
+        questionnaireCopy.questionnaireContent.forEach((question) => {
             if (question.qid === id) {
                 question[fieldName] = value;
             }
         })
-        this.setState({questionnaires: questionnaireCopy});
+        this.setState({questionnaires: [questionnaireCopy]});
     }
 
     // Handle changes dynamically for other fields
     handleChange = (e) => {
-        const questionnaireCopy = this.state.questionnaires;
-        questionnaireCopy.forEach(questionnaire => {
-            questionnaire[e.target.name] = e.target.value
-        });
-        console.log(questionnaireCopy[0]);
-        this.setState({questionnaires: questionnaireCopy});
+        const questionnaireCopy = this.state.questionnaires[0];
+        questionnaireCopy[e.target.name] = e.target.value;
+        this.setState({questionnaires: [questionnaireCopy]});
     }
 
     addQuestion = () => {
@@ -74,7 +73,6 @@ class Edit extends Component {
         questionnaireCopy.questionnaireContent[questionIndex] = questionnaireCopy.questionnaireContent[questionIndex + 1];
         questionnaireCopy.questionnaireContent[questionIndex + 1] = temp;
 
-        //console.log('origin ' + JSON.stringify(questionnaireCopy.questionnaireContent[questionIndex].questionText) + ', next is : ' + JSON.stringify(questionnaireCopy.questionnaireContent[questionIndex + 1].questionText));      
         this.setState({ questionnaires: [questionnaireCopy] });
     }
 
@@ -108,6 +106,7 @@ class Edit extends Component {
         return this.state.questionnaires.map((questionnaire) => (
             <div>
                 { 
+
                 this.props.isAuthenticated ?
 
                 <div>
@@ -211,7 +210,6 @@ class Edit extends Component {
                 </Jumbotron>
                 
                 }
-                <Footer />
             </div>
         ));
     }

@@ -11,7 +11,7 @@ export class QuestionnaireItem extends Component {
         this.openDialog= this.openDialog.bind(this)
     }
     
-    openDialog(uid) {
+    openDialog(uid) { // Delete questionnaire confirmation dialog
         const {title} = this.props.questionnaire;
         this.dialog.show({
             title: 'Confirm Delete',
@@ -32,48 +32,47 @@ export class QuestionnaireItem extends Component {
 
         return (
             <div>
-            <Accordion>
-                <Card>
-                    {/* <Card.Header> */}
+                <Accordion>
+                    <Card>
                         <Accordion.Toggle  as={Card.Header} eventKey="0">
                             <div style={cardStyle}>
                                 <b>{title}</b>
                             </div>
                         </Accordion.Toggle>
                         <Dialog ref={(component) => {this.dialog = component}}></Dialog>
-                        {/* <Button onClick={this.props.delQuestionnaire.bind(this, uid)} style={btnStyle} variant="danger">X</Button> */}
-                    {/* </Card.Header> */}
-                    <Accordion.Collapse eventKey="0">
-                        <Card.Body>
-                            <Table responsive striped hover>
-                                <thead>
-                                    <tr>
-                                        <th>Category</th>
-                                        <th>Category Details</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>No. of Questions</td>
-                                        <td>{questionnaireContent.length}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Patient Type</td>
-                                        <td>{patientType}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Patient Age Group</td>
-                                        <td>{minAge} to {maxAge} years-old</td>
-                                    </tr>
-                                </tbody>
-                            </Table>
-                            <Link to={surveyLink}><Button style={testStyle}><b>Edit Questionnaire</b></Button></Link>
-                            <Button onClick={this.openDialog.bind(this, uid)} style={deleteStyle}><b>Delete Questionnaire</b></Button> 
-                            
-                        </Card.Body>
-                    </Accordion.Collapse>
-                </Card>
-            </Accordion>
+
+                        <Accordion.Collapse eventKey="0">
+                            <Card.Body>
+                                <Table responsive striped hover>
+                                    <thead>
+                                        <tr>
+                                            <th>Category</th>
+                                            <th>Category Details</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>No. of Questions</td>
+                                            <td>{questionnaireContent.length}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Patient Type</td>
+                                            <td>{patientType}</td>
+                                            
+                                        </tr>
+                                        <tr>
+                                            <td>Patient Age Group</td>
+                                            <td>{minAge} to {maxAge} years-old</td>
+                                        </tr>
+                                    </tbody>
+                                </Table>
+                                
+                                <Link to={surveyLink}><Button style={testStyle}><b>Edit Questionnaire</b></Button></Link>
+                                <Button onClick={this.openDialog.bind(this, uid)} style={deleteStyle}><b>Delete Questionnaire</b></Button>    
+                            </Card.Body>
+                        </Accordion.Collapse>
+                    </Card>
+                </Accordion>
             </div>
         )
     }
@@ -82,21 +81,6 @@ export class QuestionnaireItem extends Component {
 QuestionnaireItem.propTypes = {
     questionnaire: PropTypes.object.isRequired
 }
-
-/* const editStyle = {
-    backgroundColor: '#007BFF',
-    height: '36px',
-    width: '46px',
-    color: '#fff',
-    border: 'none',
-    paddingBottom: '33px',
-    paddingRight: '10px',
-    paddingLeft: '10px',
-    cursor: 'pointer',
-    marginRight: '10px',
-    marginTop: '-30px',
-    float: 'right',
-} */
 
 const testStyle = {
     backgroundColor: '#007BFF',

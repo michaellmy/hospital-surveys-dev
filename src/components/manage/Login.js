@@ -1,13 +1,13 @@
 import React from 'react';
-import { Form, Icon, Input, Button, Spin } from 'antd';
+import { Form, Icon, Input, Button } from 'antd';
 import { Jumbotron, Container, Spinner, Alert } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { NavLink } from 'react-router-dom';
-import * as actions from '../../store/actions/auth';
+
 import Header from '../layout/Header';
 import Footer from '../layout/Footer';
 
-const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />;
+import * as actions from '../../store/actions/auth';
+
 
 class NormalLoginForm extends React.Component {
   handleSubmit = e => {
@@ -15,7 +15,6 @@ class NormalLoginForm extends React.Component {
     this.props.form.validateFields((err, values) => {
       if (!err) {
         this.props.onAuth(values.userName, values.password);
-        //this.props.history.push('/manage');
       }
     });
   };
@@ -44,13 +43,14 @@ class NormalLoginForm extends React.Component {
                     </p>
                 </Container>
             </Jumbotron>
+
             {errorMessage}
+            
             <div style={containerBox}>
                 <h4 style={{marginBottom: '20px'}}>Admin Login</h4>
                 {
                     this.props.loading ?
 
-                    /* <Spin indicator={antIcon} /> */
                     <Spinner animation="border" role="status">
                         <span className="sr-only">Loading...</span>
                     </Spinner>
@@ -89,9 +89,6 @@ class NormalLoginForm extends React.Component {
                                 <Button style={loginStyle} htmlType="submit" size="large" >
                                     <b>Login</b>
                                 </Button>
-                                {/* <NavLink style={{marginRight: '10px'}} to='/signup/'>
-                                    Signup
-                                </NavLink> */}
                             </Form.Item>
                         </Form>    
                     </div>
@@ -133,4 +130,5 @@ const loginStyle = {
     color: 'white',
     padding: '15px 32px'
 }
+
 export default connect(mapStateToProps, mapDispatchToProps)(WrappedNormalLoginForm);

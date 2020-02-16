@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+import uuid from 'uuid';
 import { Breadcrumb, Jumbotron, Button, Nav, Container} from 'react-bootstrap';
 
 import ListTitle from '../layout/ListTitle';
@@ -12,8 +14,95 @@ import Statistics from '../pages/Statistics';
 
 
 export class AdminPanel extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            questionnaires: [],
+            currentPage: 1,
+            questionnairesPerPage: 7,
+            recentPage: 1,
+            filteredQuestionnaires: [] // Used for pagination and search
+        }
+    }
+
+    componentDidMount(){
+        axios.get(window.location.origin + '/api/getAllQuestionnaires/')
+            .then(res => this.setState({questionnaires: res.data, filteredQuestionnaires: res.data})); 
+    }
+
+    handlePageClick = (event) => {
+        this.setState({
+            currentPage: Number(event.target.id)
+        });
+    }
+
+    delQuestionnaire = (id) => {
+        axios({
+            method: 'post',
+            url: window.location.origin + '/api/deleteQuestionnaireByUid/' + id,
+            headers: {'Content-Type': 'multipart/form-data' }
+            })
+            .then(function (response) {
+            console.log(response);
+            })
+            .catch(function (response) {
+            console.log(response);
+        });
+        this.setState({ questionnaires: [...this.state.questionnaires.filter(questionnaire => questionnaire.uid !== id)] });
+        this.setState({ filteredQuestionnaires: [...this.state.filteredQuestionnaires.filter(questionnaire => questionnaire.uid !== id)] }, () => { this.updatePage() });
+    }
+
+    addQuestionnaire = () => {
+        const newQuestionnaire = {
+            'uid': uuid.v4(),
+            'title': 'New Questionnaire',
+            'minAge': 10,
+            'maxAge': 12,
+            'description': '',
+            'patientType': 'Inpatient',
+            'questionnaireContent': []
+        };
+        
+        var bodyFormData = new FormData();
+        bodyFormData.append('1', JSON.stringify(newQuestionnaire));
+        axios({
+            method: 'post',
+            url: window.location.origin + '/api/addQuestionnaire/',
+            data: bodyFormData,
+            headers: {'Content-Type': 'multipart/form-data' }
+        })
+        .then(function (response) {
+            console.log(response);
+        })
+        .catch(function (response) {
+            console.log(response);
+        });
+
+        this.setState({ questionnaires: [...this.state.questionnaires, newQuestionnaire] });
+        this.setState({ filteredQuestionnaires: [...this.state.filteredQuestionnaires, newQuestionnaire] }, () => { this.updatePage() });
+    }
+
+    filterSearch = (e) => {
+        const filtered = this.state.questionnaires.filter(questionnaire => questionnaire.title.toLowerCase().includes(e.target.value.toLowerCase()));
+        this.setState({ filteredQuestionnaires: filtered }, () => { this.setState({ currentPage: 1 }) });
+    }
+
+    updatePage = () => {
+        const totalPages = Math.ceil((this.state.filteredQuestionnaires.length) / this.state.questionnairesPerPage);
+        this.setState({ currentPage: totalPages })
+    }
+
+    refresh = () => {
+        this.setState({ currentPage: 1 })
+        this.setState({ filteredQuestionnaires: this.state.questionnaires })
+    }
 
     render() {
+        const { currentPage, questionnairesPerPage } = this.state;
+        const indexOfLastTodo = currentPage * questionnairesPerPage;
+        const indexOfFirstTodo = indexOfLastTodo - questionnairesPerPage;
+        const currentQuestionnaires = this.state.filteredQuestionnaires.slice(indexOfFirstTodo, indexOfLastTodo);
+
         return (
             <div>
                 {
@@ -26,14 +115,14 @@ export class AdminPanel extends Component {
                         </Breadcrumb>
 
                         <div style={listStyle}>
-                            <SearchBar questionnaires={this.props.currentQuestionnaires} filterSearch={this.props.filterSearch}/>
+                            <SearchBar questionnaires={currentQuestionnaires} filterSearch={this.filterSearch}/>
 
-                            <ListTitle refresh={this.props.refresh} />
-                            <Questionnaires questionnaires={this.props.currentQuestionnaires} delQuestionnaire={this.props.delQuestionnaire}/>
-                            <ListFooter addQuestionnaire={this.props.addQuestionnaire} indexOfFirstTodo={this.props.indexOfFirstTodo} 
-                             indexOfLastTodo={this.props.indexOfLastTodo} questionnaires={this.props.questionnaires}/>
+                            <ListTitle refresh={this.refresh} />
+                            <Questionnaires questionnaires={currentQuestionnaires} delQuestionnaire={this.delQuestionnaire}/>
+                            <ListFooter addQuestionnaire={this.addQuestionnaire} indexOfFirstTodo={indexOfFirstTodo} 
+                             indexOfLastTodo={indexOfLastTodo} questionnaires={this.state.questionnaires}/>
                              
-                            <PageNumbers states={this.props.states} handlePageClick={this.props.handlePageClick} />
+                            <PageNumbers states={this.state} handlePageClick={this.handlePageClick} />
                             <br></br>&nbsp;
                             <Statistics />
                         </div>
@@ -64,6 +153,6 @@ const listStyle = {
     marginTop: '1%',
     marginLeft: '7%',
     marginRight: '7%',
-  }
+}
 
 export default AdminPanel
