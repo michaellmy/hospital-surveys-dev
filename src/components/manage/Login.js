@@ -36,7 +36,7 @@ class NormalLoginForm extends React.Component {
             <Header/>
             <Jumbotron fluid>
                 <Container>
-                    <h1 style={{color: '#000080'}}>Login to View and Manage Questionnaires</h1>
+                    <h1 style={{color: '#000080'}}><b>Login to View and Manage Questionnaires</b></h1>
                     <p style={{color: '#52527a'}}>
                     You are seeing this page because you are either not logged in, or your session
                     has expired.

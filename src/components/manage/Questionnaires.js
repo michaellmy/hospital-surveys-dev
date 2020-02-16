@@ -11,9 +11,9 @@ class Questionnaires extends Component {
   }
 }
 
-// PropTypes
 Questionnaires.propTypes = {
-    questionnaires: PropTypes.array.isRequired
+    questionnaires: PropTypes.array.isRequired,
+    delQuestionnaire: PropTypes.func
 }
 
 export default Questionnaires;

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import EditQuestion from './EditQuestion'
+import EditQuestion from './EditQuestion';
+import PropTypes from 'prop-types';
 
 export class EditItem extends Component {
     render() {
@@ -12,8 +13,15 @@ export class EditItem extends Component {
                 </div>
                 <br></br>
             </div>
-        ))
+        ));
     }
+}
+
+EditItem.propTypes = {
+    qaireId: PropTypes.string.isRequired,
+    updateChange: PropTypes.func,
+    delQuestion: PropTypes.func,
+    shiftQuestionDown: PropTypes.func
 }
 
 const listStyle = {

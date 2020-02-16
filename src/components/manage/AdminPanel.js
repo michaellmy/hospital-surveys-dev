@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import uuid from 'uuid';
-import { Breadcrumb, Jumbotron, Button, Nav, Container} from 'react-bootstrap';
+import { Breadcrumb, Jumbotron, Button, Spinner, Container} from 'react-bootstrap';
 
 import ListTitle from '../layout/ListTitle';
 import ListFooter from '../layout/ListFooter';
@@ -21,13 +21,15 @@ export class AdminPanel extends Component {
             currentPage: 1,
             questionnairesPerPage: 7,
             recentPage: 1,
-            filteredQuestionnaires: [] // Used for pagination and search
+            filteredQuestionnaires: [], // Used for pagination and search
+            isReady: false // Used for loading spinner
         }
     }
 
     componentDidMount(){
         axios.get(window.location.origin + '/api/getAllQuestionnaires/')
-            .then(res => this.setState({questionnaires: res.data, filteredQuestionnaires: res.data})); 
+            .then(res => this.setState({questionnaires: res.data, filteredQuestionnaires: res.data}))
+            .then(() => this.setState({isReady: true})); 
     }
 
     handlePageClick = (event) => {
@@ -103,6 +105,7 @@ export class AdminPanel extends Component {
         const indexOfFirstTodo = indexOfLastTodo - questionnairesPerPage;
         const currentQuestionnaires = this.state.filteredQuestionnaires.slice(indexOfFirstTodo, indexOfLastTodo);
 
+        if(this.state.isReady){
         return (
             <div>
                 {
@@ -132,7 +135,7 @@ export class AdminPanel extends Component {
 
                     <Jumbotron fluid>
                         <Container>
-                            <h1 style={{color: '#000080'}}>Login to View and Manage Questionnaires</h1>
+                            <h1 style={{color: '#000080'}}><b>Login to View and Manage Questionnaires</b></h1>
                             <p style={{color: '#52527a'}}>
                             You are seeing this page because you are either not logged in, or your session
                             has expired.
@@ -146,6 +149,11 @@ export class AdminPanel extends Component {
                 }
             </div>
         )
+        } else {
+            return <div style={{textAlign: "center", paddingTop: "10%"}}>
+                <Spinner animation="border" variant="primary"/>
+            </div>
+        }
     }
 }
 
