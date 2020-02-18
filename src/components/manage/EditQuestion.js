@@ -4,7 +4,6 @@ import { Button, Form, Col } from 'react-bootstrap';
 export class EditQuestion extends Component {
     state = {
         MAX_CHOICES: 8,
-        qaireId: this.props.qaireId,
         question: this.props.question,
         qid: this.props.question.qid,
         questionText: this.props.question.questionText,
@@ -13,27 +12,27 @@ export class EditQuestion extends Component {
     }
 
     handleChange = e => {
+        if( e.target.name == "answerType" && e.target.value == "Text Area"){
+            this.setState({ choices: []})
+            this.props.updateChange("choices", "", this.state.qid);
+        }
+
         this.setState({ [e.target.name]: e.target.value })
-        this.props.updateChange(e.target.name, e.target.value, this.state.qid, this.state.qaireId);
+        this.props.updateChange(e.target.name, e.target.value, this.state.qid);
     }
 
     handleChoices = e => {
         let choicesCopy = this.state.choices;
-        try {
-            choicesCopy[parseInt([e.target.name])] = e.target.value;
-        } catch(err){
-            console.log(err)
-            choicesCopy = ["", "", "", ""]
-        }
+        choicesCopy[parseInt([e.target.name])] = e.target.value;
         this.setState({ choices: choicesCopy })
-        this.props.updateChange("choices", choicesCopy.join(" | "), this.state.qid, this.state.qaireId);
+        this.props.updateChange("choices", choicesCopy.join(" | "), this.state.qid);
     }
 
     deleteChoice = () => {
         let choicesCopy = this.state.choices;
         choicesCopy.pop();
         this.setState({ choices: choicesCopy})
-        this.props.updateChange("choices", choicesCopy.join(" | "), this.state.qid, this.state.qaireId);
+        this.props.updateChange("choices", choicesCopy.join(" | "), this.state.qid);
     }
 
     addChoice = () => {
@@ -42,7 +41,7 @@ export class EditQuestion extends Component {
             choicesCopy.push("");
             this.setState({choices: choicesCopy});
         }
-        this.props.updateChange("choices", choicesCopy.join(" | "), this.state.qid, this.state.qaireId);
+        this.props.updateChange("choices", choicesCopy.join(" | "), this.state.qid);
     }
 
     renderSwitch = (answerType) => {
@@ -55,37 +54,31 @@ export class EditQuestion extends Component {
         }
         else 
         {
-            try {
-                return <div>
-                    <Form.Label>
-                        <b>Edit Selections: </b>
-                    </Form.Label>
+            return <div>
+                <Form.Label>
+                    <b>Edit Selections: </b>
+                </Form.Label>
 
-                    {
-                        this.state.choices.map((choice, index) =>
-                            <div>
-                                <Form.Row>
-                                    <Form.Group as={Col}>
-                                        <Form.Control name={index} onChange={this.handleChoices} defaultValue={choice} />
-                                    </Form.Group>
-                                    
-                                </Form.Row>
-                            </div>
-                        )
-                    } 
+                {
+                    this.state.choices.map((choice, index) =>
+                        <div>
+                            <Form.Row>
+                                <Form.Group as={Col}>
+                                    <Form.Control name={index} onChange={this.handleChoices} defaultValue={choice} />
+                                </Form.Group>
+                                
+                            </Form.Row>
+                        </div>
+                    )
+                } 
 
-                    <Form.Row>
-                        <Button style={addChoiceStyle} onClick={this.addChoice} variant="info"><b>+ Add Selection</b></Button>
-                        <Button style={removeChoiceStyle} onClick={this.deleteChoice} variant="danger"><b>Remove 1 Selection</b></Button>
-                        &nbsp; &nbsp;
-                        <Button style={addChoiceStyle} onClick={() => this.props.shiftQuestionDown(this.props.questionNum)} variant="info"><b>Shift Down</b></Button>
-                    </Form.Row>
-                </div>
-                
-            } catch(err){
-                console.log("caught error EditQuestion:81");
-                this.setState({choices: ["","","",""]});
-            }
+                <Form.Row>
+                    <Button style={addChoiceStyle} onClick={this.addChoice} variant="info"><b>+ Add Selection</b></Button>
+                    <Button style={removeChoiceStyle} onClick={this.deleteChoice} variant="danger"><b>Remove 1 Selection</b></Button>
+                    &nbsp; &nbsp;
+                    <Button style={addChoiceStyle} onClick={() => this.props.shiftQuestionDown(this.props.questionNum)} variant="info"><b>Shift Down</b></Button>
+                </Form.Row>
+            </div>
         }
     }
 

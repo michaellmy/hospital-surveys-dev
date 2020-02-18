@@ -35,7 +35,9 @@ function Footer() {
 }
 
 const footerStyle = {
-    marginTop: '2%'
+    position: 'relative',
+    marginTop: '2%',
+    zIndex: '-1'
 }
 
 const aboutStyle = {

@@ -19,7 +19,7 @@ export class About extends Component {
                     <Navbar.Brand href="https://www.goshdrive.com/">Drive</Navbar.Brand>
                     <Nav className="mr-auto">
                         <Nav.Link href="/manage">Manage</Nav.Link>
-                        <Nav.Link href="/">About</Nav.Link>
+                        <Nav.Link href="/statistics">Statistics</Nav.Link>
                     </Nav>
                 </Navbar>
 
@@ -60,7 +60,7 @@ export class About extends Component {
                 </Carousel>
 
                 <div style={btmList}>
-                    <h2>Welcome to Hospital Surveys.</h2>
+                    <h2><b>Welcome to Hospital Surveys.</b></h2>
                     <div style={cardRow}>
                         <Card style={cardStyle}>
                             <Card.Img variant="top" src={manageCard} />
@@ -94,8 +94,6 @@ export class About extends Component {
                                 <a href="/"><Button style={{backgroundColor: '#0066ff'}} variant="primary">Answer Questionnaires</Button></a>
                             </Card.Body>
                         </Card>
-
-                        
                     </div>
                 </div>
                 <Footer/>

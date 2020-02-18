@@ -15,34 +15,31 @@ class Header extends React.Component {
                     <img src={goshlogo} style={logoStyle} alt="logo" />
                     <Navbar.Brand href="https://www.goshdrive.com/">Drive</Navbar.Brand>
                     <Nav className="mr-auto">
-                        <Nav.Link href="/">Home</Nav.Link>
-                        <Nav.Link href="/">About</Nav.Link>
-                        {
-                            this.props.isAuthenticated ?
-    
-                            /* <Nav.Item onClick={this.props.logout}>
-                                Logout
-                            </Nav.Item> */
-                            <Nav.Link href="/" onClick={this.props.logout}>Logout</Nav.Link>
-    
-                            :
-    
-                            /* <Nav.Item>
-                                <Link to="/login/">Login</Link>
-                            </Nav.Item> */
-                            <Nav.Link href="/login/">Login</Nav.Link>
-                        }
+                        <Nav.Item>
+                            <Nav.Link href="/">Home</Nav.Link>
+                        </Nav.Item>
+
+                        <Nav.Item>
+                            <Nav.Link href="/statistics">Statistics</Nav.Link>
+                        </Nav.Item>
                     </Nav>
-    
-                    <Nav className="justify-content-end">
-                        <NavDropdown title="john_wick99" style={accountStyle} drop='left'>
-                            <NavDropdown.Item href="#action/3.1">Your Questionnaires</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.2">Account Details</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.3">Settings</NavDropdown.Item>
-                            <NavDropdown.Divider />
-                            <NavDropdown.Item href="#action/3.4">Log out</NavDropdown.Item>
-                        </NavDropdown>
-                    </Nav>
+                    {
+                        this.props.isAuthenticated ?
+
+                        <Nav className="justify-content-end"> 
+                            <Nav.Item>
+                                <Nav.Link href="/" onClick={this.props.logout}>Logout</Nav.Link>
+                            </Nav.Item>
+                        </Nav>
+
+                        :
+
+                        <Nav className="justify-content-end"> 
+                            <Nav.Item>
+                                <Nav.Link  href="/login/">Login</Nav.Link>
+                            </Nav.Item>
+                        </Nav>
+                    }
                 </Navbar>
     
                 <SideBarMenu />

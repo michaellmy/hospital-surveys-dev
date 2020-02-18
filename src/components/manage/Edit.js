@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { Button, Form, Col, Breadcrumb, Nav, Jumbotron, Container, Spinner } from 'react-bootstrap';
-import { animateScroll as scroll } from 'react-scroll';
+import { Button, Form, Col, Breadcrumb, Jumbotron, Container, Spinner } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 import uuid from 'uuid';
 import axios from 'axios';
 
-import EditItem from './EditItem'
+import EditItem from './EditItem';
+import PageNavigator from '../layout/PageNavigator';
 
 
 class Edit extends Component {
@@ -26,7 +26,7 @@ class Edit extends Component {
     }
 
     // Handle changes dynamically for selection choices
-    updateChange = (fieldName, value, id, qaireId) => {
+    updateChange = (fieldName, value, id) => {
         const questionnaireCopy = this.state.questionnaire;
         questionnaireCopy.questionnaireContent.forEach((question) => {
             if (question.qid === id) {
@@ -102,7 +102,7 @@ class Edit extends Component {
             allAges.push(i)
         }
 
-        if(this.state.isReady){
+        if (this.state.isReady){
             return (
                 <div>
                     { 
@@ -120,11 +120,6 @@ class Edit extends Component {
 
 
                         <div style={containerStyle}>
-                            <Nav className="justify-content-end" activeKey="/home">
-                                <Nav.Item>
-                                    <Nav.Link onClick={scroll.scrollToBottom}><b>Scroll To Bottom</b></Nav.Link>
-                                </Nav.Item>
-                            </Nav>
 
                             <div style={titleStyle}>
                                 <Form.Row>
@@ -183,14 +178,8 @@ class Edit extends Component {
                                 <Button style={{backgroundColor: '#00994d'}} onClick={this.saveChanges} variant="success"><b>Save and Exit</b></Button> &nbsp;
                                 <a href="/manage"><Button style={{backgroundColor: '#b30000', float: 'right', marginRight: '2%'}} variant="danger"><b>Discard All Changes</b></Button></a>
                             </header>
-
-                            <Nav className="justify-content-end" activeKey="/home">
-                                <Nav.Item>
-                                    <Nav.Link onClick={scroll.scrollToTop}><b>Scroll To Top</b></Nav.Link>
-                                </Nav.Item>
-                            </Nav>
-
                         </div>
+                        <PageNavigator/>
                     </div>
 
                     :
@@ -209,6 +198,7 @@ class Edit extends Component {
                         </Container>
                     </Jumbotron>
                     }
+                       
                 </div>
             );
 
