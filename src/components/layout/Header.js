@@ -1,9 +1,9 @@
 import React from 'react';
-import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
+import { Navbar, Nav } from 'react-bootstrap';
 import SideBarMenu from './SideBarMenu';
 import {connect } from 'react-redux'
 import * as actions from '../../store/actions/auth';
-import {Link, withRouter} from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
 
 import goshlogo from '../logos/goshlogo.png';
 
@@ -46,10 +46,6 @@ class Header extends React.Component {
             </div>
         )
     }
-}
-
-const accountStyle = {
-    float: 'right'
 }
 
 const logoStyle = {

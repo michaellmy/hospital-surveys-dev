@@ -12,7 +12,7 @@ export class EditQuestion extends Component {
     }
 
     handleChange = e => {
-        if( e.target.name == "answerType" && e.target.value == "Text Area"){
+        if( e.target.name === "answerType" && e.target.value === "Text Area"){
             this.setState({ choices: []})
             this.props.updateChange("choices", "", this.state.qid);
         }

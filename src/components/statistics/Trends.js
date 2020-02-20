@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
-import { Doughnut, Line, Pie, Bar, Radar } from 'react-chartjs-2';
 import Header from '../layout/Header';
+import Footer from '../layout/Footer';
+import { Card, Jumbotron, Container } from 'react-bootstrap';
+
+import PatientTypesPie from './PatientTypesPie';
+import AgeRangeLine from './AgeRange';
 
 /* Ideas: 
 1. Number of responses per month - Horizontal Bar
@@ -11,15 +15,15 @@ import Header from '../layout/Header';
 const data = {
 	labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
 	datasets: [
-	  {
-		label: 'My First dataset',
-		backgroundColor: 'rgb(51, 102, 255)',
-		borderColor: 'rgb(0, 13, 51)',
-		borderWidth: 1,
-		hoverBackgroundColor: 'rgba(255,99,132,0.4)',
-		hoverBorderColor: 'rgba(255,99,132,1)',
-		data: [65, 59, 80, 81, 56, 55, 40]
-	  }
+		{
+			label: 'My First dataset',
+			backgroundColor: 'rgb(51, 102, 255)',
+			borderColor: 'rgb(0, 13, 51)',
+			borderWidth: 1,
+			hoverBackgroundColor: 'rgba(255,99,132,0.4)',
+			hoverBorderColor: 'rgba(255,99,132,1)',
+			data: [65, 59, 80, 81, 56, 55, 40]
+		}
 	]
 }
 
@@ -28,17 +32,50 @@ export class Statistics extends Component {
 		return (
 			<div>
 				<Header />
-				<div style={{ paddingLeft: '5%', paddingRight: '10%' , paddingTop: '10px'}}>
-					<h2>Welcome to Statistics!</h2>
-					<Bar data={data} width={200} height={250} options={{maintainAspectRatio: false}} />
+				<Jumbotron style={{backgroundColor: '#d6e0f5'}}>
+					<Container>
+						<h1>Welcome to Statistics!</h1>
+						<p>
+						On this page, you can view general statistics about different questionnaire and response data.
+						</p>
+					</Container>
+				</Jumbotron>
+				<div style={cardRow}>
+					<Card bg="light"border="secondary" style={cardItem}>
+						<Card.Header><h5>Patient Type Proportions</h5></Card.Header>
+						<Card.Body>
+						<Card.Subtitle className="mb-2 text-muted">Number of questionnaires directed towards different types of patients.</Card.Subtitle>
+							<PatientTypesPie />
+						</Card.Body>
+                    </Card>
+
+					<Card bg="light"border="secondary" style={cardItem}>
+						<Card.Header><h5>Questionnaire Age Range</h5></Card.Header>
+						<Card.Body>
+						<Card.Subtitle className="mb-2 text-muted">Number of questionnaires directed towards different patient ages.</Card.Subtitle>
+							<AgeRangeLine />
+						</Card.Body>
+                    </Card>
 				</div>
-				<hr></hr>
-				<div style={{ paddingLeft: '5%', paddingRight: '10%' }}>
-					<Pie data={data} width={300} height={300} options={{maintainAspectRatio: false}} />
-				</div>
+				<Footer/>
 			</div>
 		)
 	}
 }
 
+const cardRow = {
+	paddingLeft: '5%', 
+	paddingRight: '5%', 
+	paddingTop: '10px', 
+	display: 'flex',
+	flexWrap: 'wrap',
+}
+
+const cardItem = {
+	width: '40rem', 
+	marginRight: '10px', 
+	marginLeft:'10px', 
+	marginBottom: '20px',
+	textAlign: 'center'
+}
 export default Statistics
