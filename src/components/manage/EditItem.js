@@ -9,7 +9,7 @@ export class EditItem extends Component {
                 <div style={listStyle}>
                     <EditQuestion key={question.qid} question={question} updateChange={this.props.updateChange} 
                     qaireId={this.props.qaireId} delQuestion={this.props.delQuestion} questionNum={index} 
-                    shiftQuestionDown={this.props.shiftQuestionDown}/>
+                    shiftQuestionDown={this.props.shiftQuestionDown} shiftQuestionUp={this.props.shiftQuestionUp}/>
                 </div>
                 <br></br>
             </div>

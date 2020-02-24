@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/static/css/main.1a8e8eb9.chunk.css",
-    "main.js": "/static/js/main.db57fd61.chunk.js",
-    "main.js.map": "/static/js/main.db57fd61.chunk.js.map",
+    "main.css": "/static/css/main.090903ed.chunk.css",
+    "main.js": "/static/js/main.10d8112e.chunk.js",
+    "main.js.map": "/static/js/main.10d8112e.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.f645a79e.js",
     "runtime-main.js.map": "/static/js/runtime-main.f645a79e.js.map",
     "static/css/2.67123b20.chunk.css": "/static/css/2.67123b20.chunk.css",
-    "static/js/2.6b6218ab.chunk.js": "/static/js/2.6b6218ab.chunk.js",
-    "static/js/2.6b6218ab.chunk.js.map": "/static/js/2.6b6218ab.chunk.js.map",
+    "static/js/2.65b427d2.chunk.js": "/static/js/2.65b427d2.chunk.js",
+    "static/js/2.65b427d2.chunk.js.map": "/static/js/2.65b427d2.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.6af7ddd3595d849bac2685ea0acf743e.js": "/precache-manifest.6af7ddd3595d849bac2685ea0acf743e.js",
+    "precache-manifest.f5959c76ea9737220eb25dab2f1f6842.js": "/precache-manifest.f5959c76ea9737220eb25dab2f1f6842.js",
     "service-worker.js": "/service-worker.js",
     "static/css/2.67123b20.chunk.css.map": "/static/css/2.67123b20.chunk.css.map",
-    "static/css/main.1a8e8eb9.chunk.css.map": "/static/css/main.1a8e8eb9.chunk.css.map",
-    "static/js/2.6b6218ab.chunk.js.LICENSE": "/static/js/2.6b6218ab.chunk.js.LICENSE",
+    "static/css/main.090903ed.chunk.css.map": "/static/css/main.090903ed.chunk.css.map",
+    "static/js/2.65b427d2.chunk.js.LICENSE": "/static/js/2.65b427d2.chunk.js.LICENSE",
     "static/media/analyze.png": "/static/media/analyze.36176339.png",
     "static/media/goshlogo.png": "/static/media/goshlogo.2abc4d49.png",
-    "static/media/hospital.jpg": "/static/media/hospital.29d4f1ee.jpg",
-    "static/media/hospital2.jpg": "/static/media/hospital2.fdde2efb.jpg",
-    "static/media/hospital3.jpg": "/static/media/hospital3.e15fe189.jpg",
+    "static/media/hospital.jpg": "/static/media/hospital.9d67f4da.jpg",
+    "static/media/hospital2.jpg": "/static/media/hospital2.b5cda209.jpg",
+    "static/media/hospital3.jpg": "/static/media/hospital3.00e6a104.jpg",
     "static/media/managecard.jpg": "/static/media/managecard.eeea3d18.jpg",
     "static/media/patientcard.jpg": "/static/media/patientcard.7c6dc819.jpg",
     "static/media/search.png": "/static/media/search.d62c5c32.png",
@@ -28,8 +28,8 @@
   "entrypoints": [
     "static/js/runtime-main.f645a79e.js",
     "static/css/2.67123b20.chunk.css",
-    "static/js/2.6b6218ab.chunk.js",
-    "static/css/main.1a8e8eb9.chunk.css",
-    "static/js/main.db57fd61.chunk.js"
+    "static/js/2.65b427d2.chunk.js",
+    "static/css/main.090903ed.chunk.css",
+    "static/js/main.10d8112e.chunk.js"
   ]
 }

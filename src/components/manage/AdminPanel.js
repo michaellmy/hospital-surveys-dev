@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import uuid from 'uuid';
-import { Breadcrumb, Jumbotron, Button, Spinner, Container} from 'react-bootstrap';
+import { Breadcrumb, Jumbotron, Button, Spinner, Container, Alert} from 'react-bootstrap';
 
 import ListTitle from '../layout/ListTitle';
 import ListFooter from '../layout/ListFooter';
@@ -22,7 +22,8 @@ export class AdminPanel extends Component {
             questionnairesPerPage: 7,
             recentPage: 1,
             filteredQuestionnaires: [], // Used for pagination and search
-            isReady: false // Used for loading spinner
+            isReady: false, // Used for loading spinner
+            errorMessage: null
         }
     }
 
@@ -32,6 +33,15 @@ export class AdminPanel extends Component {
             .then(() => this.setState({isReady: true})); 
     }
 
+    changeErrorState = (message, variant) => {
+        this.setState({errorMessage: 
+            <div>
+                <Alert variant={variant}>
+                    <h5 style={{textAlign: 'center', paddingTop: '5px'}}>{message}</h5>
+                </Alert>
+            </div>})
+    }
+
     handlePageClick = (event) => {
         this.setState({
             currentPage: Number(event.target.id)
@@ -39,22 +49,24 @@ export class AdminPanel extends Component {
     }
 
     delQuestionnaire = (id) => {
+        var self = this;
         axios({
             method: 'post',
             url: window.location.origin + '/api/deleteQuestionnaireByUid/' + id,
             headers: {'Content-Type': 'multipart/form-data' }
             })
             .then(function (response) {
-            console.log(response);
+                self.changeErrorState("Success - Questionnaire was deleted.", "info");
             })
             .catch(function (response) {
-            console.log(response);
+                self.changeErrorState("Failed to delete questionnaire - Could not connect to database", "danger");
         });
         this.setState({ questionnaires: [...this.state.questionnaires.filter(questionnaire => questionnaire.uid !== id)] });
         this.setState({ filteredQuestionnaires: [...this.state.filteredQuestionnaires.filter(questionnaire => questionnaire.uid !== id)] }, () => { this.updatePage() });
     }
 
     addQuestionnaire = () => {
+        var self = this;
         const newQuestionnaire = {
             'uid': uuid.v4(),
             'title': 'New Questionnaire',
@@ -74,10 +86,10 @@ export class AdminPanel extends Component {
             headers: {'Content-Type': 'multipart/form-data' }
         })
         .then(function (response) {
-            console.log(response);
+            self.changeErrorState("Success - Added new questionnaire.", "primary");
         })
         .catch(function (response) {
-            console.log(response);
+            self.changeErrorState("Failed to add new questionnaire - could not connect to database", "danger");
         });
 
         this.setState({ questionnaires: [...this.state.questionnaires, newQuestionnaire] });
@@ -111,9 +123,10 @@ export class AdminPanel extends Component {
                 {
                     this.props.isAuthenticated ?
 
-                    <div>
-                        <Breadcrumb style={{ marginTop: '1%' }}>
-                            <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
+                    <div style={{marginLeft: '35px', marginRight: '35px', marginTop: '1%'}}>
+                        {this.state.errorMessage}
+                        <Breadcrumb>
+                            <Breadcrumb.Item style={{color: '#3466cb'}} href="/">Home</Breadcrumb.Item>
                             <Breadcrumb.Item active>Manage Questionnaires</Breadcrumb.Item>
                         </Breadcrumb>
 
@@ -133,7 +146,7 @@ export class AdminPanel extends Component {
 
                     :
 
-                    <Jumbotron fluid>
+                    <Jumbotron fluid style={{marginBottom: "20%"}}>
                         <Container>
                             <h1 style={{color: '#000080'}}><b>Login to View and Manage Questionnaires</b></h1>
                             <p style={{color: '#52527a'}}>
@@ -141,8 +154,8 @@ export class AdminPanel extends Component {
                             has expired.
                             </p>
                             <p>
-                                <Button href="/login/" variant="primary">Sign In</Button>&nbsp;&nbsp;
-                                <Button href="/" variant="primary">Return to Home Page</Button>
+                                <Button style={{backgroundColor: '#0080ff'}} href="/login/" variant="primary">Sign In</Button>&nbsp;&nbsp;
+                                <Button style={{backgroundColor: '#0080ff'}} href="/" variant="primary">Return to Home Page</Button>
                             </p>
                         </Container>
                     </Jumbotron>
@@ -150,8 +163,10 @@ export class AdminPanel extends Component {
             </div>
         )
         } else {
-            return <div style={{textAlign: "center", paddingTop: "10%"}}>
-                <Spinner animation="border" variant="primary"/>
+            return <div style={{textAlign: "center", paddingTop: "10%", marginBottom: "480px"}}>
+                <Spinner animation="border" variant="primary">
+                    <span className="sr-only">Loading...</span>
+                </Spinner>
             </div>
         }
     }

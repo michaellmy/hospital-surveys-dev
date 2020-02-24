@@ -51,7 +51,7 @@ class NormalLoginForm extends React.Component {
                 {
                     this.props.loading ?
 
-                    <Spinner animation="border" role="status">
+                    <Spinner animation="border" variant="primary" role="status">
                         <span className="sr-only">Loading...</span>
                     </Spinner>
 
@@ -118,7 +118,7 @@ const mapDispatchToProps = dispatch => {
 
 const containerBox = {
     paddingTop: '20px',
-    paddingBottom: '20px',
+    paddingBottom: '5%',
     paddingLeft: '15px',
     paddingRight: '15px',
     textAlign: 'center',

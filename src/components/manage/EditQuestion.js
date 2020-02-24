@@ -48,8 +48,12 @@ export class EditQuestion extends Component {
         if (answerType === "Text Area") {
             return (
             <div>
-                <Button style={addChoiceStyle} onClick={() => this.props.shiftQuestionDown(this.props.questionNum)}
-                variant="info"><b>Shift Down</b></Button>
+                <Form.Row>
+                    <Button style={moveUpStyle} onClick={() => this.props.shiftQuestionUp(this.props.questionNum)}
+                    variant="info"><b>^</b></Button>
+                    <Button style={moveDownStyle} onClick={() => this.props.shiftQuestionDown(this.props.questionNum)}
+                    variant="info"><b>v</b></Button>&nbsp;
+                </Form.Row>
             </div> )
         }
         else 
@@ -66,7 +70,6 @@ export class EditQuestion extends Component {
                                 <Form.Group as={Col}>
                                     <Form.Control name={index} onChange={this.handleChoices} defaultValue={choice} />
                                 </Form.Group>
-                                
                             </Form.Row>
                         </div>
                     )
@@ -76,7 +79,8 @@ export class EditQuestion extends Component {
                     <Button style={addChoiceStyle} onClick={this.addChoice} variant="info"><b>+ Add Selection</b></Button>
                     <Button style={removeChoiceStyle} onClick={this.deleteChoice} variant="danger"><b>Remove 1 Selection</b></Button>
                     &nbsp; &nbsp;
-                    <Button style={addChoiceStyle} onClick={() => this.props.shiftQuestionDown(this.props.questionNum)} variant="info"><b>Shift Down</b></Button>
+                    <Button style={moveUpStyle} onClick={() => this.props.shiftQuestionUp(this.props.questionNum)} variant="info"><b>^</b></Button>
+                    <Button style={moveDownStyle} onClick={() => this.props.shiftQuestionDown(this.props.questionNum)} variant="info"><b>v</b></Button>
                 </Form.Row>
             </div>
         }
@@ -118,6 +122,18 @@ const addChoiceStyle = {
 const removeChoiceStyle = {
     marginLeft: '10px',
     backgroundColor: '#990000'
+}
+
+const moveDownStyle = {
+    backgroundColor: '#252574',
+    marginRight: '10px'
+}
+
+const moveUpStyle = {
+    marginLeft: '10px',
+    paddingBottom: '5px',
+    backgroundColor: '#252574',
+    marginRight: '10px'
 }
 
 

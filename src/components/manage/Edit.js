@@ -75,6 +75,21 @@ class Edit extends Component {
         this.setState({ questionnaire: questionnaireCopy });
     }
 
+    shiftQuestionUp = (questionIndex) => {
+        // When question is first question, do nothing
+        console.log(questionIndex);
+        if(questionIndex === 0){
+            return;
+        }
+        const questionnaireCopy = this.state.questionnaire;
+        var temp = questionnaireCopy.questionnaireContent[questionIndex];
+        questionnaireCopy.questionnaireContent[questionIndex] = questionnaireCopy.questionnaireContent[questionIndex - 1];
+        questionnaireCopy.questionnaireContent[questionIndex - 1] = temp;
+
+        console.log(questionnaireCopy);
+        this.setState({ questionnaire: questionnaireCopy });
+    }
+
     saveChanges = () => {
         const pageUrl = window.location.origin;
         var bodyFormData = new FormData();
@@ -112,8 +127,8 @@ class Edit extends Component {
                     <div>
                         <div style={breadCrumbStyle}>
                             <Breadcrumb style={breadCrumbStyle}>
-                                <Breadcrumb.Item><Link to="/">Home</Link></Breadcrumb.Item>
-                                <Breadcrumb.Item><Link to="/manage">Manage Questionnaires</Link></Breadcrumb.Item>
+                                <Breadcrumb.Item><Link to="/" style={{color: '#3466cb'}}>Home</Link></Breadcrumb.Item>
+                                <Breadcrumb.Item><Link to="/manage" style={{color: '#3466cb'}}>Manage Questionnaires</Link></Breadcrumb.Item>
                                 <Breadcrumb.Item active>{this.state.questionnaire.title}</Breadcrumb.Item>
                             </Breadcrumb>
                         </div>
@@ -169,7 +184,7 @@ class Edit extends Component {
                             <div style={listStyle}>
                                 <EditItem key={this.state.questionnaire.questionText} questions={this.state.questionnaire.questionnaireContent} 
                                 updateChange={this.updateChange} qaireId={this.state.questionnaire.uid} delQuestion={this.delQuestion} 
-                                shiftQuestionDown={this.shiftQuestionDown} />
+                                shiftQuestionDown={this.shiftQuestionDown} shiftQuestionUp={this.shiftQuestionUp}/>
                             </div>
 
 
@@ -192,8 +207,8 @@ class Edit extends Component {
                             has expired.
                             </p>
                             <p>
-                                <Button href="/login/" variant="primary">Sign In</Button>&nbsp;&nbsp;
-                                <Button href="/" variant="primary">Return to Home Page</Button>
+                                <Button style={{backgroundColor: '#0080ff'}} href="/login/" variant="primary">Sign In</Button>&nbsp;&nbsp;
+                                <Button style={{backgroundColor: '#0080ff'}} href="/" variant="primary">Return to Home Page</Button>
                             </p>
                         </Container>
                     </Jumbotron>
@@ -240,7 +255,8 @@ const footerStyle = {
 const breadCrumbStyle = {
     marginTop: '1%',
     marginBottom: '1%',
-    background: 'blue'
+    marginLeft: '20px',
+    marginRight: '20px'
 }
 
 export default Edit;

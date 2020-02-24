@@ -10,16 +10,25 @@ function SideBarMenu() {
                 <div>
                     <div>
                         <ul>
+                            <hr style={hrStyle}></hr>
                             <li><a href="/">Home</a></li>
-                            <li><a href="/">About</a></li>
-                            <li><a href="/">Services</a></li>
-                            <li><a href="/">Contact</a></li>
+                            <hr style={hrStyle}></hr>
+                            <li><a href="/manage">Manage</a></li>
+                            <hr style={hrStyle}></hr>
+                            <li><a href="/">Answer</a></li>
+                            <hr style={hrStyle}></hr>
+                            <li><a href="/statistics">Statistics</a></li>
+                            <hr style={hrStyle}></hr>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
     )
+}
+
+const hrStyle = {
+    backgroundColor: 'white'
 }
 
 export default SideBarMenu

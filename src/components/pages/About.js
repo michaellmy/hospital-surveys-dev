@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Carousel, Navbar, Nav, Card, Button } from 'react-bootstrap';
 import Footer from '../layout/Footer';
+import SideBarMenu from '../layout/SideBarMenu';
 
 import hospitalImg from '../logos/hospital.jpg';
 import hospitalImg2 from '../logos/hospital2.jpg';
@@ -14,7 +15,7 @@ export class About extends Component {
     render() {
         return (
             <div style={{ position: 'relative' }}>
-                <Navbar bg="dark" variant="dark" style={{ paddingLeft: '10%' }}>
+                <Navbar variant="dark" style={{ backgroundColor: '#142952', paddingLeft: '70px' }}>
                     <img src={goshlogo} style={logoStyle} alt="logo" />
                     <Navbar.Brand href="https://www.goshdrive.com/">Drive</Navbar.Brand>
                     <Nav className="mr-auto">
@@ -23,16 +24,17 @@ export class About extends Component {
                     </Nav>
                 </Navbar>
 
-                <Carousel>
-                    <Carousel.Item>
+                <SideBarMenu/>
+                <Carousel style={{height: "100%"}}>
+                    <Carousel.Item style={{height:"100%"}}>
                         <img
                             className="d-block w-100"
                             src={hospitalImg}
-                            alt="First slide"
+                            alt="First slide" 
                         />
                         <Carousel.Caption>
-                            <h3>Hospital Surveys</h3>
-                            <p>Turn your surveys into digital forms.</p>
+                            <h3 style={Object.assign({}, captionStyle, {color: '#333333'})}>HOSPITAL SURVEYS</h3>
+                            <h4 style={Object.assign({}, captionStyle, {color: '#737373'})}>Turn your surveys into digital forms.</h4>
                         </Carousel.Caption>
                     </Carousel.Item>
                     <Carousel.Item>
@@ -42,8 +44,8 @@ export class About extends Component {
                             alt="Second slide"
                         />
                         <Carousel.Caption>
-                            <h3>Analyze your results</h3>
-                            <p>View and analyze results from questionnaire responses.</p>
+                            <h3 style={Object.assign({}, darkCaptionStyle, {color: 'white'})}>ANALYZE RESULTS</h3>
+                            <h4 style={Object.assign({}, darkCaptionStyle, {color: '#cccccc'})}>View and analyze questionnaires and responses.</h4>
                         </Carousel.Caption>
                     </Carousel.Item>
                     <Carousel.Item>
@@ -53,23 +55,35 @@ export class About extends Component {
                             alt="Third slide"
                         />
                         <Carousel.Caption>
-                            <h3>University College London | GOSH Drive</h3>
-                            <p>A UCL IXN Student Project.</p>
+                            <h3 style={Object.assign({}, darkCaptionStyle, {color: 'white'})}>UCL | GOSH DRIVE</h3>
+                            <h4 style={Object.assign({}, darkCaptionStyle, {color: '#cccccc'})}>A University College London IXN Student Project.</h4>
                         </Carousel.Caption>
                     </Carousel.Item>
                 </Carousel>
 
                 <div style={btmList}>
-                    <h2><b>Welcome to Hospital Surveys.</b></h2>
+                    <h3><b>Welcome to Hospital Surveys.</b></h3>
+                    <hr style={{marginRight: '80px'}}></hr>
                     <div style={cardRow}>
                         <Card style={cardStyle}>
                             <Card.Img variant="top" src={manageCard} />
                             <Card.Body>
-                                <Card.Title><b>Manage Your Questionnaires</b></Card.Title>
+                                <Card.Title><b>Manage Questionnaires</b></Card.Title>
                                 <Card.Text>
-                                    View and manage all your existing questionnaires in the admin panel.
+                                    View, Create, Edit and Manage all questionnaires in the admin panel. Staff only, please!
                                 </Card.Text>
                                 <a href="/manage"><Button style={{backgroundColor: '#0066ff'}}variant="primary">Manage Questionnaires</Button></a>
+                            </Card.Body>
+                        </Card>
+
+                        <Card style={cardStyle}>
+                        <Card.Img variant="top" src={patientCard} />
+                            <Card.Body>
+                                <Card.Title><b>A Patient?</b></Card.Title>
+                                <Card.Text>
+                                    Answer a questionnaire or survey by entering the link to the questionnaire.
+                                </Card.Text>
+                                <a href="/"><Button style={{backgroundColor: '#0066ff'}} variant="primary">Answer Questionnaires</Button></a>
                             </Card.Body>
                         </Card>
 
@@ -85,13 +99,13 @@ export class About extends Component {
                         </Card>
 
                         <Card style={cardStyle}>
-                        <Card.Img variant="top" src={patientCard} />
+                            <Card.Img variant="top" src={manageCard} />
                             <Card.Body>
-                                <Card.Title><b>A Patient?</b></Card.Title>
+                                <Card.Title><b>Manage Questionnaires</b></Card.Title>
                                 <Card.Text>
-                                    Answer a questionnaire or survey by entering the questionnaire ID.
+                                    View, Create, Edit and Manage all questionnaires in the admin panel. Staff only, please!
                                 </Card.Text>
-                                <a href="/"><Button style={{backgroundColor: '#0066ff'}} variant="primary">Answer Questionnaires</Button></a>
+                                <a href="/manage"><Button style={{backgroundColor: '#0066ff'}}variant="primary">Manage Questionnaires</Button></a>
                             </Card.Body>
                         </Card>
                     </div>
@@ -118,15 +132,22 @@ const btmList = {
 const cardRow = {
     display: 'flex',
     flexWrap: 'wrap',
-    marginRight: '-15px',
-    marginLeft: '-15px'
 }
 
 const cardStyle = {
-    width: '22rem', 
+    width: '18rem', 
     marginTop: '30px', 
-    marginRight: '30px'
+    marginRight: '15px'
 }
 
+const captionStyle = {
+    fontFamily: '"Trebuchet MS", Helvetica, sans-serif',
+    textShadow: '-1px 0 white, 0 1px white, 1px 0 white, 0 -1px white',
+}
+
+const darkCaptionStyle = {
+    fontFamily: '"Trebuchet MS", Helvetica, sans-serif',
+    textShadow: '-1px 0 black , 0 1px black, 1px 0 black, 0 -1px black',
+}
 
 export default About;

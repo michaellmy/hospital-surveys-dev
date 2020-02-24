@@ -5,11 +5,11 @@ export class NavUp extends Component {
     render() {
         return (
             <div>
-                <a href="#" onClick={scroll.scrollToTop} style={topStyle}>
+                <a href="#!" onClick={scroll.scrollToTop} style={topStyle}>
                     <p style={textStyle}><b>^</b></p>
                 </a> 
 
-                <a href="#" onClick={scroll.scrollToBottom} style={bottomStyle}>
+                <a href="#!" onClick={scroll.scrollToBottom} style={bottomStyle}>
                     <p style={textStyle}><b>v</b></p>
                 </a> 
             </div>
