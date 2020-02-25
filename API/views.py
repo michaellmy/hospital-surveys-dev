@@ -150,7 +150,7 @@ def addAnswer(request):
         return HttpResponse("Received")
 
 
-def getPatientTypeStats(request):
+def getPatientAgeStats(request):
     keys = list(range(0, 31))
     ageDict = {key: 0 for key in keys}
     if request.method == 'POST':
@@ -166,4 +166,31 @@ def getPatientTypeStats(request):
             return JsonResponse(jsn, safe=False)
         except:
             e = sys.exc_info()[0]
-            print(e)
+            return HttpResponse(e)
+
+
+def getPatientTypeStats(request):
+    general =  0
+    inpatient = 0
+    outpatient = 0
+    if request.method == 'POST':
+        return HttpResponse("should be a get request.")
+    elif request.method == 'GET':
+        try:
+            queryset = Questionnaire.objects.all()
+            for questionnaire in queryset:
+                if questionnaire.patientType == 'Inpatient':
+                    inpatient = inpatient + 1
+                elif questionnaire.patientType == 'Outpatient':
+                    outpatient = outpatient + 1
+                elif questionnaire.patientType == 'General':
+                    general = general + 1
+            jsn = json.loads(json.dumps({
+                'General' : str(general),
+                'Inpatient' : str(inpatient),
+                'Outpatient' : str(outpatient)
+            }))
+            return JsonResponse(jsn, safe=False)
+        except:
+            e = sys.exc_info()[0]
+            return HttpResponse(e)
