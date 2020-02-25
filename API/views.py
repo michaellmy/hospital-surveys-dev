@@ -133,6 +133,7 @@ def addAnswer(request):
         jsnDict = serializer.validated_data
         answerContent = AnswerContent(uid=jsnDict['uid'], date=jsnDict['date'], age=jsnDict['age'])
         answerContent.save()
+        print(serializer.errors)
         for contents in jsnDict['questionAnswer']:
             answerContent.questionAnswer.create(qid=contents['qid'],
                                                 answerType=contents['answerType'],
