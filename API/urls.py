@@ -17,5 +17,7 @@ urlpatterns = [
     path('deleteQuestionnaireByUid/<str:id>', views.deleteQuestionnaireByUid),
     path('getAnswerByUid/<str:id>', views.getAnswerByUid),
     path('addAnswer/', views.addAnswer),
+    path('getPatientAgeStats/', views.getPatientAgeStats),
+    path('getPatientTypeStats/', views.getPatientTypeStats),
     # path('a/', views.QuestionnairesViewSet),
 ]

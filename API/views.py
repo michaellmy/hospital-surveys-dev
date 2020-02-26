@@ -1,4 +1,6 @@
 import json, io
+import sys
+
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import JsonResponse
@@ -55,15 +57,19 @@ def addQuestionnaire(request):
         serializer = QuestionnaireSerializers(data=jsn)
         serializer.is_valid()
         jsnDict = serializer.validated_data
-        questionnaire = Questionnaire(uid=jsnDict['uid'], title=jsnDict['title'], minAge=jsnDict['minAge'], maxAge=jsnDict['maxAge'],
-                                        description=jsnDict['description'], patientType=jsnDict['patientType'])
+        questionnaire = Questionnaire(uid=jsnDict['uid'], title=jsnDict['title'], minAge=jsnDict['minAge'],
+                                      maxAge=jsnDict['maxAge'],
+                                      description=jsnDict['description'], patientType=jsnDict['patientType'])
         questionnaire.save()
         for contents in jsnDict['questionnaireContent']:
-            questionnaire.questionnaireContent.create(qid=contents['qid'], questionText=contents['questionText'], answerType=contents['answerType'], choices=contents['choices'])
-        #print(serializer.validated_data)
+            questionnaire.questionnaireContent.create(qid=contents['qid'], questionText=contents['questionText'],
+                                                      answerType=contents['answerType'], choices=contents['choices'])
+        # print(serializer.validated_data)
         # print(serializer.validated_data['questionnaireContent'][1]['id'])
         # return JsonResponse(QuestionnaireSerializers(questionnaire).data, safe=False)
         return HttpResponse("received")
+
+
 #
 # class QuestionnairesViewSet(viewsets.ModelViewSet):
 #     # lookup_field = 'patientType'
@@ -83,12 +89,13 @@ def editQuestionnaireByUid(request, id):
         return HttpResponse("Questionnaire not exist")
     jsn = json.loads(request.POST.get('1', None))
     serializer = QuestionnaireSerializers(data=jsn)
-    #print(serializer)
+    # print(serializer)
     serializer.is_valid()
     print(serializer.errors)
     jsnDict = serializer.validated_data
-    Questionnaire.objects.filter(uid=id).update(title=jsnDict['title'], minAge=jsnDict['minAge'], maxAge=jsnDict['maxAge'],
-                                    description=jsnDict['description'], patientType=jsnDict['patientType'])
+    Questionnaire.objects.filter(uid=id).update(title=jsnDict['title'], minAge=jsnDict['minAge'],
+                                                maxAge=jsnDict['maxAge'],
+                                                description=jsnDict['description'], patientType=jsnDict['patientType'])
     Questionnaire.objects.get(uid=id).questionnaireContent.all().delete()
     for contents in jsnDict['questionnaireContent']:
         Questionnaire.objects.get(uid=id).questionnaireContent.create(qid=contents['qid'],
@@ -142,3 +149,49 @@ def addAnswer(request):
         # print(serializer.validated_data['questionnaireContent'][1]['id'])
         # return JsonResponse(QuestionnaireSerializers(questionnaire).data, safe=False)
         return HttpResponse("Received")
+
+
+def getPatientAgeStats(request):
+    keys = list(range(0, 31))
+    ageDict = {key: 0 for key in keys}
+    if request.method == 'POST':
+        return HttpResponse("should be a get request.")
+    elif request.method == 'GET':
+        try:
+            queryset = Questionnaire.objects.all()
+            for questionnaire in queryset:
+                for key in ageDict:
+                    if questionnaire.maxAge >= key >= questionnaire.minAge:
+                        ageDict[key] = ageDict[key] + 1
+            jsn = json.loads(json.dumps(ageDict))
+            return JsonResponse(jsn, safe=False)
+        except:
+            e = sys.exc_info()[0]
+            return HttpResponse(e)
+
+
+def getPatientTypeStats(request):
+    general =  0
+    inpatient = 0
+    outpatient = 0
+    if request.method == 'POST':
+        return HttpResponse("should be a get request.")
+    elif request.method == 'GET':
+        try:
+            queryset = Questionnaire.objects.all()
+            for questionnaire in queryset:
+                if questionnaire.patientType == 'Inpatient':
+                    inpatient = inpatient + 1
+                elif questionnaire.patientType == 'Outpatient':
+                    outpatient = outpatient + 1
+                elif questionnaire.patientType == 'General':
+                    general = general + 1
+            jsn = json.loads(json.dumps({
+                'General' : str(general),
+                'Inpatient' : str(inpatient),
+                'Outpatient' : str(outpatient)
+            }))
+            return JsonResponse(jsn, safe=False)
+        except:
+            e = sys.exc_info()[0]
+            return HttpResponse(e)
