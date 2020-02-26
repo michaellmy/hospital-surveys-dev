@@ -1,6 +1,5 @@
 import React from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
-import SideBarMenu from './SideBarMenu';
 import {connect } from 'react-redux'
 import * as actions from '../../store/actions/auth';
 import {withRouter} from 'react-router-dom';
@@ -10,54 +9,61 @@ import goshlogo from '../logos/goshlogo.png';
 class Header extends React.Component {
     render() {
         return (
-            <div>
-                <Navbar style={navStyle} variant="dark">
-                    <img src={goshlogo} style={logoStyle} alt="logo" />
-                    <Navbar.Brand href="https://www.goshdrive.com/">Drive</Navbar.Brand>
-                    <Nav className="mr-auto">
-                        <Nav.Item>
-                            <Nav.Link href="/">Home</Nav.Link>
-                        </Nav.Item>
-
-                        <Nav.Item>
-                            <Nav.Link href="/statistics">Statistics</Nav.Link>
-                        </Nav.Item>
-                    </Nav>
-                    {
-                        this.props.isAuthenticated ?
-
-                        <Nav className="justify-content-end"> 
+            <div style={{marginTop: '57px'}}>
+                <Navbar collapseOnSelect expand="lg" variant="dark" fixed="top" style={navStyle}>
+                    
+                    <Navbar.Brand href="/">
+                        <img src={goshlogo} style={logoStyle} alt="logo"/>{' '}Hospital Surveys
+                    </Navbar.Brand>
+                    <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                    <Navbar.Collapse id="responsive-navbar-nav">                     
+                        <Nav className="mr-auto">
                             <Nav.Item>
-                                <Nav.Link href="/" onClick={this.props.logout}>Logout</Nav.Link>
+                                <Nav.Link href="/manage">Manage</Nav.Link>
+                            </Nav.Item>
+
+                            <Nav.Item>
+                                <Nav.Link href="/">Answer</Nav.Link>
+                            </Nav.Item>
+
+                            <Nav.Item>
+                                <Nav.Link href="/statistics">Statistics</Nav.Link>
                             </Nav.Item>
                         </Nav>
 
-                        :
+                        {
+                            this.props.isAuthenticated ?
 
-                        <Nav className="justify-content-end"> 
-                            <Nav.Item>
-                                <Nav.Link  href="/login/">Login</Nav.Link>
-                            </Nav.Item>
-                        </Nav>
-                    }
+                            <Nav className="justify-content-end"> 
+                                <Nav.Item>
+                                    <Nav.Link href="/" onClick={this.props.logout}>Logout</Nav.Link>
+                                </Nav.Item>
+                            </Nav>
+
+                            :
+
+                            <Nav className="justify-content-end"> 
+                                <Nav.Item>
+                                    <Nav.Link  href="/login/">Login</Nav.Link>
+                                </Nav.Item>
+                            </Nav>
+                        }
+                    </Navbar.Collapse>
                 </Navbar>
-    
-                <SideBarMenu />
             </div>
         )
     }
 }
 
 const logoStyle = {
-    width: '50px',
-    height: '40px',
+    height: '30px',
     display: 'inline-block',
-    marginRight: '10px'
+    marginRight: '5px'
 }
 
 const navStyle = {
     backgroundColor: '#252574',
-    paddingLeft: '70px'
+    paddingLeft: '20px'
 }
 
  

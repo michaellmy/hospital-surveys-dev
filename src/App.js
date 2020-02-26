@@ -29,7 +29,7 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div>
+        <div style={{fontFamily: ' -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"'}}>
           <Route exact path="/manage" render={props => (
             <React.Fragment>
               <Header {...this.props}/>
@@ -38,7 +38,13 @@ class App extends Component {
             </React.Fragment>
           )} />
 
-          <Route exact path="/" component={About}></Route>
+         {/*  <Route exact path="/" component={About}></Route> */}
+          <Route exact path="/">
+            <React.Fragment>
+              <Header {...this.props}/>
+              <About/>
+            </React.Fragment>
+          </Route>
 
           <Route exact path="/login/" component={Login}></Route>
 

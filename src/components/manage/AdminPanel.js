@@ -19,7 +19,7 @@ export class AdminPanel extends Component {
         this.state = {
             questionnaires: [],
             currentPage: 1,
-            questionnairesPerPage: 7,
+            questionnairesPerPage: 10,
             recentPage: 1,
             filteredQuestionnaires: [], // Used for pagination and search
             isReady: false, // Used for loading spinner
@@ -123,7 +123,7 @@ export class AdminPanel extends Component {
                 {
                     this.props.isAuthenticated ?
 
-                    <div style={{marginLeft: '35px', marginRight: '35px', marginTop: '1%'}}>
+                    <div style={{marginLeft: '35px', marginRight: '35px', marginTop: '70px'}}>
                         {this.state.errorMessage}
                         <Breadcrumb>
                             <Breadcrumb.Item style={{color: '#3466cb'}} href="/">Home</Breadcrumb.Item>

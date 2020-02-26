@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Carousel, Navbar, Nav, Card, Button } from 'react-bootstrap';
 import Footer from '../layout/Footer';
-import SideBarMenu from '../layout/SideBarMenu';
 
 import hospitalImg from '../logos/hospital.jpg';
 import hospitalImg2 from '../logos/hospital2.jpg';
@@ -15,26 +14,40 @@ export class About extends Component {
     render() {
         return (
             <div style={{ position: 'relative' }}>
-                <Navbar variant="dark" style={{ backgroundColor: '#142952', paddingLeft: '70px' }}>
-                    <img src={goshlogo} style={logoStyle} alt="logo" />
-                    <Navbar.Brand href="https://www.goshdrive.com/">Drive</Navbar.Brand>
-                    <Nav className="mr-auto">
-                        <Nav.Link href="/manage">Manage</Nav.Link>
-                        <Nav.Link href="/statistics">Statistics</Nav.Link>
-                    </Nav>
-                </Navbar>
+                {/* {<div stlye={{marginTop: '65px'}}>
+                    <Navbar collapseOnSelect expand="lg" variant="dark" fixed="top" style={{ backgroundColor: '#142952', paddingLeft: '20px' }}>
+                        <Navbar.Brand href="/">
+                            <img src={goshlogo} style={logoStyle} alt="logo"/>{' '}Hospital Surveys
+                        </Navbar.Brand>
+                        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                        <Navbar.Collapse id="responsive-navbar-nav">                     
+                            <Nav className="mr-auto">
+                                <Nav.Item>
+                                    <Nav.Link href="/manage">Manage</Nav.Link>
+                                </Nav.Item>
 
-                <SideBarMenu/>
-                <Carousel style={{height: "100%"}}>
-                    <Carousel.Item style={{height:"100%"}}>
+                                <Nav.Item>
+                                    <Nav.Link href="/">Answer</Nav.Link>
+                                </Nav.Item>
+
+                                <Nav.Item>
+                                    <Nav.Link href="/statistics">Statistics</Nav.Link>
+                                </Nav.Item>
+                            </Nav>
+                        </Navbar.Collapse>
+                    </Navbar>
+                </div>} */}
+   
+                <Carousel>
+                    <Carousel.Item >
                         <img
                             className="d-block w-100"
                             src={hospitalImg}
                             alt="First slide" 
                         />
                         <Carousel.Caption>
-                            <h3 style={Object.assign({}, captionStyle, {color: '#333333'})}>HOSPITAL SURVEYS</h3>
-                            <h4 style={Object.assign({}, captionStyle, {color: '#737373'})}>Turn your surveys into digital forms.</h4>
+                            <h3 style={Object.assign({}, captionStyle, {color: '#333333'})}>Hospital Surveys</h3>
+                            <h5 style={Object.assign({}, captionStyle, {color: '#737373'})}>Turn your surveys into digital forms.</h5>
                         </Carousel.Caption>
                     </Carousel.Item>
                     <Carousel.Item>
@@ -44,8 +57,8 @@ export class About extends Component {
                             alt="Second slide"
                         />
                         <Carousel.Caption>
-                            <h3 style={Object.assign({}, darkCaptionStyle, {color: 'white'})}>ANALYZE RESULTS</h3>
-                            <h4 style={Object.assign({}, darkCaptionStyle, {color: '#cccccc'})}>View and analyze questionnaires and responses.</h4>
+                            <h3 style={Object.assign({}, darkCaptionStyle, {color: 'white'})}>Analyze Results</h3>
+                            <h5 style={Object.assign({}, darkCaptionStyle, {color: '#cccccc'})}>View and analyze questionnaires and responses.</h5>
                         </Carousel.Caption>
                     </Carousel.Item>
                     <Carousel.Item>
@@ -56,14 +69,12 @@ export class About extends Component {
                         />
                         <Carousel.Caption>
                             <h3 style={Object.assign({}, darkCaptionStyle, {color: 'white'})}>UCL | GOSH DRIVE</h3>
-                            <h4 style={Object.assign({}, darkCaptionStyle, {color: '#cccccc'})}>A University College London IXN Student Project.</h4>
+                            <h5 style={Object.assign({}, darkCaptionStyle, {color: '#cccccc'})}>A University College London IXN Student Project.</h5>
                         </Carousel.Caption>
                     </Carousel.Item>
                 </Carousel>
 
                 <div style={btmList}>
-                    <h3><b>Welcome to Hospital Surveys.</b></h3>
-                    <hr style={{marginRight: '80px'}}></hr>
                     <div style={cardRow}>
                         <Card style={cardStyle}>
                             <Card.Img variant="top" src={manageCard} />
@@ -124,14 +135,17 @@ const logoStyle = {
 }
 
 const btmList = {
-    marginTop: '20px',
-    marginLeft: '12%',
+    textAlign: 'center',
+    marginTop: '10px',
+    marginLeft: '5%',
     marginRight: '5%'
 }
 
 const cardRow = {
     display: 'flex',
     flexWrap: 'wrap',
+    alignItems: 'center',
+    justifyContent: 'center'
 }
 
 const cardStyle = {
@@ -141,12 +155,12 @@ const cardStyle = {
 }
 
 const captionStyle = {
-    fontFamily: '"Trebuchet MS", Helvetica, sans-serif',
+    fontFamily: 'Verdana, Geneva, sans-seriff',
     textShadow: '-1px 0 white, 0 1px white, 1px 0 white, 0 -1px white',
 }
 
 const darkCaptionStyle = {
-    fontFamily: '"Trebuchet MS", Helvetica, sans-serif',
+    fontFamily: 'Verdana, Geneva, sans-seriff',
     textShadow: '-1px 0 black , 0 1px black, 1px 0 black, 0 -1px black',
 }
 

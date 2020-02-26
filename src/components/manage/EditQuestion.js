@@ -60,7 +60,7 @@ export class EditQuestion extends Component {
         {
             return <div>
                 <Form.Label>
-                    <b>Edit Selections: </b>
+                    <b>Edit Options: </b>
                 </Form.Label>
 
                 {
@@ -76,8 +76,8 @@ export class EditQuestion extends Component {
                 } 
 
                 <Form.Row>
-                    <Button style={addChoiceStyle} onClick={this.addChoice} variant="info"><b>+ Add Selection</b></Button>
-                    <Button style={removeChoiceStyle} onClick={this.deleteChoice} variant="danger"><b>Remove 1 Selection</b></Button>
+                    <Button style={addChoiceStyle} onClick={this.addChoice} variant="info"><b>+ Add Option</b></Button>
+                    <Button style={removeChoiceStyle} onClick={this.deleteChoice} variant="danger"><b>Remove 1 Option</b></Button>
                     &nbsp; &nbsp;
                     <Button style={moveUpStyle} onClick={() => this.props.shiftQuestionUp(this.props.questionNum)} variant="info"><b>^</b></Button>
                     <Button style={moveDownStyle} onClick={() => this.props.shiftQuestionDown(this.props.questionNum)} variant="info"><b>v</b></Button>
@@ -99,8 +99,8 @@ export class EditQuestion extends Component {
                     <Form.Group as={Col} controlId="formGridState">
                         <Form.Label><b>Answer Type</b></Form.Label>
                         <Form.Control as="select" name="answerType" onChange={this.handleChange} defaultValue={this.state.answerType}>
-                            <option>Text Area</option>
-                            <option>Selections</option>
+                            <option value="Text Area">Text Area</option>
+                            <option value="Selections">Multiple Choice Question</option>
                         </Form.Control>
 
                     </Form.Group>

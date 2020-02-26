@@ -19,17 +19,18 @@ export class ListFooter extends Component {
 const totalLabel = {
     color:'white',
     float:'right',
-    paddingTop:'21px',
+    paddingTop:'15px',
     paddingRight:'10px'
 }
 
 const createStyle = {
     background: '#252574',
-    paddingBottom: '15px',
     paddingLeft: '30px'
 }
 
 const newStyle = {
+    marginTop: '10px',
+    marginBottom: '10px',
     backgroundColor: '#007BFF'
 }
 

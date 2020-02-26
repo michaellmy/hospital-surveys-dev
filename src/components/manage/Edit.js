@@ -94,6 +94,7 @@ class Edit extends Component {
         const pageUrl = window.location.origin;
         var bodyFormData = new FormData();
         bodyFormData.append('1', JSON.stringify(this.state.questionnaire));
+        console.log(JSON.stringify(this.state.questionnaire));
         axios({
             method: 'post',
             url: pageUrl + '/api/editQuestionnaireByUid/' + this.props.match.params.uid,
@@ -247,7 +248,8 @@ const titleStyle = {
 }
 
 const footerStyle = {
-    paddingBottom: '16px',
+    paddingTop: '15px',
+    paddingBottom: '15px',
     paddingLeft: '35px',
     background: '#252574'
 }
