@@ -29,6 +29,7 @@ export class QuestionnaireItem extends Component {
     render() {
         const { uid, title, minAge, maxAge, patientType, questionnaireContent } = this.props.questionnaire;
         const surveyLink = `manage/edit/${uid}`;
+        const viewResponsesLink = `responses/${uid}`;
 
         return (
             <div>
@@ -69,6 +70,7 @@ export class QuestionnaireItem extends Component {
                                 
                                 <Link to={surveyLink}><Button style={testStyle}><b>Edit Questionnaire</b></Button></Link>
                                 <Button onClick={this.openDialog.bind(this, uid)} style={deleteStyle}><b>Delete Questionnaire</b></Button>    
+                                <Link to={viewResponsesLink}><Button style={testStyle}><b>View Questionanire Responses</b></Button></Link>
                             </Card.Body>
                         </Accordion.Collapse>
                     </Card>

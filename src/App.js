@@ -12,10 +12,11 @@ import Login from './components/manage/Login';
 import AdminPanel from './components/manage/AdminPanel';
 
 import Trends from './components/statistics/Trends';
-
+import ViewResponse from './components/responses/ViewResponse';
 import About from './components/pages/About';
 
 import * as actions from './store/actions/auth';
+
 
 class App extends Component {
   constructor(props) {
@@ -57,6 +58,14 @@ class App extends Component {
           )} />
 
           <Route path="/statistics" component={Trends} />
+
+          <Route path="/responses/:uid" render={props => (
+            <React.Fragment>
+              <Header {...this.props}/>
+              <ViewResponse {...props} {...this.props}/>
+              <Footer/>
+            </React.Fragment>
+          )} />
         </div>
       </Router>
     )
