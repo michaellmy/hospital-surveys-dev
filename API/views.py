@@ -143,6 +143,7 @@ def addAnswer(request):
         print(serializer.errors)
         for contents in jsnDict['questionAnswer']:
             answerContent.questionAnswer.create(qid=contents['qid'],
+                                                questionText=contents['questionText'],
                                                 answerType=contents['answerType'],
                                                 answer=contents['answer'])
         print(serializer.validated_data)

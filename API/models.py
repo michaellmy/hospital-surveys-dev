@@ -45,6 +45,7 @@ class AnswerContent(models.Model):
 class QuestionAnswer(models.Model):
     answerContent = models.ForeignKey(AnswerContent, on_delete=models.CASCADE, related_name='questionAnswer')
     qid = models.CharField(max_length=100)
+    questionText = models.CharField(max_length=500)
     answerType = models.CharField(max_length=100)
     answer = models.CharField(max_length=1000)
 
