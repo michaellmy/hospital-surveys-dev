@@ -36,7 +36,7 @@ class QuestionnaireContent(models.Model):
 class AnswerContent(models.Model):
     uid = models.CharField(max_length=100)
     date = models.CharField(max_length=100)
-    age = models.CharField(max_length=200)
+    age = models.IntegerField(null=True, blank=True)
 
     def __str__(self):
         return '%d %s' % (self.pk, self.uid)
@@ -51,3 +51,4 @@ class QuestionAnswer(models.Model):
 
     def __str__(self):
         return '%d %s' % (self.pk, self.qid)
+
