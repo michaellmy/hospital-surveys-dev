@@ -30,7 +30,7 @@ class QuestionnaireListSerializers(serializers.ModelSerializer):
 class QuestionAnswerSerializers(serializers.ModelSerializer):
     class Meta:
         model = QuestionAnswer
-        fields = ('qid', 'answerType', 'answer')
+        fields = ('qid', 'questionText', 'answerType', 'answer')
 
 
 class AnswerContentSerializers(serializers.ModelSerializer):

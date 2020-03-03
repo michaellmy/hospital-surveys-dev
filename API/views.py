@@ -143,6 +143,7 @@ def addAnswer(request):
         print(serializer.errors)
         for contents in jsnDict['questionAnswer']:
             answerContent.questionAnswer.create(qid=contents['qid'],
+                                                questionText=contents['questionText'],
                                                 answerType=contents['answerType'],
                                                 answer=contents['answer'])
         print(serializer.validated_data)
@@ -171,7 +172,7 @@ def getPatientAgeStats(request):
 
 
 def getPatientTypeStats(request):
-    general =  0
+    general = 0
     inpatient = 0
     outpatient = 0
     if request.method == 'POST':
@@ -187,11 +188,50 @@ def getPatientTypeStats(request):
                 elif questionnaire.patientType == 'General':
                     general = general + 1
             jsn = json.loads(json.dumps({
-                'General' : str(general),
-                'Inpatient' : str(inpatient),
-                'Outpatient' : str(outpatient)
+                'General': str(general),
+                'Inpatient': str(inpatient),
+                'Outpatient': str(outpatient)
             }))
             return JsonResponse(jsn, safe=False)
+        except:
+            e = sys.exc_info()[0]
+            return HttpResponse(e)
+
+
+def getAverageAge(request):
+    agesum = 0
+    if request.method == 'POST':
+        return HttpResponse("should be a get request.")
+    elif request.method == 'GET':
+        try:
+            queryset = AnswerContent.objects.all()
+            queryLenth = len(queryset)
+            for answercontent in queryset:
+                if answercontent.age is not None:
+                    agesum = agesum + answercontent.age
+                else:
+                    queryLenth = queryLenth - 1
+            return HttpResponse(agesum / queryLenth)
+        except:
+            e = sys.exc_info()[0]
+            return HttpResponse(e)
+
+
+
+def getAverageAgeByUid(request, id):
+    agesum = 0
+    if request.method == 'POST':
+        return HttpResponse("should be a get request.")
+    elif request.method == 'GET':
+        try:
+            queryset = AnswerContent.objects.filter(uid=id)
+            queryLenth = len(queryset)
+            for answercontent in queryset:
+                if answercontent.age is not None:
+                    agesum = agesum + answercontent.age
+                else:
+                    queryLenth = queryLenth - 1
+            return HttpResponse(agesum / queryLenth)
         except:
             e = sys.exc_info()[0]
             return HttpResponse(e)

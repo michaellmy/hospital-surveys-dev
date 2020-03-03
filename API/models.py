@@ -36,7 +36,7 @@ class QuestionnaireContent(models.Model):
 class AnswerContent(models.Model):
     uid = models.CharField(max_length=100)
     date = models.CharField(max_length=100)
-    age = models.CharField(max_length=200)
+    age = models.IntegerField(null=True, blank=True)
 
     def __str__(self):
         return '%d %s' % (self.pk, self.uid)
@@ -45,8 +45,10 @@ class AnswerContent(models.Model):
 class QuestionAnswer(models.Model):
     answerContent = models.ForeignKey(AnswerContent, on_delete=models.CASCADE, related_name='questionAnswer')
     qid = models.CharField(max_length=100)
+    questionText = models.CharField(max_length=500)
     answerType = models.CharField(max_length=100)
     answer = models.CharField(max_length=1000)
 
     def __str__(self):
         return '%d %s' % (self.pk, self.qid)
+
