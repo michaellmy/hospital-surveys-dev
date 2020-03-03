@@ -215,3 +215,23 @@ def getAverageAge(request):
         except:
             e = sys.exc_info()[0]
             return HttpResponse(e)
+
+
+
+def getAverageAgeByUid(request, id):
+    agesum = 0
+    if request.method == 'POST':
+        return HttpResponse("should be a get request.")
+    elif request.method == 'GET':
+        try:
+            queryset = AnswerContent.objects.filter(uid=id)
+            queryLenth = len(queryset)
+            for answercontent in queryset:
+                if answercontent.age is not None:
+                    agesum = agesum + answercontent.age
+                else:
+                    queryLenth = queryLenth - 1
+            return HttpResponse(agesum / queryLenth)
+        except:
+            e = sys.exc_info()[0]
+            return HttpResponse(e)
