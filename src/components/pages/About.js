@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import { Carousel, Navbar, Nav, Card, Button } from 'react-bootstrap';
+import { Carousel, Card, Button } from 'react-bootstrap';
 import Footer from '../layout/Footer';
 
 import hospitalImg from '../logos/hospital.jpg';
 import hospitalImg2 from '../logos/hospital2.jpg';
 import hospitalImg3 from '../logos/hospital3.jpg';
-import goshlogo from '../logos/goshlogo.png';
 import manageCard from '../logos/managecard.jpg';
 import statisticsCard from '../logos/statisticscard.jpg';
 import patientCard from '../logos/patientcard.jpg';

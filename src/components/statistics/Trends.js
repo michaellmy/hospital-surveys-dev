@@ -5,6 +5,7 @@ import { Card, Jumbotron, Container } from 'react-bootstrap';
 
 import PatientTypesPie from './PatientTypesPie';
 import AgeRangeLine from './AgeRange';
+import KMeansAge from './KMeansAge';
 
 /* Ideas: 
 1. Number of responses per month - Horizontal Bar
@@ -40,7 +41,16 @@ export class Statistics extends Component {
 						<Card.Subtitle className="mb-2 text-muted">Number of questionnaires directed towards different patient ages.</Card.Subtitle>
 							<AgeRangeLine />
 						</Card.Body>
-                    </Card>
+                    </Card> 
+
+					{/* <Card bg="light"border="secondary" style={cardItem}>
+						<Card.Header><h5>Kmeans Cluster</h5></Card.Header>
+						<Card.Body>
+						<Card.Subtitle className="mb-2 text-muted">KMeans clustering of different patient age groups</Card.Subtitle>
+							<KMeansAge />
+						</Card.Body>
+                    </Card> */}
+					<KMeansAge cardItem={cardItem}/>
 				</div>
 				<Footer/>
 			</div>
