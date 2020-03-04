@@ -20,7 +20,7 @@ class Questionnaire extends Component {
   }
 
   componentDidMount(){
-    axios.get('http://localhost:8000/api/getQuestionnaireByUid/' + this.props.match.params.uid + "/") 
+    axios.get(window.location.origin + '/api/getQuestionnaireByUid/' + this.props.match.params.uid + "/") 
       .then(res => this.setState({questionnaire: res.data}))
       .then(() => this.setState({isReady: true}))
       .catch(this.setState({isReady: false}))
@@ -68,7 +68,7 @@ class Questionnaire extends Component {
     
     axios({
         method: 'post',
-        url:  'https://hospital-surveys-dev.herokuapp.com/api/addAnswer/',
+        url:  window.location.origin + '/api/addAnswer/',
         data: bodyFormData,
         headers: {'Content-Type': 'multipart/form-data' }
     })
