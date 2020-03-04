@@ -24,41 +24,41 @@ export class QuestionType extends React.Component {
       
     }
 
-     
 
     render() {
-     
       const { answerType,questionText } = this.props.questionnaireContent;  
       if (answerType === 'Text Area'){
-      return ( 
-        <React.Fragment>
-          <Form onChange={this.handleChange} >
-            <Form.Group >
-              <Form.Label>{questionText}</Form.Label>
-              <Form.Control as="textarea" rows="3" />
-              {(this.state.questionData.answer == undefined || this.state.questionData.answer.length ==0) && 
-                                  <span style={error}>*Please answer</span>}
-            </Form.Group>
-          </Form>
-         </React.Fragment >
+        return ( 
+          <React.Fragment>
+            <Form onChange={this.handleChange} >
+              <Form.Group >
+                <Form.Label>{this.props.questionNum + ') ' + questionText}</Form.Label>
+                <Form.Control as="textarea" rows="3" />
+                {(this.state.questionData.answer === undefined || this.state.questionData.answer.length === 0) && 
+                                    <span style={error}>*Please answer</span>}
+              </Form.Group>
+            </Form>
+            <hr></hr>
+          </React.Fragment >
 
-      );
-      }else if (answerType ==='Selections') {
+        );
+      } else if (answerType ==='Selections') {
         return (
           <React.Fragment>
               <Form onChange={this.handleChange}>
                 <Form.Group >
-                  <Form.Label>{questionText}</Form.Label>
+                  <Form.Label>{this.props.questionNum + ') ' + questionText}</Form.Label>
                   <Form.Control as="select"  >
-                    <option>Select choice</option>
+                    <option>Select Choice</option>
                   {
                     this.state.choices.map((choice) =>  <option>{choice}</option>)
                   }               
                   </Form.Control>  
-                  {(this.state.questionData.answer == undefined || this.state.questionData.answer.length ==0) && 
+                  {(this.state.questionData.answer === undefined || this.state.questionData.answer.length === 0) && 
                                   <span style={error}>*Please answer</span>}          
                 </Form.Group>
             </Form>
+            <hr></hr>
         </React.Fragment>
         );
       }
@@ -66,8 +66,6 @@ export class QuestionType extends React.Component {
   }
 
   export default QuestionType;
-
-
 
 
   const error =  {

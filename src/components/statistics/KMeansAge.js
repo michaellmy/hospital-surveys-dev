@@ -2,6 +2,27 @@ import React, { Component } from 'react'
 import { Bubble } from 'react-chartjs-2'
 import {Card,} from 'react-bootstrap';
 
+
+const options = {
+    //maintainAspectRatio: false,
+    responsive: true,
+    scales: {
+        yAxes: [{
+            scaleLabel: {
+                display: true,
+                labelString: 'Patient Age / Years'
+            }
+        }],
+        xAxes: [{
+            scaleLabel: {
+                display: true,
+                labelString: 'Centroid Position for Cluster/ Years'
+            }
+        }
+        ]
+    } 
+};
+
 export class KMeansAge extends Component {
     componentDidMount(){
         /* const sample = [[1,12,13,4,25,21,22,3,14,5,11,2,23,24,15]] */   
@@ -44,7 +65,6 @@ export class KMeansAge extends Component {
 		super(props)
         this.state = {
             data: {
-                labels: ['Jn'],
                 datasets : 
                 [
                     {
@@ -66,7 +86,7 @@ export class KMeansAge extends Component {
                         pointHoverBorderWidth: 2,
                         pointRadius: 1,
                         pointHitRadius: 10,
-                        data: [{x:10,y:20,r:6}]
+                        data: [{x:10, y:20, r:8}]
                     },
                     {
                         label: 'Cluster 2',
@@ -87,7 +107,7 @@ export class KMeansAge extends Component {
                         pointHoverBorderWidth: 2,
                         pointRadius: 1,
                         pointHitRadius: 10,
-                        data: [{x:10,y:20,r:6}]
+                        data: [{x:10,y:20,r:8}]
                     },
                     {
                         label: 'Cluster 3',
@@ -108,7 +128,7 @@ export class KMeansAge extends Component {
                         pointHoverBorderWidth: 2,
                         pointRadius: 1,
                         pointHitRadius: 10,
-                        data: [{x:10,y:20,r:6}]
+                        data: [{x:10,y:20,r:8}]
                     }
                 ]
             },       
@@ -121,10 +141,10 @@ export class KMeansAge extends Component {
             return (
                 <div>
                     <Card bg="light"border="secondary" style={this.props.cardItem}>
-                            <Card.Header><h5>Kmeans Cluster</h5></Card.Header>
+                            <Card.Header><h5>K-Means Cluster</h5></Card.Header>
                             <Card.Body>
-                            <Card.Subtitle className="mb-2 text-muted">KMeans clustering of different patient age groups</Card.Subtitle>
-                                <Bubble data={this.state.data} width={100} height={60}/>
+                            <Card.Subtitle className="mb-2 text-muted">K-Means clustering of different patient age groups</Card.Subtitle>
+                                <Bubble data={this.state.data} width={100} height={60} options={options}/>
                             </Card.Body>
                     </Card>
                 </div>

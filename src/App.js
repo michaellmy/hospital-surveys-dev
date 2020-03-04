@@ -14,8 +14,11 @@ import AdminPanel from './components/manage/AdminPanel';
 import Trends from './components/statistics/Trends';
 import ViewResponse from './components/responses/ViewResponse';
 import About from './components/pages/About';
+import Answer from './components/pages/Answer';
 
+import AnswerPage from './components/answer/Questionnaire';
 import * as actions from './store/actions/auth';
+
 
 
 class App extends Component {
@@ -66,6 +69,17 @@ class App extends Component {
               <Footer/>
             </React.Fragment>
           )} />
+
+          <Route path="/answer/:uid" render={props => (
+            <React.Fragment>
+              <Header {...this.props}/>
+              <AnswerPage {...props}/>
+              <Footer/>
+            </React.Fragment>
+          )} />
+
+          <Route exact path="/answerSearch" component={Answer} />
+
         </div>
       </Router>
     )

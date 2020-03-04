@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Carousel, Card, Button } from 'react-bootstrap';
 import Footer from '../layout/Footer';
 
+
 import hospitalImg from '../logos/hospital.jpg';
 import hospitalImg2 from '../logos/hospital2.jpg';
 import hospitalImg3 from '../logos/hospital3.jpg';
@@ -93,7 +94,7 @@ export class About extends Component {
                                 <Card.Text>
                                     Answer a questionnaire or survey by entering the link to the questionnaire.
                                 </Card.Text>
-                                <a href="/"><Button style={{backgroundColor: '#0066ff'}} variant="primary">Answer Questionnaires</Button></a>
+                                <a href="/answerSearch"><Button style={{backgroundColor: '#0066ff'}} variant="primary">Answer Questionnaires</Button></a>
                             </Card.Body>
                         </Card>
 

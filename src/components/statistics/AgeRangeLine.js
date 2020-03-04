@@ -9,8 +9,19 @@ const options = {
         yAxes: [{
             ticks: {
                 beginAtZero: true
+            },
+            scaleLabel: {
+                display: true,
+                labelString: 'No. of Questionnaires'
             }
-        }]
+        }],
+        xAxes: [{
+            scaleLabel: {
+                display: true,
+                labelString: 'Patient Age / Years'
+            }
+        }
+        ]
     } 
 };
 
@@ -30,7 +41,7 @@ export class AgeRange extends Component {
                 labels: generateAgeRange(),
                 datasets: [
                   {
-                    label: 'Age Range of Questionnaires',
+                    label: 'Patient Age',
                     backgroundColor: '#006699',
                     borderColor: '#000099',
                     borderWidth: 1,

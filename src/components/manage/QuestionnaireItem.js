@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Accordion, Table, Card, Button} from 'react-bootstrap';
+import { Accordion, Table, Card, Button, OverlayTrigger, Popover} from 'react-bootstrap';
 import Dialog from 'react-bootstrap-dialog';
 import { Link } from 'react-router-dom';
 
@@ -30,6 +30,16 @@ export class QuestionnaireItem extends Component {
         const { uid, title, minAge, maxAge, patientType, questionnaireContent } = this.props.questionnaire;
         const surveyLink = `manage/edit/${uid}`;
         const viewResponsesLink = `responses/${uid}`;
+        const answerLink = `${window.location.origin}/answer/${uid}`;
+
+        const popover = (
+            <Popover id="popover-basic">
+                <Popover.Title as="h3">Share questionnaire link to answer</Popover.Title>
+                <Popover.Content>
+                    <a href={answerLink}>{answerLink}</a>
+                </Popover.Content>
+            </Popover>
+        )
 
         return (
             <div>
@@ -68,9 +78,15 @@ export class QuestionnaireItem extends Component {
                                     </tbody>
                                 </Table>
                                 
-                                <Link to={surveyLink}><Button style={testStyle}><b>Edit Questionnaire</b></Button></Link>
-                                <Button onClick={this.openDialog.bind(this, uid)} style={deleteStyle}><b>Delete Questionnaire</b></Button>    
-                                <Link to={viewResponsesLink}><Button style={testStyle}><b>View Questionanire Responses</b></Button></Link>
+                                <Link to={surveyLink}><Button style={rowButtons}><b>Edit Questionnaire</b></Button></Link>
+                                    
+                                <Link to={viewResponsesLink}><Button style={rowButtons} variant="primary"><b>View Questionanire Responses</b></Button></Link>
+
+                                <OverlayTrigger trigger="click" placement="top" overlay={popover}> 
+                                    <Button style={rowButtons} variant="info"><b>Share Questionnaire</b></Button>
+                                </OverlayTrigger>
+
+                                <Button onClick={this.openDialog.bind(this, uid)} variant="danger" style={{float: 'right'}}><b>Delete Questionnaire</b></Button>
                             </Card.Body>
                         </Accordion.Collapse>
                     </Card>
@@ -84,20 +100,9 @@ QuestionnaireItem.propTypes = {
     questionnaire: PropTypes.object.isRequired
 }
 
-const testStyle = {
-    backgroundColor: '#007BFF',
-    color: '#fff',
-    border: 'none',
-    cursor: 'pointer',
+const rowButtons = {
     marginRight: '10px',
-}
-
-const deleteStyle = {
-    backgroundColor: '#990000',
-    color: '#fff',
-    border: 'none',
-    cursor: 'pointer',
-    marginRight: '10px',
+    marginBottom: '10px'
 }
 
 const cardStyle = {

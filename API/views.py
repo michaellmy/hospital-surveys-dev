@@ -34,7 +34,8 @@ def getQuestionnaireByUid(request, id):
     if queryset is not None:
         return JsonResponse(QuestionnaireSerializers(queryset).data, safe=False)
     else:
-        return HttpResponse("get nothing")
+        # return HttpResponse("get nothing")
+        return HttpResponse(status=404)
 
 
 def post1(request):

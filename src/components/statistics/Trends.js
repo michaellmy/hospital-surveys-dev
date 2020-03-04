@@ -4,8 +4,9 @@ import Footer from '../layout/Footer';
 import { Card, Jumbotron, Container } from 'react-bootstrap';
 
 import PatientTypesPie from './PatientTypesPie';
-import AgeRangeLine from './AgeRange';
+import AgeRangeLine from './AgeRangeLine';
 import KMeansAge from './KMeansAge';
+import AveragePatientAge from './AveragePatientAge';
 
 /* Ideas: 
 1. Number of responses per month - Horizontal Bar
@@ -26,31 +27,27 @@ export class Statistics extends Component {
 						</p>
 					</Container>
 				</Jumbotron>
+
 				<div style={cardRow}>
-					<Card bg="light"border="secondary" style={cardItem}>
+					<Card bg="light" border="secondary" style={cardItem}>
 						<Card.Header><h5>Patient Type Proportions</h5></Card.Header>
 						<Card.Body>
-						<Card.Subtitle className="mb-2 text-muted">Number of questionnaires directed towards different types of patients.</Card.Subtitle>
+						<Card.Subtitle className="mb-2 text-muted">Ratio of questionnaires for different types of patients.</Card.Subtitle>
 							<PatientTypesPie />
 						</Card.Body>
                     </Card>
 
-					<Card bg="light"border="secondary" style={cardItem}>
+					<Card bg="light" border="secondary" style={cardItem}>
 						<Card.Header><h5>Questionnaire Age Range</h5></Card.Header>
 						<Card.Body>
-						<Card.Subtitle className="mb-2 text-muted">Number of questionnaires directed towards different patient ages.</Card.Subtitle>
+						<Card.Subtitle className="mb-2 text-muted">Number of questionnaires that can be answered by different patient ages.</Card.Subtitle>
 							<AgeRangeLine />
 						</Card.Body>
                     </Card> 
 
-					{/* <Card bg="light"border="secondary" style={cardItem}>
-						<Card.Header><h5>Kmeans Cluster</h5></Card.Header>
-						<Card.Body>
-						<Card.Subtitle className="mb-2 text-muted">KMeans clustering of different patient age groups</Card.Subtitle>
-							<KMeansAge />
-						</Card.Body>
-                    </Card> */}
 					<KMeansAge cardItem={cardItem}/>
+
+					<AveragePatientAge cardItem={cardItem}/>
 				</div>
 				<Footer/>
 			</div>
@@ -59,11 +56,10 @@ export class Statistics extends Component {
 }
 
 const cardRow = {
-	paddingLeft: '5%', 
-	paddingRight: '5%', 
 	paddingTop: '10px', 
 	display: 'flex',
 	flexWrap: 'wrap',
+	justifyContent: 'center'
 }
 
 const cardItem = {
@@ -73,4 +69,5 @@ const cardItem = {
 	marginBottom: '20px',
 	textAlign: 'center'
 }
+
 export default Statistics
