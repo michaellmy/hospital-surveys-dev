@@ -67,9 +67,9 @@ export class PatientTypesBar extends Component {
                     <Pie data={this.state.data} options={options} />
                     <br></br>
                     <ProgressBar>
-                        <ProgressBar label="General" style={{backgroundColor: "blue"}} now={getPercentage(this.state.data.datasets[0].data[0], total)} key={1} />
-                        <ProgressBar label="Inpatient" variant="warning" now={getPercentage(this.state.data.datasets[0].data[1], total)} key={2} />
-                        <ProgressBar label="Outpatient" variant="danger" now={getPercentage(this.state.data.datasets[0].data[2], total)} key={3} />
+                        <ProgressBar label="General" style={{backgroundColor: "#000099"}} now={getPercentage(this.state.data.datasets[0].data[0], total)} key={1} />
+                        <ProgressBar label="Inpatient" style={{backgroundColor: "#006699"}} now={getPercentage(this.state.data.datasets[0].data[1], total)} key={2} />
+                        <ProgressBar label="Outpatient" style={{backgroundColor: "#0088cc"}} now={getPercentage(this.state.data.datasets[0].data[2], total)} key={3} />
                     </ProgressBar>
                 </div>
             )

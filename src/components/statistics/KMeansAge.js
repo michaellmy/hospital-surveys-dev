@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import { Bubble } from 'react-chartjs-2'
+import { Bubble, Line } from 'react-chartjs-2'
 import {Card,} from 'react-bootstrap';
 
 
 const options = {
-    //maintainAspectRatio: false,
+    maintainAspectRatio: false,
     responsive: true,
     scales: {
         yAxes: [{
@@ -140,14 +140,9 @@ export class KMeansAge extends Component {
         if(this.state.ready){
             return (
                 <div>
-                    <Card bg="light"border="secondary" style={this.props.cardItem}>
-                            <Card.Header><h5>K-Means Cluster</h5></Card.Header>
-                            <Card.Body>
-                            <Card.Subtitle className="mb-2 text-muted">K-Means clustering of different patient age groups</Card.Subtitle>
-                                <Bubble data={this.state.data} width={100} height={60} options={options}/>
-                            </Card.Body>
-                    </Card>
+                    <Bubble data={this.state.data} width={100} height={350} options={options}/>
                 </div>
+                
             )
         } else{
             return <div/>

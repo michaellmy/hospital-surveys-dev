@@ -78,7 +78,7 @@ export class AgeRange extends Component {
         if(this.state.ready){
             return (
                 <div>
-                    <Line data={this.state.data} width={100} height={300} options={options} />
+                    <Line data={this.state.data} width={100} height={350} options={options} />
                 </div>
             )
         }

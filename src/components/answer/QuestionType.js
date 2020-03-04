@@ -32,7 +32,7 @@ export class QuestionType extends React.Component {
           <React.Fragment>
             <Form onChange={this.handleChange} >
               <Form.Group >
-                <Form.Label>{this.props.questionNum + ') ' + questionText}</Form.Label>
+                <Form.Label><strong>{this.props.questionNum + ') ' + questionText}</strong></Form.Label>
                 <Form.Control as="textarea" rows="3" />
                 {(this.state.questionData.answer === undefined || this.state.questionData.answer.length === 0) && 
                                     <span style={error}>*Please answer</span>}
@@ -40,14 +40,14 @@ export class QuestionType extends React.Component {
             </Form>
             <hr></hr>
           </React.Fragment >
-
         );
+
       } else if (answerType ==='Selections') {
         return (
           <React.Fragment>
               <Form onChange={this.handleChange}>
                 <Form.Group >
-                  <Form.Label>{this.props.questionNum + ') ' + questionText}</Form.Label>
+                  <Form.Label><strong>{this.props.questionNum + ') ' + questionText}</strong></Form.Label>
                   <Form.Control as="select"  >
                     <option>Select Choice</option>
                   {

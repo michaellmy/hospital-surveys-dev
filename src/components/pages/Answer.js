@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import {InputGroup, Button, FormControl} from 'react-bootstrap';
+import { InputGroup, Button, FormControl } from 'react-bootstrap';
 import Header from '../layout/Header'
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export class Answer extends Component {
     state = {

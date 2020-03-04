@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import QuestionnaireComposite from './QuestionnaireComposite'
 import PropTypes from 'prop-types';
-import { Button, Jumbotron, Form } from 'react-bootstrap'
+import { Button, Jumbotron, Form, Alert } from 'react-bootstrap'
 import axios from 'axios';
-import {Link} from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 //edit empty window
 
@@ -15,7 +15,8 @@ class Questionnaire extends Component {
       questionsAnswer: [],
       questionnaire: undefined,
       age: '',
-      isReady: false
+      isReady: false,
+      errorMessage: null
     };
   }
 
@@ -24,23 +25,16 @@ class Questionnaire extends Component {
       .then(res => this.setState({questionnaire: res.data}))
       .then(() => this.setState({isReady: true}))
       .catch(this.setState({isReady: false}))
-
   }
 
-  // componentDidMount(){
-  //   axios.get('https://hospital-surveys-dev.herokuapp.com/api/getAllQuestionnaires/')
-  //     .then(res => this.setState({questionnaires: res.data}));
-  //   // axios.get(window.location.origin + '/api/getAllQuestionnaires/')
-  //   //         .then(res => this.setState({questionnaires: res.data}))
-            
-  // }
-
-//   componentDidMount() {
-//     // Get questionnaire id from URL parameter
-//     const pageUrl = window.location.origin;
-//     axios.get(pageUrl + '/api/getQuestionnaireByUid/' + this.props.match.params.uid + "/") 
-//      .then(res => this.setState({questionnaire: res.data}));
-// }
+  changeErrorState = () => {
+    this.setState({errorMessage: 
+        <div>
+            <Alert variant="danger">
+                <h5 style={{textAlign: 'center'}}>Could Not Submit Answers - Have you filled in all questions?</h5>
+            </Alert>
+        </div>})
+  }
 
 
   getAllQuestionsData = (questionsData) => {
@@ -56,10 +50,11 @@ class Questionnaire extends Component {
   
  
   addQuestionnaireAnswer = () => {
+    var self = this
     const questionnaireAnswer = {
         "uid":  this.state.questionnaire.uid,
         "date": this.getDate(),
-        "age":this.state.age,
+        "age": this.state.age,
         "questionAnswer": this.state.questionsAnswer
     };
     
@@ -73,10 +68,10 @@ class Questionnaire extends Component {
         headers: {'Content-Type': 'multipart/form-data' }
     })
     .then(function (response) {
-        console.log(response);
+        window.location = "/"
     })
     .catch(function (response) {
-        console.log(response);
+        self.changeErrorState()
     });
   }
 
@@ -89,7 +84,7 @@ class Questionnaire extends Component {
   getDate = () => {
     var today = new Date();
     var dd = String(today.getDate()).padStart(2, '0');
-    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); 
     var yyyy = today.getFullYear();
     today = dd + '/' + mm + '/' + yyyy;
 
@@ -99,29 +94,31 @@ class Questionnaire extends Component {
 
   render(){
     const ages = [...Array(100).keys()]
-    console.log(this.state.isReady)
+
     if (this.state.isReady === true){
       return (
         <div>
           <Jumbotron>
-          <h1>{this.state.questionnaire.title}</h1>
-          <p>
-            {this.state.questionnaire.description}
-          </p>
+            <h1>{this.state.questionnaire.title}</h1>
+            <p>
+              {this.state.questionnaire.description}
+            </p>
           </Jumbotron>
 
           <div style={listStyle}>
-          <Form onChange={this.handleChange}>                     
-                <Form.Label>What is your age?</Form.Label>
-                <Form.Control as="select" size='sm' style={formcontrol} >
-                  {
-                    ages.map((age)=> <option>{age}</option>)
-                  }
-                </Form.Control>          
-          </Form>
-          <br></br>
-          <QuestionnaireComposite questionnaire = {this.state.questionnaire }  l={this.getAllQuestionsData}  />
-          <Button style={{backgroundColor: '#00994d'}}  variant="success"  onClick={this.addQuestionnaireAnswer} ><b>Submit</b></Button> 
+            <Form onChange={this.handleChange}>                     
+                  <Form.Label>First off, how old are you?</Form.Label>
+                  <Form.Control as="select" size='sm' style={formcontrol} >
+                    {
+                      ages.map((age)=> <option>{age}</option>)
+                    }
+                  </Form.Control>          
+            </Form>
+            <br></br>
+            <QuestionnaireComposite questionnaire = {this.state.questionnaire }  l={this.getAllQuestionsData}  />
+            <Button size="lg" block style={{backgroundColor: '#00994d'}}  variant="success"  onClick={this.addQuestionnaireAnswer} ><b>Submit Answers</b></Button>
+            <br></br> 
+            {this.state.errorMessage}
           </div> 
         </div>    
     )}

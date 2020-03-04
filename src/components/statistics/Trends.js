@@ -45,9 +45,21 @@ export class Statistics extends Component {
 						</Card.Body>
                     </Card> 
 
-					<KMeansAge cardItem={cardItem}/>
+					<Card bg="light" border="secondary" style={cardItem}>
+						<Card.Header><h5>Questionnaire Age Range</h5></Card.Header>
+						<Card.Body>
+						<Card.Subtitle className="mb-2 text-muted">Number of questionnaires that can be answered by different patient ages.</Card.Subtitle>
+							<KMeansAge />
+						</Card.Body>
+                    </Card>  
 
-					<AveragePatientAge cardItem={cardItem}/>
+
+					<Card bg="light"border="secondary" style={cardItem}>
+						<Card.Header><h5>Average Patient Age</h5></Card.Header>
+						<Card.Body>
+							<AveragePatientAge />
+						</Card.Body>
+                	</Card>
 				</div>
 				<Footer/>
 			</div>
@@ -63,7 +75,7 @@ const cardRow = {
 }
 
 const cardItem = {
-	width: '40rem', 
+	width: '30rem', 
 	marginRight: '10px', 
 	marginLeft:'10px', 
 	marginBottom: '20px',
