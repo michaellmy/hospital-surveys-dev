@@ -4,8 +4,8 @@ import axios from 'axios';
 import { ProgressBar } from 'react-bootstrap';
 
 const options = {
-    //maintainAspectRatio: false
-    responsive: true,
+    maintainAspectRatio: false,
+    responsive: true
 };
 
 function getPercentage(value, total) {
@@ -59,18 +59,10 @@ export class PatientTypesBar extends Component {
         var total = this.state.data.datasets[0].data[0] + this.state.data.datasets[0].data[1] 
                     + this.state.data.datasets[0].data[2]
 
-        console.log(total)
-        console.log('percentage1 :' + this.state.data.datasets[0].data[0] / total)
         if(this.state.ready){
             return (
                 <div>
-                    <Pie data={this.state.data} options={options} />
-                    <br></br>
-                    <ProgressBar>
-                        <ProgressBar label="General" style={{backgroundColor: "#000099"}} now={getPercentage(this.state.data.datasets[0].data[0], total)} key={1} />
-                        <ProgressBar label="Inpatient" style={{backgroundColor: "#006699"}} now={getPercentage(this.state.data.datasets[0].data[1], total)} key={2} />
-                        <ProgressBar label="Outpatient" style={{backgroundColor: "#0088cc"}} now={getPercentage(this.state.data.datasets[0].data[2], total)} key={3} />
-                    </ProgressBar>
+                    <Pie data={this.state.data} height={300} options={options} />
                 </div>
             )
         }

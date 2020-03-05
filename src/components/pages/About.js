@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Carousel, Card, Button } from 'react-bootstrap';
 import Footer from '../layout/Footer';
 
-
 import hospitalImg from '../logos/hospital.jpg';
 import hospitalImg2 from '../logos/hospital2.jpg';
 import hospitalImg3 from '../logos/hospital3.jpg';
@@ -14,30 +13,6 @@ export class About extends Component {
     render() {
         return (
             <div style={{ position: 'relative' }}>
-                {/* {<div stlye={{marginTop: '65px'}}>
-                    <Navbar collapseOnSelect expand="lg" variant="dark" fixed="top" style={{ backgroundColor: '#142952', paddingLeft: '20px' }}>
-                        <Navbar.Brand href="/">
-                            <img src={goshlogo} style={logoStyle} alt="logo"/>{' '}Hospital Surveys
-                        </Navbar.Brand>
-                        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                        <Navbar.Collapse id="responsive-navbar-nav">                     
-                            <Nav className="mr-auto">
-                                <Nav.Item>
-                                    <Nav.Link href="/manage">Manage</Nav.Link>
-                                </Nav.Item>
-
-                                <Nav.Item>
-                                    <Nav.Link href="/">Answer</Nav.Link>
-                                </Nav.Item>
-
-                                <Nav.Item>
-                                    <Nav.Link href="/statistics">Statistics</Nav.Link>
-                                </Nav.Item>
-                            </Nav>
-                        </Navbar.Collapse>
-                    </Navbar>
-                </div>} */}
-   
                 <Carousel>
                     <Carousel.Item >
                         <img
@@ -109,7 +84,7 @@ export class About extends Component {
                             </Card.Body>
                         </Card>
 
-                        <Card style={cardStyle}>
+                        {/* <Card style={cardStyle}>
                             <Card.Img variant="top" src={manageCard} />
                             <Card.Body>
                                 <Card.Title><b>Manage Questionnaires</b></Card.Title>
@@ -118,7 +93,7 @@ export class About extends Component {
                                 </Card.Text>
                                 <a href="/manage"><Button style={{backgroundColor: '#0066ff'}}variant="primary">Manage Questionnaires</Button></a>
                             </Card.Body>
-                        </Card>
+                        </Card> */}
                     </div>
                 </div>
                 <Footer/>
@@ -127,12 +102,6 @@ export class About extends Component {
     }
 }
 
-const logoStyle = {
-    width: '50px',
-    height: '40px',
-    display: 'inline-block',
-    marginRight: '10px'
-}
 
 const btmList = {
     textAlign: 'center',

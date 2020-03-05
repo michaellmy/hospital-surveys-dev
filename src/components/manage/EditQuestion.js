@@ -12,7 +12,8 @@ export class EditQuestion extends Component {
     }
 
     handleChange = e => {
-        if( e.target.name === "answerType" && e.target.value === "Text Area"){
+        if( e.target.name === "answerType" && (e.target.value === "Text Area" || e.target.value == "Slider") ){
+            console.log("true")
             this.setState({ choices: []})
             this.props.updateChange("choices", "", this.state.qid);
         }
@@ -47,17 +48,27 @@ export class EditQuestion extends Component {
     renderSwitch = (answerType) => {
         if (answerType === "Text Area") {
             return (
-            <div>
-                <Form.Row>
-                    <Button style={moveUpStyle} onClick={() => this.props.shiftQuestionUp(this.props.questionNum)}
-                    variant="info"><b>^</b></Button>
-                    <Button style={moveDownStyle} onClick={() => this.props.shiftQuestionDown(this.props.questionNum)}
-                    variant="info"><b>v</b></Button>&nbsp;
-                </Form.Row>
-            </div> )
-        }
-        else 
-        {
+                <div>
+                    <Form.Row>
+                        <Button style={moveUpStyle} onClick={() => this.props.shiftQuestionUp(this.props.questionNum)}
+                        variant="info"><b>^</b></Button>
+                        <Button style={moveDownStyle} onClick={() => this.props.shiftQuestionDown(this.props.questionNum)}
+                        variant="info"><b>v</b></Button>&nbsp;
+                    </Form.Row>
+                </div> 
+            )
+        } else if (answerType === "Slider") {
+            return (
+                <div>
+                    <Form.Row>
+                        <Button style={moveUpStyle} onClick={() => this.props.shiftQuestionUp(this.props.questionNum)}
+                        variant="info"><b>^</b></Button>
+                        <Button style={moveDownStyle} onClick={() => this.props.shiftQuestionDown(this.props.questionNum)}
+                        variant="info"><b>v</b></Button>&nbsp;
+                    </Form.Row>
+                </div>
+            )
+        } else {
             return <div>
                 <Form.Label>
                     <b>Edit Options: </b>
@@ -101,6 +112,7 @@ export class EditQuestion extends Component {
                         <Form.Control as="select" name="answerType" onChange={this.handleChange} defaultValue={this.state.answerType}>
                             <option value="Text Area">Text Area</option>
                             <option value="Selections">Multiple Choice Question</option>
+                            <option value="Slider">Slider</option>
                         </Form.Control>
 
                     </Form.Group>

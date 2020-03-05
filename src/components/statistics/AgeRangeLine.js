@@ -42,11 +42,23 @@ export class AgeRange extends Component {
                 datasets: [
                   {
                     label: 'Patient Age',
-                    backgroundColor: '#006699',
-                    borderColor: '#000099',
-                    borderWidth: 1,
-                    hoverBackgroundColor: '#5cd6d6',
-                    hoverBorderColor: '#5cd6d6',
+                    fill: false,
+                    lineTension: 0.1,
+                    backgroundColor: '#4080bf',
+                    borderColor: '#4080bf',
+                    borderCapStyle: 'butt',
+                    borderDash: [],
+                    borderDashOffset: 0.0,
+                    borderJoinStyle: 'miter',
+                    pointBorderColor: '#4080bf',
+                    pointBackgroundColor: '#fff',
+                    pointBorderWidth: 1,
+                    pointHoverRadius: 5,
+                    pointHoverBackgroundColor: 'rgba(75,192,192,1)',
+                    pointHoverBorderColor: 'rgba(220,220,220,1)',
+                    pointHoverBorderWidth: 2,
+                    pointRadius: 1,
+                    pointHitRadius: 10,
                     data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,]
                   }
                 ]
@@ -78,7 +90,7 @@ export class AgeRange extends Component {
         if(this.state.ready){
             return (
                 <div>
-                    <Line data={this.state.data} width={100} height={350} options={options} />
+                    <Line data={this.state.data} width={100} height={300} options={options} />
                 </div>
             )
         }

@@ -25,7 +25,7 @@ class Edit extends Component {
          .then(res => this.setState({questionnaire: res.data})).then(() => this.setState({isReady: true}));
     }
 
-    // Handle changes dynamically for selection choices
+    // Handle changes dynamically for selection choices and answer type each answer
     updateChange = (fieldName, value, id) => {
         const questionnaireCopy = this.state.questionnaire;
         questionnaireCopy.questionnaireContent.forEach((question) => {
@@ -77,7 +77,6 @@ class Edit extends Component {
 
     shiftQuestionUp = (questionIndex) => {
         // When question is first question, do nothing
-        console.log(questionIndex);
         if(questionIndex === 0){
             return;
         }
@@ -86,7 +85,6 @@ class Edit extends Component {
         questionnaireCopy.questionnaireContent[questionIndex] = questionnaireCopy.questionnaireContent[questionIndex - 1];
         questionnaireCopy.questionnaireContent[questionIndex - 1] = temp;
 
-        console.log(questionnaireCopy);
         this.setState({ questionnaire: questionnaireCopy });
     }
 
@@ -94,7 +92,6 @@ class Edit extends Component {
         const pageUrl = window.location.origin;
         var bodyFormData = new FormData();
         bodyFormData.append('1', JSON.stringify(this.state.questionnaire));
-        console.log(JSON.stringify(this.state.questionnaire));
         axios({
             method: 'post',
             url: pageUrl + '/api/editQuestionnaireByUid/' + this.props.match.params.uid,

@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import { Bubble, Line } from 'react-chartjs-2'
-import {Card,} from 'react-bootstrap';
+import { Bubble } from 'react-chartjs-2'
 
 
 const options = {
@@ -45,12 +44,10 @@ export class KMeansAge extends Component {
             var obj = {};
             obj["x"] = (res.centroids[res.idxs[index]])
             obj["y"] = point
-            obj["r"] = 4
+            obj["r"] = 6
            // obj["x: " + (point+xDiff[index])] = "y: " + point;
             newData[res.idxs[index]].push(obj)
         })
-
-        console.log(newData)
 
         var dataCopy = this.state.data
         newData.forEach((data, index) => (
@@ -86,7 +83,7 @@ export class KMeansAge extends Component {
                         pointHoverBorderWidth: 2,
                         pointRadius: 1,
                         pointHitRadius: 10,
-                        data: [{x:10, y:20, r:8}]
+                        data: [{x:10, y:20, r:6}]
                     },
                     {
                         label: 'Cluster 2',
@@ -107,7 +104,7 @@ export class KMeansAge extends Component {
                         pointHoverBorderWidth: 2,
                         pointRadius: 1,
                         pointHitRadius: 10,
-                        data: [{x:10,y:20,r:8}]
+                        data: [{x:10,y:20,r:6}]
                     },
                     {
                         label: 'Cluster 3',
@@ -128,7 +125,7 @@ export class KMeansAge extends Component {
                         pointHoverBorderWidth: 2,
                         pointRadius: 1,
                         pointHitRadius: 10,
-                        data: [{x:10,y:20,r:8}]
+                        data: [{x:10,y:20,r:6}]
                     }
                 ]
             },       
@@ -140,7 +137,7 @@ export class KMeansAge extends Component {
         if(this.state.ready){
             return (
                 <div>
-                    <Bubble data={this.state.data} width={100} height={350} options={options}/>
+                    <Bubble data={this.state.data} width={100} height={300} options={options}/>
                 </div>
                 
             )
