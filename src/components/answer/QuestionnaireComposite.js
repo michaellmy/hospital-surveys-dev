@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import QuestionType from './QuestionType'
-import PropTypes from 'prop-types';
 
 
 class QuestionnaireComposite extends Component {
@@ -22,11 +21,6 @@ class QuestionnaireComposite extends Component {
   }
  }
 
-
-// PropTypes
-QuestionnaireComposite.propTypes = {
-    questionnaires: PropTypes.array.isRequired
-}
 
 export default QuestionnaireComposite;
 

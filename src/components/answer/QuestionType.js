@@ -1,6 +1,12 @@
 import React from 'react';
 import { Form } from 'react-bootstrap'
+import { Slider } from 'antd';
+import 'antd/dist/antd.css';
 
+const sliderMarks = {
+  0: {label: <strong>0</strong>},
+  100: {label: <strong>100</strong>}
+}
 
 export class QuestionType extends React.Component {
     constructor(props) {
@@ -12,6 +18,17 @@ export class QuestionType extends React.Component {
       };
     }
     
+    handleChangeSlider = (val) => {
+      const questionData = {    
+        questionText: this.props.questionnaireContent.questionText , 
+        answer:  val + '%',
+        answerType: this.props.questionnaireContent.answerType,
+        qid: this.props.questionnaireContent.qid
+      }
+      this.setState({ questionData: questionData });
+      this.props.getQuestionData(questionData);
+    }
+
     handleChange = (event) => {   
       const questionData = {    
         questionText: this.props.questionnaireContent.questionText , 
@@ -41,6 +58,16 @@ export class QuestionType extends React.Component {
             <hr></hr>
           </React.Fragment >
         );
+
+      } else if (answerType === 'Slider'){
+        return (
+          <div>
+              <Form.Label><strong>{this.props.questionNum + ') ' + questionText}</strong></Form.Label>
+              <Slider defaultValue={30} marks={sliderMarks} tipFormatter={null} onChange={this.handleChangeSlider}/>
+              <br></br>
+              <hr></hr>
+          </div>
+        )
 
       } else if (answerType ==='Selections') {
         return (

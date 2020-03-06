@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Header from '../layout/Header';
 import Footer from '../layout/Footer';
 import { Card, Jumbotron, Container } from 'react-bootstrap';
 
@@ -18,7 +17,6 @@ export class Statistics extends Component {
 	render() {
 		return (
 			<div>
-				<Header />
 				<Jumbotron style={{backgroundColor: '#d6e0f5'}}>
 					<Container>
 						<h1>Welcome to Statistics!</h1>

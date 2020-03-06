@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import QuestionnaireComposite from './QuestionnaireComposite'
-import PropTypes from 'prop-types';
-import { Button, Jumbotron, Form, Alert } from 'react-bootstrap'
+import { Button, Jumbotron, Form, Alert, Container, Spinner } from 'react-bootstrap'
 import axios from 'axios';
-import { Link, Redirect } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 
 //edit empty window
 
@@ -16,15 +15,18 @@ class Questionnaire extends Component {
       questionnaire: undefined,
       age: '',
       isReady: false,
-      errorMessage: null
+      errorMessage: null,
+      noQuestionnaireError: null
     };
   }
 
   componentDidMount(){
-    axios.get(window.location.origin + '/api/getQuestionnaireByUid/' + this.props.match.params.uid + "/") 
+    var self = this;
+    axios.get('https://hospital-surveys-dev.herokuapp.com/api/getQuestionnaireByUid/' + this.props.match.params.uid + "/")
+    /* axios.get(window.location.origin + '/api/getQuestionnaireByUid/' + this.props.match.params.uid + "/")  */
       .then(res => this.setState({questionnaire: res.data}))
       .then(() => this.setState({isReady: true}))
-      .catch(this.setState({isReady: false}))
+      .catch(self.noQuestionnaireError())
   }
 
   changeErrorState = () => {
@@ -34,6 +36,22 @@ class Questionnaire extends Component {
                 <h5 style={{textAlign: 'center'}}>Could Not Submit Answers - Have you filled in all questions?</h5>
             </Alert>
         </div>})
+  }
+
+  noQuestionnaireError = () => {
+    this.setState({noQuestionnaireError:
+      <div>
+        <Jumbotron>
+          <Container>
+            <h1>Questionnaire Not Found</h1>
+            <p>
+              Sorry, we couldn't find that questionnaire. Are you sure that questionanire exists?
+            </p>
+            <p><Link to="/answerSearch"><Button>Search Again</Button></Link></p>
+            <p><Link to="/"><Button>Return to Home Page</Button></Link></p>
+          </Container>
+        </Jumbotron>
+      </div>})
   }
 
 
@@ -99,16 +117,19 @@ class Questionnaire extends Component {
       return (
         <div>
           <Jumbotron>
-            <h1>{this.state.questionnaire.title}</h1>
-            <p>
-              {this.state.questionnaire.description}
-            </p>
+            <Container>
+              <h1>{this.state.questionnaire.title}</h1>
+              <p>
+                {this.state.questionnaire.description}
+              </p>
+            </Container>
+            
           </Jumbotron>
 
           <div style={listStyle}>
             <Form onChange={this.handleChange}>                     
                   <Form.Label>First off, how old are you?</Form.Label>
-                  <Form.Control as="select" size='sm' style={formcontrol} >
+                  <Form.Control as="select" style={formcontrol} >
                     {
                       ages.map((age)=> <option>{age}</option>)
                     }
@@ -121,31 +142,28 @@ class Questionnaire extends Component {
             {this.state.errorMessage}
           </div> 
         </div>    
+
     )}
     else {
       return (
-        <Jumbotron>
-          <h1>Questionnaire Not Found</h1>
-          <p>
-            Sorry, we couldn't find that questionnaire. Are you sure that questionanire exists?
-          </p>
-          <p><Link to="/answerSearch"><Button>Search Again</Button></Link></p>
-          <p><Link to="/"><Button>Return to Home Page</Button></Link></p>
-        </Jumbotron>
+        <div>
+          <div style={{textAlign: 'center', padding: '20px 0 20px 0'}}>
+            <Spinner animation="border" role="status">
+              <span className="sr-only">Loading...</span>
+            </Spinner>
+          </div>
+          {this.state.noQuestionnaireError}
+        </div>
+
       )
     }
   }
 }
 
-// PropTypes
-Questionnaire.propTypes = {
-    questionnaires: PropTypes.array.isRequired
-}
-
 export default Questionnaire;
 
 const formcontrol = {
-  width: '10%'
+  width: '20%'
 }
 
 const listStyle = {

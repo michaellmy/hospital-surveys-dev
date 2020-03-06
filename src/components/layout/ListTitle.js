@@ -6,7 +6,7 @@ export class ListTitle extends Component {
     render() {
         return (
             <header style={headerStyle}>
-                <h6><b>Your Questionnaires</b><Image src={refreshicon} onClick={this.props.refresh} style={imgStyle} /></h6>
+                <h6 style={{color: 'white'}}><b>Manage Questionnaires</b><Image src={refreshicon} onClick={this.props.refresh} style={imgStyle} /></h6>
             </header>
         )
     }
@@ -14,7 +14,7 @@ export class ListTitle extends Component {
 
 const headerStyle = {
     background: '#252574',
-    color: '#fff',
+    color: 'white',
     textAlign: 'left',
     paddingLeft: '20px',
     paddingTop: '14px',

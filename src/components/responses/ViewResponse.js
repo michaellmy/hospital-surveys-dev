@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
+import { Spinner, Jumbotron, Container, Button, Col, Image } from 'react-bootstrap';
 import axios from 'axios';
 import ResponseTable from './ResponseTable';
+
+import Footer from '../layout/Footer';
+import tumbleWeed from '../logos/tumbleweed.png'
 
 export class ViewResponse extends Component {
     constructor(props){
@@ -12,8 +16,9 @@ export class ViewResponse extends Component {
     }
 
     componentDidMount(){
-        const baseUrl = 'https://hospital-surveys-dev.herokuapp.com';
-        const getUrl = baseUrl + '/api/getAnswerByUid/e6fcb81f-f0ab-433c-b8b8-14c9c90c9af4';
+        const baseUrl = 'https://hospital-surveys-dev.herokuapp.com'
+       /*  const baseUrl = window.location.origin; */
+        const getUrl = baseUrl + '/api/getAnswerByUid/' + this.props.match.params.uid;
         axios.get(getUrl) 
          .then(res => this.setState({responses: res.data}))
          .then(() => this.setState({isReady: true}));
@@ -22,22 +27,58 @@ export class ViewResponse extends Component {
     render() {
         if (this.state.isReady) {
             return (
-                <div style={responseStyle}>
-                    <h3>Total Responses: {this.state.responses.length}</h3>
-                    <hr style={{borderColor: 'grey'}}></hr>
+                <div>
+                    <div style={responseStyle}>
+                        {
+                            this.state.responses.length === 0 ?
+                            
+                            <div>
+                                <h3>Total Responses: {this.state.responses.length}</h3>
+                                <hr style={{borderColor: 'grey'}}></hr>
 
-                    {this.state.responses.map((response, index) => (
-                        <div>
-                            <ResponseTable key={response.uid} response={response} responseNum={index + 1}/>      
-                            <hr style={{borderColor: 'grey', marginTop: '25px', marginBottom: '15px'}}></hr>
-                        </div>
-                    ))}
+                                <Jumbotron fluid>
+                                    <Container>
+                                        <Col xs={6} md={4}>
+                                        <Image src={tumbleWeed} rounded />
+                                        <br></br>&nbsp;
+                                        </Col>
+                                        <h1>No Responses Available</h1>
+                                        <p>
+                                            There are no responses for this survey yet.
+                                        </p>
+                                        <p>
+                                            <a href="/manage"><Button variant="primary">Go Back</Button></a>
+                                        </p>
+                                    </Container>
+                                </Jumbotron>
+                            </div>
+
+                            :
+
+                            <div>
+                                <h3>Total Responses: {this.state.responses.length}</h3>
+                                <hr style={{borderColor: 'grey'}}></hr>
+
+
+                                {this.state.responses.map((response, index) => (
+                                    <div>
+                                        <ResponseTable key={response.uid} response={response} responseNum={index + 1}/>      
+                                        <hr style={{borderColor: 'grey', marginTop: '25px', marginBottom: '15px'}}></hr>
+                                    </div>
+                                ))}
+                                
+                            </div> 
+                        }
+                    </div>
+                    <Footer/>
                 </div>
             )
         } else {
             return (
-                <div>
-                    <h1>Loading</h1>
+                <div style={{padding: '20% 0 0 0', textAlign: 'center'}}>
+                    <Spinner animation="border" variant="primary">
+                        <span className="sr-only">Loading...</span>
+                    </Spinner>
                 </div>
             )
         }

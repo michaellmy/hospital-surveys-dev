@@ -1,16 +1,11 @@
 import React, { Component } from 'react';
 import { Pie } from 'react-chartjs-2';
 import axios from 'axios';
-import { ProgressBar } from 'react-bootstrap';
 
 const options = {
     maintainAspectRatio: false,
     responsive: true
 };
-
-function getPercentage(value, total) {
-    return ((value / total) * 100);
-}
 
 export class PatientTypesBar extends Component {
     constructor(props){
@@ -56,9 +51,6 @@ export class PatientTypesBar extends Component {
     } 
 
     render() {
-        var total = this.state.data.datasets[0].data[0] + this.state.data.datasets[0].data[1] 
-                    + this.state.data.datasets[0].data[2]
-
         if(this.state.ready){
             return (
                 <div>

@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import {Table} from 'react-bootstrap';
 import axios from 'axios';
-import ResponseRow from './ResponseRow';
 
 
 export class ResponseTable extends Component {
@@ -19,21 +18,6 @@ export class ResponseTable extends Component {
                                         .then(res => this.setState({questionnaireContent: res.data.questionnaireContent})) 
                                         .then(() => this.setState({isReady: true}))
     }
-
-    /* getQuestionTitle = (qid, answer) => {
-        var self = this      
-        this.state.questionnaireContent.map(question => {
-            if(question.qid === qid) {
-                console.log(question.questionText)
-                return (
-                <tr>
-                    <td>{question.title}</td>
-                    <td>{answer.answer}</td>
-                    <td>{answer.answerType}</td>
-                </tr>)
-            }
-        });
-    } */
 
     render() {
         if(this.state.isReady){
@@ -61,7 +45,7 @@ export class ResponseTable extends Component {
                                 <tr>
                                     <td>{index + 1}</td>
                                     <td>{answer.answerType}</td>
-                                    <td>{answer.qid}</td>
+                                    <td>{answer.questionText}</td>
                                     <td>{answer.answer}</td>
                                 </tr>
                             ))}
@@ -83,4 +67,5 @@ const tableStyle = {
     marginLeft: '30px',
     marginRight: '30px'
 }
+
 export default ResponseTable

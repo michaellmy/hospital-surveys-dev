@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import uuid from 'uuid';
-import { Breadcrumb, Jumbotron, Button, Spinner, Container, Alert} from 'react-bootstrap';
+import { Breadcrumb, Spinner, Alert} from 'react-bootstrap';
 
 import ListTitle from '../layout/ListTitle';
 import ListFooter from '../layout/ListFooter';
+import Footer from '../layout/Footer';
 
 import SearchBar from '../manage/SearchBar';
 import PageNumbers from '../manage/PageNumbers';
 import Questionnaires from '../manage/Questionnaires';
 
 import Statistics from '../pages/Statistics';
+import LoggedOut from '../pages/LoggedOut';
 
 
 export class AdminPanel extends Component {
@@ -118,50 +120,44 @@ export class AdminPanel extends Component {
         const currentQuestionnaires = this.state.filteredQuestionnaires.slice(indexOfFirstTodo, indexOfLastTodo);
 
         if(this.state.isReady){
-        return (
-            <div>
-                {
-                    this.props.isAuthenticated ?
+            return (
+                <div>
+                    {
+                        this.props.isAuthenticated ?
 
-                    <div style={{marginLeft: '35px', marginRight: '35px', marginTop: '70px'}}>
-                        {this.state.errorMessage}
-                        <Breadcrumb>
-                            <Breadcrumb.Item style={{color: '#3466cb'}} href="/">Home</Breadcrumb.Item>
-                            <Breadcrumb.Item active>Manage Questionnaires</Breadcrumb.Item>
-                        </Breadcrumb>
+                        <div>
+                            <div style={{marginLeft: '35px', marginRight: '35px', marginTop: '70px'}}>
+                                {this.state.errorMessage}
+                                <Breadcrumb>
+                                    <Breadcrumb.Item style={{color: '#3466cb'}} href="/">Home</Breadcrumb.Item>
+                                    <Breadcrumb.Item active>Manage Questionnaires</Breadcrumb.Item>
+                                </Breadcrumb>
 
-                        <div style={listStyle}>
-                            <SearchBar questionnaires={currentQuestionnaires} filterSearch={this.filterSearch}/>
+                                <div style={listStyle}>
+                                    <SearchBar questionnaires={currentQuestionnaires} filterSearch={this.filterSearch}/>
 
-                            <ListTitle refresh={this.refresh} />
-                            <Questionnaires questionnaires={currentQuestionnaires} delQuestionnaire={this.delQuestionnaire}/>
-                            <ListFooter addQuestionnaire={this.addQuestionnaire} indexOfFirstTodo={indexOfFirstTodo} 
-                             indexOfLastTodo={indexOfLastTodo} questionnaires={this.state.questionnaires}/>
-                             
-                            <PageNumbers states={this.state} handlePageClick={this.handlePageClick} />
-                            <br></br>&nbsp;
-                            <Statistics />
+                                    <ListTitle refresh={this.refresh} />
+                                    <Questionnaires questionnaires={currentQuestionnaires} delQuestionnaire={this.delQuestionnaire}/>
+                                    <ListFooter addQuestionnaire={this.addQuestionnaire} indexOfFirstTodo={indexOfFirstTodo} 
+                                    indexOfLastTodo={indexOfLastTodo} questionnaires={this.state.questionnaires}/>
+                                    
+                                    <PageNumbers states={this.state} handlePageClick={this.handlePageClick} />
+                                    <br></br>&nbsp;
+                                    <Statistics />
+                                </div>
+                            </div>
+                            <Footer />
                         </div>
-                    </div>
 
-                    :
-
-                    <Jumbotron fluid style={{marginBottom: "20%"}}>
-                        <Container>
-                            <h1 style={{color: '#000080'}}>Login to View and Manage Questionnaires</h1>
-                            <p style={{color: '#52527a'}}>
-                            You are seeing this page because you are either not logged in, or your session
-                            has expired.
-                            </p>
-                            <p>
-                                <Button style={{backgroundColor: '#0080ff'}} href="/login/" variant="primary">Sign In</Button>&nbsp;&nbsp;
-                                <Button style={{backgroundColor: '#0080ff'}} href="/" variant="primary">Return to Home Page</Button>
-                            </p>
-                        </Container>
-                    </Jumbotron>
-                }
-            </div>
-        )
+                        :
+                        
+                        <div style={{marginBottom: "20%"}}>
+                            <LoggedOut />
+                        </div>    
+                    }  
+                </div>
+            )
+            
         } else {
             return <div style={{textAlign: "center", paddingTop: "10%", marginBottom: "480px"}}>
                 <Spinner animation="border" variant="primary">

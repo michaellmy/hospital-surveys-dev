@@ -54,9 +54,9 @@ export class About extends Component {
                         <Card style={cardStyle}>
                             <Card.Img variant="top" src={manageCard} />
                             <Card.Body>
-                                <Card.Title><b>Manage Questionnaires</b></Card.Title>
+                                <Card.Title><b>Manage Surveys</b></Card.Title>
                                 <Card.Text>
-                                    View, Create, Edit and Manage all questionnaires in the admin panel. Staff only, please!
+                                    View and manage all surveys in the admin panel. Staff only, please!
                                 </Card.Text>
                                 <a href="/manage"><Button style={{backgroundColor: '#0066ff'}}variant="primary">Manage Questionnaires</Button></a>
                             </Card.Body>
@@ -67,7 +67,7 @@ export class About extends Component {
                             <Card.Body>
                                 <Card.Title><b>A Patient?</b></Card.Title>
                                 <Card.Text>
-                                    Answer a questionnaire or survey by entering the link to the questionnaire.
+                                    Answer a survey by getting a link or entering the survey ID.
                                 </Card.Text>
                                 <a href="/answerSearch"><Button style={{backgroundColor: '#0066ff'}} variant="primary">Answer Questionnaires</Button></a>
                             </Card.Body>
@@ -78,22 +78,11 @@ export class About extends Component {
                             <Card.Body>
                                 <Card.Title><b>View Statistics</b></Card.Title>
                                 <Card.Text>
-                                    View statistics and trends on questionnaire responses and analyze results.
+                                    View statistics on survey responses and analyze results.
                                 </Card.Text>
                                 <a href="/statistics"><Button style={{backgroundColor: '#0066ff'}} variant="primary">View Statistics</Button></a>
                             </Card.Body>
                         </Card>
-
-                        {/* <Card style={cardStyle}>
-                            <Card.Img variant="top" src={manageCard} />
-                            <Card.Body>
-                                <Card.Title><b>Manage Questionnaires</b></Card.Title>
-                                <Card.Text>
-                                    View, Create, Edit and Manage all questionnaires in the admin panel. Staff only, please!
-                                </Card.Text>
-                                <a href="/manage"><Button style={{backgroundColor: '#0066ff'}}variant="primary">Manage Questionnaires</Button></a>
-                            </Card.Body>
-                        </Card> */}
                     </div>
                 </div>
                 <Footer/>
@@ -118,7 +107,7 @@ const cardRow = {
 }
 
 const cardStyle = {
-    width: '18rem', 
+    width: '20rem', 
     marginTop: '30px', 
     marginRight: '15px'
 }

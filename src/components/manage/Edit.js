@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Form, Col, Breadcrumb, Jumbotron, Container, Spinner } from 'react-bootstrap';
+import { Button, Form, Col, Breadcrumb, Spinner } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 import uuid from 'uuid';
@@ -7,6 +7,8 @@ import axios from 'axios';
 
 import EditItem from './EditItem';
 import PageNavigator from '../layout/PageNavigator';
+import LoggedOut from '../pages/LoggedOut';
+import Footer from '../layout/Footer';
 
 
 class Edit extends Component {
@@ -133,7 +135,6 @@ class Edit extends Component {
 
 
                         <div style={containerStyle}>
-
                             <div style={titleStyle}>
                                 <Form.Row>
                                     <Form.Group as={Col}>
@@ -192,12 +193,13 @@ class Edit extends Component {
                                 <a href="/manage"><Button style={{backgroundColor: '#b30000', float: 'right', marginRight: '2%'}} variant="danger"><b>Discard All Changes</b></Button></a>
                             </header>
                         </div>
+                        <Footer />
                         <PageNavigator/>
                     </div>
 
                     :
 
-                    <Jumbotron fluid>
+                    /* <Jumbotron fluid style={{backgroundColor: "#dae4f1"}}>
                         <Container>
                             <h1 style={{color: '#000080'}}>Login to View and Manage Questionnaires</h1>
                             <p style={{color: '#52527a'}}>
@@ -209,7 +211,8 @@ class Edit extends Component {
                                 <Button style={{backgroundColor: '#0080ff'}} href="/" variant="primary">Return to Home Page</Button>
                             </p>
                         </Container>
-                    </Jumbotron>
+                    </Jumbotron> */
+                    <LoggedOut/>
                     }
                        
                 </div>

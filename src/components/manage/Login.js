@@ -1,10 +1,10 @@
 import React from 'react';
 import { Form, Icon, Input, Button } from 'antd';
-import { Jumbotron, Container, Spinner, Alert } from 'react-bootstrap';
+import { Jumbotron, Container, Spinner, Alert, Image } from 'react-bootstrap';
 import { connect } from 'react-redux';
 
 import Header from '../layout/Header';
-import Footer from '../layout/Footer';
+import lockAndKey from '../logos/lockandkey.png';
 
 import * as actions from '../../store/actions/auth';
 
@@ -34,8 +34,9 @@ class NormalLoginForm extends React.Component {
     return (
         <div>
             <Header/>
-            <Jumbotron fluid>
+            <Jumbotron fluid style={{backgroundColor: '#dae4f1'}}>
                 <Container>
+                    <Image src={lockAndKey} rounded />
                     <h1 style={{color: '#000080'}}>Login to View and Manage Questionnaires</h1>
                     <p style={{color: '#52527a'}}>
                     You are seeing this page because you are either not logged in, or your session
@@ -43,11 +44,10 @@ class NormalLoginForm extends React.Component {
                     </p>
                 </Container>
             </Jumbotron>
-
-            {errorMessage}
+ 
             
-            <div style={containerBox}>
-                <h4 style={{marginBottom: '20px'}}>Admin Login</h4>
+            <div style={container}>
+                {errorMessage}
                 {
                     this.props.loading ?
 
@@ -57,11 +57,12 @@ class NormalLoginForm extends React.Component {
 
                     :
 
-                    <div>            
+                    <div style={containerBox}>  
+                        <h5 style={{marginBottom: '25px'}}>Admin Login</h5>          
                         <Form onSubmit={this.handleSubmit} className="login-form">
                             <Form.Item>
                             {getFieldDecorator('userName', {
-                                rules: [{ required: true, message: 'Please input your username!' }],
+                                rules: [{ required: true, message: 'Please input your username.' }],
                             })(
                             <Input
                                 prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
@@ -74,11 +75,12 @@ class NormalLoginForm extends React.Component {
                             <br></br>
                             <Form.Item>
                             {getFieldDecorator('password', {
-                                rules: [{ required: true, message: 'Please input your password!' }],
+                                rules: [{ required: true, message: 'Please input your password.' }],
                             })(
                                 <Input
                                 prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
                                 type="password"
+                                size='large' 
                                 placeholder="Password"
                                 />,
                             )}
@@ -86,7 +88,7 @@ class NormalLoginForm extends React.Component {
                                 
                             <br></br>
                             <Form.Item>
-                                <Button style={loginStyle} htmlType="submit" size="large" >
+                                <Button  style={loginStyle} htmlType="submit" size="large" >
                                     <b>Login</b>
                                 </Button>
                             </Form.Item>
@@ -94,7 +96,6 @@ class NormalLoginForm extends React.Component {
                     </div>
                 }
             </div>
-            <Footer />
         </div>
     );
   }
@@ -117,18 +118,22 @@ const mapDispatchToProps = dispatch => {
 }
 
 const containerBox = {
-    paddingTop: '20px',
-    paddingBottom: '5%',
-    paddingLeft: '15px',
-    paddingRight: '15px',
+    padding: '5% 10% 13px 10%',
+    backgroundColor: '#b5cde3',
     textAlign: 'center',
+}
+
+const container = {
+    textAlign: 'center',
+    padding: '5px 20px 13px 20px',
+    marginLeft: '20%',
+    marginRight: '20%',
 }
 
 const loginStyle = {
     backgroundColor: '#1a66ff',
     border: 'none',
     color: 'white',
-    padding: '15px 32px'
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(WrappedNormalLoginForm);

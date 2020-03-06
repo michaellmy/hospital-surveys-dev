@@ -38,7 +38,7 @@ class App extends Component {
             <React.Fragment>
               <Header {...this.props}/>
               <AdminPanel {...this.props}/> 
-              <Footer /> 
+              
             </React.Fragment>
           )} />
 
@@ -56,17 +56,22 @@ class App extends Component {
             <React.Fragment>
               <Header {...this.props}/>
               <Edit key={"questionnaires"} {...props} {...this.props} />
-              <Footer />
+              
             </React.Fragment>
           )} />
 
-          <Route path="/statistics" component={Trends} />
+          <Route path="/statistics" render={props => (
+            <React.Fragment>
+              <Header {...this.props}/>
+              <Trends />
+            </React.Fragment>
+          )} />
 
           <Route path="/responses/:uid" render={props => (
             <React.Fragment>
               <Header {...this.props}/>
               <ViewResponse {...props} {...this.props}/>
-              <Footer/>
+
             </React.Fragment>
           )} />
 
