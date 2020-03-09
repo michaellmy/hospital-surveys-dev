@@ -125,8 +125,8 @@ class Edit extends Component {
                     this.props.isAuthenticated ?
 
                     <div>
-                        <div style={breadCrumbStyle}>
-                            <Breadcrumb style={breadCrumbStyle}>
+                        <div style={{marginLeft: '35px', marginRight: '35px', marginTop: '70px'}}>
+                            <Breadcrumb>
                                 <Breadcrumb.Item><Link to="/" style={{color: '#3466cb'}}>Home</Link></Breadcrumb.Item>
                                 <Breadcrumb.Item><Link to="/manage" style={{color: '#3466cb'}}>Manage Questionnaires</Link></Breadcrumb.Item>
                                 <Breadcrumb.Item active>{this.state.questionnaire.title}</Breadcrumb.Item>
@@ -199,19 +199,6 @@ class Edit extends Component {
 
                     :
 
-                    /* <Jumbotron fluid style={{backgroundColor: "#dae4f1"}}>
-                        <Container>
-                            <h1 style={{color: '#000080'}}>Login to View and Manage Questionnaires</h1>
-                            <p style={{color: '#52527a'}}>
-                            You are seeing this page because you are either not logged in, or your session
-                            has expired.
-                            </p>
-                            <p>
-                                <Button style={{backgroundColor: '#0080ff'}} href="/login/" variant="primary">Sign In</Button>&nbsp;&nbsp;
-                                <Button style={{backgroundColor: '#0080ff'}} href="/" variant="primary">Return to Home Page</Button>
-                            </p>
-                        </Container>
-                    </Jumbotron> */
                     <LoggedOut/>
                     }
                        
@@ -252,13 +239,6 @@ const footerStyle = {
     paddingBottom: '15px',
     paddingLeft: '35px',
     background: '#252574'
-}
-
-const breadCrumbStyle = {
-    marginTop: '1%',
-    marginBottom: '1%',
-    marginLeft: '20px',
-    marginRight: '20px'
 }
 
 export default Edit;

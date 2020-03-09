@@ -1,32 +1,22 @@
 import React, { Component } from 'react'
-import {Table} from 'react-bootstrap';
-import axios from 'axios';
-
+import { Table } from 'react-bootstrap'
 
 export class ResponseTable extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            questionnaireContent: [],
             title: "",
             isReady: false
         }
     }
 
-    componentDidMount(){
-        axios.get(`https://hospital-surveys-dev.herokuapp.com/api/getQuestionnaireByUid/${this.props.response.uid}/`) 
-                                        .then(res => this.setState({questionnaireContent: res.data.questionnaireContent})) 
-                                        .then(() => this.setState({isReady: true}))
-    }
-
     render() {
-        if(this.state.isReady){
             return (
                 <div style={tableStyle}>
                     <div>
-                        <h5 style={{display: 'inline-block'}}>Response Number: {this.props.responseNum}</h5>
-                        <h5 style={{display: 'inline-block', float:'right'}}>Date Submitted: {this.props.response.date}</h5>
-                        <h5 style={{display: 'inline-block', float:'right'}}>Respondent Age: {this.props.response.age}&emsp;&ensp;</h5>
+                        <h5 style={{display: 'inline-block'}}>Response Number: {this.props.responseNum}&emsp;|&emsp;Date Submitted: {this.props.response.date}<br></br>Respondent Age: {this.props.response.age}</h5>
+                        {/* <h5 style={{display: 'inline-block', float:'right'}}>Date Submitted: {this.props.response.date}</h5>
+                        <h5 style={{display: 'inline-block', float:'right'}}>Respondent Age: {this.props.response.age}&emsp;&ensp;</h5> */}
                     </div>
                     
                     <Table striped bordered hover responsive="sm">
@@ -55,11 +45,6 @@ export class ResponseTable extends Component {
 
                 </div>
             )
-        } else {
-            return (
-                <div/>
-            )
-        }
     }
 }
 

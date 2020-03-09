@@ -106,11 +106,9 @@ const rowButtons = {
 }
 
 const cardStyle = {
-   paddingTop: '15px',
-   paddingBottom: '15px',
-   paddingLeft: '15px',
-   cursor: 'pointer',
-   color: '#285cb5'
+    padding: '1%',
+    cursor: 'pointer',
+    color: '#285cb5'
 }
 
 export default QuestionnaireItem

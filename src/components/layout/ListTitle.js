@@ -16,17 +16,14 @@ const headerStyle = {
     background: '#252574',
     color: 'white',
     textAlign: 'left',
-    paddingLeft: '20px',
-    paddingTop: '14px',
-    paddingBottom: '5px',
+    padding: '14px 10px 5px 20px',
     marginTop: '2%'
 }
 
 const imgStyle = {
     float: 'right',
     height: '25px',
-    paddingRight: '1%',
-    paddingBottom: '3px',
+    padding:'0 0 3px 0',
     cursor: 'pointer'
 }
 

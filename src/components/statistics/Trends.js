@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import Footer from '../layout/Footer';
-import { Card, Jumbotron, Container } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
+import { Result } from 'antd';
+import 'antd/dist/antd.css';
+
 
 import PatientTypesPie from './PatientTypesPie';
 import AgeRangeLine from './AgeRangeLine';
@@ -17,14 +20,11 @@ export class Statistics extends Component {
 	render() {
 		return (
 			<div>
-				<Jumbotron style={{backgroundColor: '#d6e0f5'}}>
-					<Container>
-						<h1>Welcome to Statistics!</h1>
-						<p>
-						On this page, you can view general statistics about different questionnaire and response data.
-						</p>
-					</Container>
-				</Jumbotron>
+				<Result
+					title="Welcome to Statistics!"
+					subTitle="You can view statistics on questionnaires and responses on this page."
+					style={{backgroundColor: '#d8e5f3'}}
+				/>
 
 				<div style={cardRow}>
 					<Card bg="light" border="secondary" style={cardItem}>

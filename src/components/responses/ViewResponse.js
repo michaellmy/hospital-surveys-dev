@@ -16,8 +16,7 @@ export class ViewResponse extends Component {
     }
 
     componentDidMount(){
-        const baseUrl = 'https://hospital-surveys-dev.herokuapp.com'
-       /*  const baseUrl = window.location.origin; */
+        const baseUrl = window.location.origin; 
         const getUrl = baseUrl + '/api/getAnswerByUid/' + this.props.match.params.uid;
         axios.get(getUrl) 
          .then(res => this.setState({responses: res.data}))

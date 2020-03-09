@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import uuid from 'uuid';
-import { Breadcrumb, Spinner, Alert} from 'react-bootstrap';
+import { Breadcrumb, Spinner} from 'react-bootstrap';
+import { message } from 'antd';
+import 'antd/dist/antd.css';
 
 import ListTitle from '../layout/ListTitle';
 import ListFooter from '../layout/ListFooter';
@@ -25,7 +27,6 @@ export class AdminPanel extends Component {
             recentPage: 1,
             filteredQuestionnaires: [], // Used for pagination and search
             isReady: false, // Used for loading spinner
-            errorMessage: null
         }
     }
 
@@ -33,15 +34,6 @@ export class AdminPanel extends Component {
         axios.get(window.location.origin + '/api/getAllQuestionnaires/')
             .then(res => this.setState({questionnaires: res.data, filteredQuestionnaires: res.data}))
             .then(() => this.setState({isReady: true})); 
-    }
-
-    changeErrorState = (message, variant) => {
-        this.setState({errorMessage: 
-            <div>
-                <Alert variant={variant}>
-                    <h5 style={{textAlign: 'center', paddingTop: '5px'}}>{message}</h5>
-                </Alert>
-            </div>})
     }
 
     handlePageClick = (event) => {
@@ -58,13 +50,15 @@ export class AdminPanel extends Component {
             headers: {'Content-Type': 'multipart/form-data' }
             })
             .then(function (response) {
-                self.changeErrorState("Success - Questionnaire was deleted.", "info");
+                message.success('Success - Questionnaire was deleted.')
+                self.setState({ questionnaires: [...self.state.questionnaires.filter(questionnaire => questionnaire.uid !== id)] });
+                self.setState({ filteredQuestionnaires: [...self.state.filteredQuestionnaires.filter(questionnaire => questionnaire.uid !== id)] }, () => { self.updatePage() });
             })
             .catch(function (response) {
-                self.changeErrorState("Failed to delete questionnaire - Could not connect to database", "danger");
+                message.error('Failed to Delete Questionnaire - Could not connect to database')
         });
-        this.setState({ questionnaires: [...this.state.questionnaires.filter(questionnaire => questionnaire.uid !== id)] });
-        this.setState({ filteredQuestionnaires: [...this.state.filteredQuestionnaires.filter(questionnaire => questionnaire.uid !== id)] }, () => { this.updatePage() });
+        /* this.setState({ questionnaires: [...this.state.questionnaires.filter(questionnaire => questionnaire.uid !== id)] });
+        this.setState({ filteredQuestionnaires: [...this.state.filteredQuestionnaires.filter(questionnaire => questionnaire.uid !== id)] }, () => { this.updatePage() }); */
     }
 
     addQuestionnaire = () => {
@@ -88,14 +82,16 @@ export class AdminPanel extends Component {
             headers: {'Content-Type': 'multipart/form-data' }
         })
         .then(function (response) {
-            self.changeErrorState("Success - Added new questionnaire.", "primary");
+            message.success('Success - Added new questionnaire.')
+            self.setState({ questionnaires: [...self.state.questionnaires, newQuestionnaire] });
+            self.setState({ filteredQuestionnaires: [...self.state.filteredQuestionnaires, newQuestionnaire] }, () => { self.updatePage() });
         })
         .catch(function (response) {
-            self.changeErrorState("Failed to add new questionnaire - could not connect to database", "danger");
+            message.error('Failed to add new questionnaire - Could not connect to database')
         });
 
-        this.setState({ questionnaires: [...this.state.questionnaires, newQuestionnaire] });
-        this.setState({ filteredQuestionnaires: [...this.state.filteredQuestionnaires, newQuestionnaire] }, () => { this.updatePage() });
+        /* this.setState({ questionnaires: [...this.state.questionnaires, newQuestionnaire] });
+        this.setState({ filteredQuestionnaires: [...this.state.filteredQuestionnaires, newQuestionnaire] }, () => { this.updatePage() }); */
     }
 
     filterSearch = (e) => {
@@ -127,7 +123,6 @@ export class AdminPanel extends Component {
 
                         <div>
                             <div style={{marginLeft: '35px', marginRight: '35px', marginTop: '70px'}}>
-                                {this.state.errorMessage}
                                 <Breadcrumb>
                                     <Breadcrumb.Item style={{color: '#3466cb'}} href="/">Home</Breadcrumb.Item>
                                     <Breadcrumb.Item active>Manage Questionnaires</Breadcrumb.Item>
@@ -159,7 +154,7 @@ export class AdminPanel extends Component {
             )
             
         } else {
-            return <div style={{textAlign: "center", paddingTop: "10%", marginBottom: "480px"}}>
+            return <div style={{textAlign: "center", paddingTop: "18%", marginBottom: "480px"}}>
                 <Spinner animation="border" variant="primary">
                     <span className="sr-only">Loading...</span>
                 </Spinner>
@@ -173,5 +168,9 @@ const listStyle = {
     marginLeft: '7%',
     marginRight: '7%',
 }
+
+message.config({
+    top: 80
+})
 
 export default AdminPanel

@@ -11,7 +11,7 @@ export class LoggedOut extends Component {
                     <Container>
                         <Image src={lockAndKey} rounded />
                         <h1 style={{color: '#000080'}}>Login to View and Manage Questionnaires</h1>
-                        <p style={{color: '#52527a'}}>
+                        <p style={{color: '#00264d'}}>
                         You are seeing this page because you are either not logged in, or your session
                         has expired.
                         </p>
