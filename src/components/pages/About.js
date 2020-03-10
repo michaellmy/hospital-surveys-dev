@@ -19,7 +19,7 @@ export class About extends Component {
                             className="d-block w-100"
                             src={hospitalImg}
                             alt="First slide" 
-                            height={430}
+                            height={400}
                         />
                         <Carousel.Caption>
                             <h3 style={Object.assign({}, darkCaptionStyle, {color: 'white'})}>Hospital Surveys</h3>
@@ -32,7 +32,7 @@ export class About extends Component {
                             className="d-block w-100"
                             src={hospitalImg2}
                             alt="Second slide"
-                            height={430}
+                            height={400}
                         />
                         <Carousel.Caption>
                             <h3 style={Object.assign({}, darkCaptionStyle, {color: 'white'})}>Analyze Results</h3>
@@ -45,7 +45,7 @@ export class About extends Component {
                             className="d-block w-100"
                             src={hospitalImg3}
                             alt="Third slide"
-                            height={430}
+                            height={400}
                         />
                         <Carousel.Caption>
                             <h3 style={Object.assign({}, darkCaptionStyle, {color: 'white'})}>UCL | GOSH DRIVE</h3>

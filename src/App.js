@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import './App.css';
 
 import Header from './components/layout/Header';
-import Footer from './components/layout/Footer';
 
 import Edit from './components/manage/Edit.js';
 import Login from './components/manage/Login';
@@ -18,7 +17,6 @@ import Answer from './components/pages/Answer';
 
 import AnswerPage from './components/answer/Questionnaire';
 import * as actions from './store/actions/auth';
-
 
 
 class App extends Component {
@@ -42,7 +40,6 @@ class App extends Component {
             </React.Fragment>
           )} />
 
-         {/*  <Route exact path="/" component={About}></Route> */}
           <Route exact path="/">
             <React.Fragment>
               <Header {...this.props}/>
@@ -79,7 +76,7 @@ class App extends Component {
             <React.Fragment>
               <Header {...this.props}/>
               <AnswerPage {...props}/>
-              <Footer/>
+              
             </React.Fragment>
           )} />
 

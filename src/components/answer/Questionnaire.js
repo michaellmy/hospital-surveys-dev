@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import QuestionnaireComposite from './QuestionnaireComposite'
 import { Button, Jumbotron, Form, Alert, Container, Spinner } from 'react-bootstrap'
+import { Result, Button as AntButton } from 'antd'
 import axios from 'axios';
 import { Link} from 'react-router-dom';
+import Footer from '../layout/Footer';
 
 //edit empty window
 
@@ -15,21 +17,22 @@ class Questionnaire extends Component {
       questionnaire: undefined,
       age: '',
       isReady: false,
-      errorMessage: null,
-      noQuestionnaireError: null
+      errorMessage: null, // Submit response error
+      noQuestionnaireError: null,
+      questionnaireExists: true
     };
   }
 
   componentDidMount(){
     var self = this;
-    axios.get('https://hospital-surveys-dev.herokuapp.com/api/getQuestionnaireByUid/' + this.props.match.params.uid + "/")
-    /* axios.get(window.location.origin + '/api/getQuestionnaireByUid/' + this.props.match.params.uid + "/")  */
+    axios.get(window.location.origin + '/api/getQuestionnaireByUid/' + this.props.match.params.uid + "/")
       .then(res => this.setState({questionnaire: res.data}))
       .then(() => this.setState({isReady: true}))
-      .catch(self.noQuestionnaireError())
+      .catch((e) => self.noQuestionnaireError(e))
+      .then(() => this.setState({isReady: true}))
   }
 
-  changeErrorState = () => {
+  changeErrorState = () => {  
     this.setState({errorMessage: 
         <div>
             <Alert variant="danger">
@@ -38,7 +41,8 @@ class Questionnaire extends Component {
         </div>})
   }
 
-  noQuestionnaireError = () => {
+  noQuestionnaireError = (e) => {
+    this.setState({questionnaireExists: false})
     this.setState({noQuestionnaireError:
       <div>
         <Jumbotron>
@@ -113,6 +117,19 @@ class Questionnaire extends Component {
   render(){
     const ages = [...Array(100).keys()]
 
+    if (this.state.questionnaireExists === false){
+      return (
+        <div>
+          <Result
+            status="404"
+            title="Could Not Find Questionnaire"
+            subTitle="Sorry, this questionnaire does not exist."
+            extra={<AntButton type="primary" onClick={() => window.location = "/answerSearch"}>Search Again</AntButton>}
+          />
+        </div>
+      )
+    }
+
     if (this.state.isReady === true){
       return (
         <div>
@@ -141,9 +158,11 @@ class Questionnaire extends Component {
             <br></br> 
             {this.state.errorMessage}
           </div> 
+          <Footer />
         </div>    
 
     )}
+
     else {
       return (
         <div>
@@ -152,9 +171,7 @@ class Questionnaire extends Component {
               <span className="sr-only">Loading...</span>
             </Spinner>
           </div>
-          {this.state.noQuestionnaireError}
         </div>
-
       )
     }
   }
@@ -167,7 +184,5 @@ const formcontrol = {
 }
 
 const listStyle = {
-  marginLeft: '5%',
-  marginRight: '5%',
-  marginTop : '30px'
+  margin: '30px 5% 0 5%'
 }

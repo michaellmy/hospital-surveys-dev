@@ -10,7 +10,7 @@ export class LoggedOut extends Component {
                 <Jumbotron fluid style={{backgroundColor: "#dae4f1"}}>
                     <Container>
                         <Image src={lockAndKey} rounded />
-                        <h1 style={{color: '#000080'}}>Login to View and Manage Questionnaires</h1>
+                        <h1 style={{color: '#000080'}}>Login to view and manage questionnaires.</h1>
                         <p style={{color: '#00264d'}}>
                         You are seeing this page because you are either not logged in, or your session
                         has expired.

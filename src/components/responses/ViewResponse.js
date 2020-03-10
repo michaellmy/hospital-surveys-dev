@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Spinner, Jumbotron, Container, Button, Col, Image } from 'react-bootstrap';
 import axios from 'axios';
 import ResponseTable from './ResponseTable';
+import LoggedOut from '../pages/LoggedOut';
 
 import Footer from '../layout/Footer';
 import tumbleWeed from '../logos/tumbleweed.png'
@@ -27,49 +28,61 @@ export class ViewResponse extends Component {
         if (this.state.isReady) {
             return (
                 <div>
-                    <div style={responseStyle}>
-                        {
-                            this.state.responses.length === 0 ?
-                            
-                            <div>
-                                <h3>Total Responses: {this.state.responses.length}</h3>
-                                <hr style={{borderColor: 'grey'}}></hr>
+                    {
+                        this.props.isAuthenticated ?
 
-                                <Jumbotron fluid>
-                                    <Container>
-                                        <Col xs={6} md={4}>
-                                        <Image src={tumbleWeed} rounded />
-                                        <br></br>&nbsp;
-                                        </Col>
-                                        <h1>No Responses Available</h1>
-                                        <p>
-                                            There are no responses for this survey yet.
-                                        </p>
-                                        <p>
-                                            <a href="/manage"><Button variant="primary">Go Back</Button></a>
-                                        </p>
-                                    </Container>
-                                </Jumbotron>
-                            </div>
-
-                            :
-
-                            <div>
-                                <h3>Total Responses: {this.state.responses.length}</h3>
-                                <hr style={{borderColor: 'grey'}}></hr>
-
-
-                                {this.state.responses.map((response, index) => (
+                        <div>
+                            <div style={responseStyle}>
+                                {
+                                    this.state.responses.length === 0 ?
+                                    
                                     <div>
-                                        <ResponseTable key={response.uid} response={response} responseNum={index + 1}/>      
-                                        <hr style={{borderColor: 'grey', marginTop: '25px', marginBottom: '15px'}}></hr>
+                                        <h3>Total Responses: {this.state.responses.length}</h3>
+                                        <hr style={{borderColor: 'grey'}}></hr>
+
+                                        <Jumbotron fluid>
+                                            <Container>
+                                                <Col xs={6} md={4}>
+                                                <Image src={tumbleWeed} rounded />
+                                                <br></br>&nbsp;
+                                                </Col>
+                                                <h1>No Responses Available</h1>
+                                                <p>
+                                                    There are no responses for this survey yet.
+                                                </p>
+                                                <p>
+                                                    <a href="/manage"><Button variant="primary">Go Back</Button></a>
+                                                </p>
+                                            </Container>
+                                        </Jumbotron>
                                     </div>
-                                ))}
-                                
-                            </div> 
-                        }
-                    </div>
-                    <Footer/>
+
+                                    :
+
+                                    <div>
+                                        <h3>Total Responses: {this.state.responses.length}</h3>
+                                        <hr style={{borderColor: 'grey'}}></hr>
+
+
+                                        {this.state.responses.map((response, index) => (
+                                            <div>
+                                                <ResponseTable key={response.uid} response={response} responseNum={index + 1}/>      
+                                                <hr style={{borderColor: 'grey', marginTop: '25px', marginBottom: '15px'}}></hr>
+                                            </div>
+                                        ))}
+                                        
+                                    </div> 
+                                }
+                            </div>
+                            <Footer/>
+                        </div>
+
+                        :
+
+                        <div>
+                            <LoggedOut/>
+                        </div>
+                    }
                 </div>
             )
         } else {

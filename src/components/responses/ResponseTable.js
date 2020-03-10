@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Table } from 'react-bootstrap'
+import { Descriptions } from 'antd'
 
 export class ResponseTable extends Component {
     constructor(props) {
@@ -14,9 +15,12 @@ export class ResponseTable extends Component {
             return (
                 <div style={tableStyle}>
                     <div>
-                        <h5 style={{display: 'inline-block'}}>Response Number: {this.props.responseNum}&emsp;|&emsp;Date Submitted: {this.props.response.date}<br></br>Respondent Age: {this.props.response.age}</h5>
-                        {/* <h5 style={{display: 'inline-block', float:'right'}}>Date Submitted: {this.props.response.date}</h5>
-                        <h5 style={{display: 'inline-block', float:'right'}}>Respondent Age: {this.props.response.age}&emsp;&ensp;</h5> */}
+                        <strong>Response Info</strong>
+                        <Descriptions>
+                            <Descriptions.Item label="Response Number">{this.props.responseNum}</Descriptions.Item>
+                            <Descriptions.Item label="Date Submitted">{this.props.response.date}</Descriptions.Item>
+                            <Descriptions.Item label="Respondent Age">{this.props.response.age}</Descriptions.Item>
+                        </Descriptions>
                     </div>
                     
                     <Table striped bordered hover responsive="sm">
