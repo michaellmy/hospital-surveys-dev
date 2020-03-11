@@ -21,5 +21,6 @@ urlpatterns = [
     path('getPatientTypeStats/', views.getPatientTypeStats),
     path('getAverageAge/', views.getAverageAge),
     path('getAverageAgeByUid/<str:id>/', views.getAverageAgeByUid),
+    path('deleteAnswersByUid/<str:id>/', views.deleteAnswersByUid),
     # path('a/', views.QuestionnairesViewSet),
 ]

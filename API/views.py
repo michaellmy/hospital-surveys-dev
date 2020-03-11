@@ -236,3 +236,12 @@ def getAverageAgeByUid(request, id):
         except:
             e = sys.exc_info()[0]
             return HttpResponse(e)
+
+
+def deleteAnswersByUid(request, id):
+    try:
+        queryset = AnswerContent.objects.filter(uid=id)
+    except AnswerContent.DoesNotExist:
+        return HttpResponse("Answer not exist")
+    queryset.delete()
+    return HttpResponse("Deleted")
