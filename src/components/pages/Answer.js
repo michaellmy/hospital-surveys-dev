@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import { InputGroup, Button, FormControl } from 'react-bootstrap';
 import Header from '../layout/Header'
+import { Input } from 'antd'
 import { Link } from 'react-router-dom';
+
+
+const { Search } = Input
 
 export class Answer extends Component {
     state = {

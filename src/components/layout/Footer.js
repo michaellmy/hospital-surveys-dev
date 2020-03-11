@@ -15,16 +15,14 @@ function Footer() {
                         <div className="col-xs-6 col-md-3">
                             <h6>Categories</h6>
                             <ul className="footer-links">
-                                <li><a href="/">Surveys</a></li>
-                               
+                                <li><a href="/manage">Manage</a></li>
                             </ul>
                         </div>
 
                         <div className="col-xs-6 col-md-3">
                             <h6>Quick Links</h6>
                             <ul className="footer-links">
-                                <li><a href="/">About</a></li>
-                               
+                                <li><a href="/">Home</a></li>
                             </ul>
                         </div>
                     </div>
@@ -38,7 +36,7 @@ const footerStyle = {
     fontFamily: ' -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
     position: 'relative',
     marginTop: '2%',
-    zIndex: '-1'
+
 }
 
 export default Footer;
