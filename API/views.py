@@ -245,3 +245,19 @@ def deleteAnswersByUid(request, id):
         return HttpResponse("Answer not exist")
     queryset.delete()
     return HttpResponse("Deleted")
+
+
+def getAllAgeList(request):
+    queryset = AnswerContent.objects.all()
+    ageList = []
+    for answer in queryset:
+        ageList.append(answer.age)
+    return JsonResponse(ageList,safe=False)
+
+
+def getAllDateList(request):
+    queryset = AnswerContent.objects.all()
+    dateList = []
+    for answer in queryset:
+        dateList.append(answer.date)
+    return JsonResponse(dateList, safe=False)
