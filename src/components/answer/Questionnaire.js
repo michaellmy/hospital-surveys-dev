@@ -121,7 +121,7 @@ class Questionnaire extends Component {
       return (
         <div>
           <Result
-            status="404"
+            status="500"
             title="Could Not Find Questionnaire"
             subTitle="Sorry, this questionnaire does not exist."
             extra={<AntButton type="primary" onClick={() => window.location = "/answerSearch"}>Search Again</AntButton>}

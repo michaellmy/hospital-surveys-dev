@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { InputGroup, Button, FormControl } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import Header from '../layout/Header'
 import { Input } from 'antd'
 import { Link } from 'react-router-dom';
@@ -16,8 +16,12 @@ export class Answer extends Component {
         this.setState({typedID: e.target.value})
     }
 
+    navigateToSurvey = (value) => {
+        const answerUrl = `/answer/${value}`
+        window.location = answerUrl
+    }
+
     render() {
-        const answerUrl = `/answer/${this.state.typedID}`
         return (
             <div>
                 <Header/>
@@ -25,17 +29,8 @@ export class Answer extends Component {
                     <div style={searchBox}>
                         <h4>Enter Questionnaire ID:</h4>
                         <p>Enter questionnaire ID to answer the questionnaire.</p>
-                        <InputGroup className="mb-3">
-                            <FormControl
-                            placeholder="Questionnaire ID"
-                            aria-describedby="basic-addon2"
-                            onChange={this.handleChange}
-                            />
-                            <InputGroup.Append>
-                                <Link to={answerUrl}><Button variant="primary">Go</Button></Link>
-                            </InputGroup.Append>
-                        </InputGroup>
-                        <br></br>
+                        <Search placeholder="Questionnaire ID" onSearch={value => this.navigateToSurvey(value)} enterButton />
+                        <br></br>&nbsp;
                         <div style={{textAlign: 'center'}}>
                             <Link to="/"><Button variant="primary" style={{textAlign: 'center'}}>Return to Home Page</Button></Link>
                         </div>

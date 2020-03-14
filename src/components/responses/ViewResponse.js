@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
-import { Spinner, Jumbotron, Container, Button, Col, Image, Row } from 'react-bootstrap';
-import { Row as AntRow, Col as AntCol } from 'antd'
+import { Spinner, Jumbotron, Container, Button, Col, Image } from 'react-bootstrap';
+import { Row as AntRow, Col as AntCol, Popconfirm } from 'antd'
 import axios from 'axios';
 import ResponseTable from './ResponseTable';
 import LoggedOut from '../pages/LoggedOut';
 
 import Footer from '../layout/Footer';
-import tumbleWeed from '../logos/tumbleweed.png'
+import tumbleWeed from '../logos/tumbleweed.png';
+
 
 export class ViewResponse extends Component {
     constructor(props){
@@ -25,6 +26,19 @@ export class ViewResponse extends Component {
          .then(() => this.setState({isReady: true}));
     }
 
+    deleteResponses = () => {
+        const getUrl = window.location.origin + '/api/getAnswerByUid/' + this.props.match.params.uid;
+        axios({
+            method: 'get',
+            url:  `${window.location.origin}/api/deleteAnswersByUid/${this.props.match.params.uid}/`,
+            headers: {'Content-Type': 'multipart/form-data' }
+        })
+        .then(() =>
+            axios.get(getUrl) 
+                .then(res => this.setState({responses: res.data}))
+        )
+    }
+
     render() {
         if (this.state.isReady) {
             return (
@@ -39,7 +53,17 @@ export class ViewResponse extends Component {
                                 <div style={responseStyle}>
                                     <AntRow>
                                         <AntCol span={8}><h4>Total Responses: {this.state.responses.length}</h4></AntCol>
-                                        <AntCol span={8} offset={8}><Button style={{float: 'right'}}variant="danger">Delete All Responses</Button></AntCol>
+                                        <AntCol span={8} offset={8}>
+                                            <Popconfirm
+                                                placement="bottomRight"
+                                                title="Delete All Responses? This action cannot be undone."
+                                                onConfirm={this.deleteResponses}
+                                                okText="Yes"
+                                                cancelText="No"
+                                            >
+                                               <Button type="primary" style={{float: 'right', backgroundColor: '#990000', borderColor: '#990000'}}>Delete All Responses</Button>
+                                            </Popconfirm>
+                                        </AntCol>
                                     </AntRow>
                                     <hr style={{borderColor: 'grey'}}></hr>
 
@@ -66,7 +90,17 @@ export class ViewResponse extends Component {
                                     <div style={responseStyle}>
                                         <AntRow>
                                             <AntCol span={8}><h4>Total Responses: {this.state.responses.length}</h4></AntCol>
-                                            <AntCol span={8} offset={8}><Button style={{float: 'right'}}variant="danger">Delete All Responses</Button></AntCol>
+                                            <AntCol span={8} offset={8}>
+                                                <Popconfirm
+                                                    placement="bottomRight"
+                                                    title="Delete All Responses? This action cannot be undone."
+                                                    onConfirm={this.deleteResponses}
+                                                    okText="Yes"
+                                                    cancelText="No"
+                                                >
+                                                <Button type="primary" style={{float: 'right', backgroundColor: '#990000', borderColor: '#990000'}}>Delete All Responses</Button>
+                                                </Popconfirm>
+                                            </AntCol>
                                         </AntRow>
                                         <hr style={{borderColor: 'grey'}}></hr>
 

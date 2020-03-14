@@ -34,9 +34,10 @@ export class QuestionnaireItem extends Component {
 
         const popover = (
             <Popover id="popover-basic">
-                <Popover.Title as="h3">Share questionnaire link to answer</Popover.Title>
+                <Popover.Title as="h3">Share Link to Respondent</Popover.Title>
                 <Popover.Content>
-                    <a href={answerLink}>{answerLink}</a>
+                    <strong>A patient can click on the link to answer this survey: </strong><br></br>
+                    <a href={answerLink} style={{textDecoration: 'underline'}}>{answerLink}</a>
                 </Popover.Content>
             </Popover>
         )
@@ -54,6 +55,7 @@ export class QuestionnaireItem extends Component {
 
                         <Accordion.Collapse eventKey="0">
                             <Card.Body>
+
                                 <Table responsive striped hover>
                                     <thead>
                                         <tr>
@@ -78,13 +80,13 @@ export class QuestionnaireItem extends Component {
                                     </tbody>
                                 </Table>
                                 
-                                <Link to={surveyLink}><Button style={rowButtons}><b>Edit Questionnaire</b></Button></Link>
-                                    
-                                <Link to={viewResponsesLink}><Button style={rowButtons} variant="primary"><b>View Questionanire Responses</b></Button></Link>
-
                                 <OverlayTrigger trigger="click" placement="top" overlay={popover}> 
                                     <Button style={rowButtons} variant="info"><b>Share Questionnaire</b></Button>
                                 </OverlayTrigger>
+
+                                <Link to={viewResponsesLink}><Button style={rowButtons} variant="primary"><b>View Questionanire Responses</b></Button></Link>
+
+                                <Link to={surveyLink}><Button style={rowButtons}><b>Edit Questionnaire</b></Button></Link>
 
                                 <Button onClick={this.openDialog.bind(this, uid)} variant="danger" style={{float: 'right'}}><b>Delete Questionnaire</b></Button>
                             </Card.Body>

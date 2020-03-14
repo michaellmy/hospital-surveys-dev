@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Bubble } from 'react-chartjs-2'
-
+import axios from 'axios'
 
 const options = {
     maintainAspectRatio: false,
@@ -9,13 +9,13 @@ const options = {
         yAxes: [{
             scaleLabel: {
                 display: true,
-                labelString: 'Patient Age / Years'
+                labelString: 'Patient Age / Years Old'
             }
         }],
         xAxes: [{
             scaleLabel: {
                 display: true,
-                labelString: 'Centroid Position for Cluster/ Years'
+                labelString: 'Centroid Position for Cluster / Years Old'
             }
         }
         ]
@@ -24,15 +24,12 @@ const options = {
 
 export class KMeansAge extends Component {
     componentDidMount(){
-        /* const sample = [[1,12,13,4,25,21,22,3,14,5,11,2,23,24,15]] */   
-        const k = 3
-        const sample = [1,3,6,7,8,33,39,42,49,35,72,80,91,78,99,100,101]
-        this.processData(sample, k)
-        this.setState({ready: true})
+        axios.get(window.location.origin + '/api/getAllAgeList/')
+        .then(res => this.processData(res.data, 3))
+        .then(() => this.setState({ready: true}))
     }
 
     processData = (resData, k) => {
-        //TODO if sample size less k than then return 
         if(resData.length < k){
             return
         }

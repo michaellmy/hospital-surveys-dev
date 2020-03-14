@@ -10,11 +10,6 @@ import AgeRangeLine from './AgeRangeLine';
 import KMeansAge from './KMeansAge';
 import AveragePatientAge from './AveragePatientAge';
 
-/* Ideas: 
-1. Number of responses per month - Horizontal Bar
-2. Responses chose for a certain question - Radar
-3. Predictive charts using simple algorithms?
-*/
 
 export class Statistics extends Component {
 	render() {
@@ -30,7 +25,7 @@ export class Statistics extends Component {
 					<Card bg="light" border="secondary" style={cardItem}>
 						<Card.Header><h5>Patient Type Proportions</h5></Card.Header>
 						<Card.Body>
-						<Card.Subtitle className="mb-2 text-muted">Ratio of questionnaires for different types of patients.</Card.Subtitle>
+						<Card.Subtitle className="mb-2 text-muted">Ratio of available questionnaires for different patients.</Card.Subtitle>
 							<PatientTypesPie />
 						</Card.Body>
                     </Card>
@@ -44,9 +39,9 @@ export class Statistics extends Component {
                     </Card> 
 
 					<Card bg="light" border="secondary" style={cardItem}>
-						<Card.Header><h5>Questionnaire Age Range</h5></Card.Header>
+						<Card.Header><h5>K-Means Clustering of Patient Ages</h5></Card.Header>
 						<Card.Body>
-						<Card.Subtitle className="mb-2 text-muted">Number of questionnaires that can be answered by different patient ages.</Card.Subtitle>
+						<Card.Subtitle className="mb-2 text-muted">Analyzing and Grouping patient ages using K-Means Clustering</Card.Subtitle>
 							<KMeansAge />
 						</Card.Body>
                     </Card>  
@@ -66,6 +61,7 @@ export class Statistics extends Component {
 }
 
 const cardRow = {
+	height: '50%',
 	paddingTop: '10px', 
 	display: 'flex',
 	flexWrap: 'wrap',

@@ -9,17 +9,18 @@ import manageCard from '../logos/managecard.jpg';
 import statisticsCard from '../logos/statisticscard.jpg';
 import patientCard from '../logos/patientcard.jpg';
 
+
 export class About extends Component {
     render() {
         return (
-            <div style={{ position: 'relative' }}>
+            <div style={{height: '600px'}}>
                 <Carousel >
                     <Carousel.Item>
                         <img
                             className="d-block w-100"
                             src={hospitalImg}
                             alt="First slide" 
-                            height={400}
+                            height={425}
                         />
                         <Carousel.Caption>
                             <h3 style={Object.assign({}, darkCaptionStyle, {color: 'white'})}>Hospital Surveys</h3>
@@ -32,7 +33,7 @@ export class About extends Component {
                             className="d-block w-100"
                             src={hospitalImg2}
                             alt="Second slide"
-                            height={400}
+                            height={425}
                         />
                         <Carousel.Caption>
                             <h3 style={Object.assign({}, darkCaptionStyle, {color: 'white'})}>Analyze Results</h3>
@@ -45,33 +46,32 @@ export class About extends Component {
                             className="d-block w-100"
                             src={hospitalImg3}
                             alt="Third slide"
-                            height={400}
+                            height={425}
                         />
                         <Carousel.Caption>
                             <h3 style={Object.assign({}, darkCaptionStyle, {color: 'white'})}>UCL | GOSH DRIVE</h3>
                             <h5 style={Object.assign({}, darkCaptionStyle, {color: '#d9d9d9'})}>A University College London IXN Student Project.</h5>
                         </Carousel.Caption>
                     </Carousel.Item> 
-
                 </Carousel>
 
                 <div style={btmList}>
                     <div style={cardRow}>
                         <Card style={cardStyle}>
-                            <Card.Img variant="top" src={manageCard} height="170px" />
+                            <Card.Img variant="top" src={manageCard} height="150px" />
                             <Card.Body>
-                                <Card.Title><b>Manage Surveys</b></Card.Title>
+                                <Card.Title>Manage Surveys</Card.Title>
                                 <Card.Text>
-                                    View and manage all surveys in the admin panel.
+                                    View and manage all surveys in the Admin Panel.
                                 </Card.Text>
                                 <a href="/manage"><Button style={{backgroundColor: '#0066ff'}}variant="primary">Manage Questionnaires</Button></a>
                             </Card.Body>
                         </Card>
 
                         <Card style={cardStyle}>
-                        <Card.Img variant="top" src={patientCard} height="170px" />
+                        <Card.Img variant="top" src={patientCard} height="150px" />
                             <Card.Body>
-                                <Card.Title><b>A Patient?</b></Card.Title>
+                                <Card.Title>A Patient?</Card.Title>
                                 <Card.Text>
                                     Answer a survey by getting a link or entering the survey ID.
                                 </Card.Text>
@@ -80,9 +80,9 @@ export class About extends Component {
                         </Card>
 
                         <Card style={cardStyle}>
-                            <Card.Img variant="top" src={statisticsCard} height="170px" />
+                            <Card.Img variant="top" src={statisticsCard} height="150px" />
                             <Card.Body>
-                                <Card.Title><b>View Statistics</b></Card.Title>
+                                <Card.Title>View Statistics</Card.Title>
                                 <Card.Text>
                                     View statistics on survey responses and analyze results.
                                 </Card.Text>
@@ -99,7 +99,7 @@ export class About extends Component {
 
 
 const btmList = {
-    margin: '10px 1% 0 1%'
+    margin: '0 10px 0 10px'
 }
 
 const cardRow = {
@@ -111,7 +111,7 @@ const cardRow = {
 
 const cardStyle = {
     width: '17rem', 
-    margin: '10px 1% 0 1%'
+    margin: '15px 1% 0 1%'
 }
 
 const darkCaptionStyle = {
