@@ -1,7 +1,7 @@
 .site-footer
 {
   background-color:  #e0e0eb;
-  margin-top:  7%;
+  margin-top: 2%;
   padding-top: 2%;
   padding-bottom: 2%;
   font-size:15px;
@@ -90,7 +90,7 @@
   .site-footer
   {
     padding-bottom:0;
-    margin-top: 22%;
+    margin-top: 2%;
     position: relative;
   }
   .site-footer .copyright-text,.site-footer .social-icons

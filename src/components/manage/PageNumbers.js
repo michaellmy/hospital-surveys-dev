@@ -22,9 +22,8 @@ export class PageNumbers extends Component {
 }
 
 const PageNumStyle = {
+    paddingTop: '10px',
     float: 'right',
-    marginTop: '1%',
-    marginBottom: '1%',
     textAlign: 'center'
 }
 

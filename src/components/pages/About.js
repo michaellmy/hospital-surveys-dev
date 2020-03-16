@@ -18,9 +18,22 @@ export class About extends Component {
                     <Carousel.Item>
                         <img
                             className="d-block w-100"
+                            src={hospitalImg2}
+                            alt="Second slide"
+                            style={{maxHeight: '450px', minHeight: '375px'}}
+                        />
+                        <Carousel.Caption>
+                            <h3 style={Object.assign({}, darkCaptionStyle, {color: 'white'})}>Analyze Results</h3>
+                            <h5 style={Object.assign({}, darkCaptionStyle, {color: '#d9d9d9'})}>View and analyze surveys and responses.</h5>
+                        </Carousel.Caption>
+                    </Carousel.Item>
+
+                    <Carousel.Item>
+                        <img
+                            className="d-block w-100"
                             src={hospitalImg}
                             alt="First slide" 
-                            height={425}
+                            style={{maxHeight: '450px', minHeight: '375px'}}
                         />
                         <Carousel.Caption>
                             <h3 style={Object.assign({}, darkCaptionStyle, {color: 'white'})}>Hospital Surveys</h3>
@@ -31,22 +44,9 @@ export class About extends Component {
                     <Carousel.Item>
                         <img
                             className="d-block w-100"
-                            src={hospitalImg2}
-                            alt="Second slide"
-                            height={425}
-                        />
-                        <Carousel.Caption>
-                            <h3 style={Object.assign({}, darkCaptionStyle, {color: 'white'})}>Analyze Results</h3>
-                            <h5 style={Object.assign({}, darkCaptionStyle, {color: '#d9d9d9'})}>View and analyze questionnaires and responses.</h5>
-                        </Carousel.Caption>
-                    </Carousel.Item>
-
-                    <Carousel.Item>
-                        <img
-                            className="d-block w-100"
                             src={hospitalImg3}
                             alt="Third slide"
-                            height={425}
+                            style={{maxHeight: '450px', minHeight: '375px'}}
                         />
                         <Carousel.Caption>
                             <h3 style={Object.assign({}, darkCaptionStyle, {color: 'white'})}>UCL | GOSH DRIVE</h3>
@@ -58,7 +58,7 @@ export class About extends Component {
                 <div style={btmList}>
                     <div style={cardRow}>
                         <Card style={cardStyle}>
-                            <Card.Img variant="top" src={manageCard} height="150px" />
+                            <Card.Img variant="top" src={manageCard} height="155px" />
                             <Card.Body>
                                 <Card.Title>Manage Surveys</Card.Title>
                                 <Card.Text>
@@ -69,7 +69,7 @@ export class About extends Component {
                         </Card>
 
                         <Card style={cardStyle}>
-                        <Card.Img variant="top" src={patientCard} height="150px" />
+                            <Card.Img variant="top" src={patientCard} height="155px" />
                             <Card.Body>
                                 <Card.Title>A Patient?</Card.Title>
                                 <Card.Text>
@@ -80,7 +80,7 @@ export class About extends Component {
                         </Card>
 
                         <Card style={cardStyle}>
-                            <Card.Img variant="top" src={statisticsCard} height="150px" />
+                            <Card.Img variant="top" src={statisticsCard} height="155px" />
                             <Card.Body>
                                 <Card.Title>View Statistics</Card.Title>
                                 <Card.Text>

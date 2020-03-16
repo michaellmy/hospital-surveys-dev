@@ -116,7 +116,7 @@ export class EditQuestion extends Component {
                         </Form.Control>
 
                     </Form.Group>
-                    <Button style={{backgroundColor: '#990000'}} onClick={this.props.delQuestion.bind(this, this.state.qid)}>X</Button>
+                    <Button variant="danger" onClick={this.props.delQuestion.bind(this, this.state.qid)}>X</Button>
 
                 </Form.Row>
                 {this.renderSwitch(this.state.answerType)}

@@ -136,9 +136,15 @@ export class AdminPanel extends Component {
                                     <ListFooter addQuestionnaire={this.addQuestionnaire} indexOfFirstTodo={indexOfFirstTodo} 
                                     indexOfLastTodo={indexOfLastTodo} questionnaires={this.state.questionnaires}/>
                                     
-                                    <PageNumbers states={this.state} handlePageClick={this.handlePageClick} />
+                                    <div style={{marginBottom: '10px'}}>
+                                        <PageNumbers states={this.state} handlePageClick={this.handlePageClick} />
+
+                                    </div>
+
                                     <br></br>&nbsp;
-                                    <Statistics />
+                                    <div style={{marginTop: '10px'}}>
+                                        <Statistics />
+                                    </div>
                                 </div>
                             </div>
                             <Footer />
@@ -165,8 +171,8 @@ export class AdminPanel extends Component {
 
 const listStyle = {
     marginTop: '1%',
-    marginLeft: '7%',
-    marginRight: '7%',
+    marginLeft: '5%',
+    marginRight: '5%',
 }
 
 message.config({
