@@ -9,7 +9,7 @@ import goshlogo from '../logos/goshlogo.png';
 class Header extends React.Component {
     render() {
         return (
-            <div style={{marginTop: '57px'}}>
+            <div style={{marginTop: '55px'}}>
                 <Navbar collapseOnSelect expand="lg" variant="dark" fixed="top" style={navStyle}>
                     
                     <Navbar.Brand href="/">

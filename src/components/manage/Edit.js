@@ -128,7 +128,7 @@ class Edit extends Component {
                         <div style={{marginLeft: '35px', marginRight: '35px', marginTop: '70px'}}>
                             <Breadcrumb>
                                 <Breadcrumb.Item><Link to="/" style={{color: '#3466cb'}}>Home</Link></Breadcrumb.Item>
-                                <Breadcrumb.Item><Link to="/manage" style={{color: '#3466cb'}}>Manage Questionnaires</Link></Breadcrumb.Item>
+                                <Breadcrumb.Item><Link to="/manage" style={{color: '#3466cb'}}>Admin Panel</Link></Breadcrumb.Item>
                                 <Breadcrumb.Item active>{this.state.questionnaire.title}</Breadcrumb.Item>
                             </Breadcrumb>
                         </div>

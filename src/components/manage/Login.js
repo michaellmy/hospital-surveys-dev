@@ -37,7 +37,7 @@ class NormalLoginForm extends React.Component {
             <Jumbotron fluid style={{backgroundColor: '#dae4f1'}}>
                 <Container>
                     <Image src={lockAndKey} rounded />
-                    <h1 style={{color: '#000080'}}>Login to View and Manage Questionnaires</h1>
+                    <h1>Login to View and Manage Questionnaires</h1>
                     <p style={{color: '#52527a'}}>
                     You are seeing this page because you are either not logged in, or your session
                     has expired.
@@ -119,7 +119,7 @@ const mapDispatchToProps = dispatch => {
 
 const containerBox = {
     padding: '5% 10% 13px 10%',
-    backgroundColor: '#b5cde3',
+    backgroundColor: '#c8d6ea',
     textAlign: 'center',
 }
 

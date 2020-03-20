@@ -4,7 +4,7 @@ import { Card } from 'react-bootstrap';
 import { Result } from 'antd';
 import 'antd/dist/antd.css';
 
-
+import {BarChartOutlined} from '@ant-design/icons';
 import PatientTypesPie from './PatientTypesPie';
 import AgeRangeLine from './AgeRangeLine';
 import KMeansAge from './KMeansAge';
@@ -16,6 +16,7 @@ export class Statistics extends Component {
 		return (
 			<div>
 				<Result
+					icon={<BarChartOutlined/>}
 					title="Welcome to Statistics!"
 					subTitle="You can view statistics on questionnaires and responses on this page."
 					style={{backgroundColor: '#d8e5f3'}}

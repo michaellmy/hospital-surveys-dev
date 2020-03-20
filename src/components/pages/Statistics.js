@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Image, Container, Row, Col } from 'react-bootstrap';
 import trendlogo from '../logos/trends.png';
 import analyzelogo from '../logos/analyze.png';
 import "./stats.css"
@@ -9,10 +8,10 @@ export class Statistics extends Component {
         return (
             <div className="row">
                 <div className="column">
-                    <img src={analyzelogo} alt="Snow" style={imgStyle} />
+                    <a href="/statistics"><img src={analyzelogo} alt="Snow" style={imgStyle} /></a>
                 </div>
                 <div className="column">
-                    <img src={trendlogo} alt="Forest" style={imgStyle} />
+                <a href="/statistics"><img src={trendlogo} alt="Forest" style={imgStyle} /></a>
                 </div>
             </div>
             
@@ -24,24 +23,7 @@ export class Statistics extends Component {
 const imgStyle = {
     width: '100%',
     float: 'right',
-    padding: '0 30px 0 30px'
-}
-
-const statisticsStyle = {
-    marginTop: '3%',
-    marginBottom: '15%'
-}
-
-const trends = {
-    width:'40%',
-    marginLeft: '8%',
-    float:'left'
-}
-
-const analyzeResults = {
-    width:'40%',
-    marginRight: '8%',
-    float:'right'
+    padding: '15px 30px 0 30px'
 }
 
 export default Statistics;

@@ -20,7 +20,7 @@ export class About extends Component {
                             className="d-block w-100"
                             src={hospitalImg2}
                             alt="Second slide"
-                            style={{maxHeight: '450px', minHeight: '375px'}}
+                            style={{maxHeight: '450px', minHeight: '350px'}}
                         />
                         <Carousel.Caption>
                             <h3 style={Object.assign({}, darkCaptionStyle, {color: 'white'})}>Analyze Results</h3>
@@ -33,7 +33,7 @@ export class About extends Component {
                             className="d-block w-100"
                             src={hospitalImg}
                             alt="First slide" 
-                            style={{maxHeight: '450px', minHeight: '375px'}}
+                            style={{maxHeight: '450px', minHeight: '350px'}}
                         />
                         <Carousel.Caption>
                             <h3 style={Object.assign({}, darkCaptionStyle, {color: 'white'})}>Hospital Surveys</h3>
@@ -46,7 +46,7 @@ export class About extends Component {
                             className="d-block w-100"
                             src={hospitalImg3}
                             alt="Third slide"
-                            style={{maxHeight: '450px', minHeight: '375px'}}
+                            style={{maxHeight: '450px', minHeight: '350px'}}
                         />
                         <Carousel.Caption>
                             <h3 style={Object.assign({}, darkCaptionStyle, {color: 'white'})}>UCL | GOSH DRIVE</h3>

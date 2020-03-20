@@ -36,13 +36,12 @@ export class KMeansAge extends Component {
         const skmeans = require("skmeans");
         var res = skmeans(resData, k);
 
-        var newData = [[],[],[]]
+        var newData = [[],[], []]
         resData.forEach((point, index) => {
             var obj = {};
             obj["x"] = (res.centroids[res.idxs[index]])
             obj["y"] = point
             obj["r"] = 6
-           // obj["x: " + (point+xDiff[index])] = "y: " + point;
             newData[res.idxs[index]].push(obj)
         })
 
@@ -50,7 +49,6 @@ export class KMeansAge extends Component {
         newData.forEach((data, index) => (
             dataCopy.datasets[index].data = data
         ))
-        //dataCopy.datasets[0].data = newData
         this.setState({data: dataCopy})
 
     }
@@ -102,7 +100,7 @@ export class KMeansAge extends Component {
                         pointRadius: 1,
                         pointHitRadius: 10,
                         data: [{x:10,y:20,r:6}]
-                    },
+                    } ,
                     {
                         label: 'Cluster 3',
                         fill: false,
@@ -123,7 +121,7 @@ export class KMeansAge extends Component {
                         pointRadius: 1,
                         pointHitRadius: 10,
                         data: [{x:10,y:20,r:6}]
-                    }
+                    } 
                 ]
             },       
             ready: false

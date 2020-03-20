@@ -5,6 +5,7 @@ import { Result, Button as AntButton } from 'antd'
 import axios from 'axios';
 import { Link} from 'react-router-dom';
 import Footer from '../layout/Footer';
+import { SmileOutlined } from '@ant-design/icons';
 
 //edit empty window
 
@@ -133,15 +134,20 @@ class Questionnaire extends Component {
     if (this.state.isReady === true){
       return (
         <div>
-          <Jumbotron>
+          <Result
+            icon={<SmileOutlined />}
+            title={this.state.questionnaire.title}
+            subTitle={this.state.questionnaire.description}
+            style={{backgroundColor: "rgb(216, 229, 243)"}}
+          />
+          {/* <Jumbotron fluid style={{backgroundColor: "#dae4f1"}}>
             <Container>
-              <h1>{this.state.questionnaire.title}</h1>
+              <h1 style={{color: '#00264d'}}>{this.state.questionnaire.title}</h1>
               <p>
                 {this.state.questionnaire.description}
               </p>
             </Container>
-            
-          </Jumbotron>
+          </Jumbotron> */}
 
           <div style={listStyle}>
             <Form onChange={this.handleChange}>                     
@@ -166,8 +172,8 @@ class Questionnaire extends Component {
     else {
       return (
         <div>
-          <div style={{textAlign: 'center', padding: '20px 0 20px 0'}}>
-            <Spinner animation="border" role="status">
+          <div style={{textAlign: 'center', padding: '20% 0 0 0'}}>
+            <Spinner animation="border" role="status" variant="primary">
               <span className="sr-only">Loading...</span>
             </Spinner>
           </div>

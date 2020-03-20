@@ -125,20 +125,21 @@ export class AdminPanel extends Component {
                             <div style={{marginLeft: '35px', marginRight: '35px', marginTop: '70px'}}>
                                 <Breadcrumb>
                                     <Breadcrumb.Item style={{color: '#3466cb'}} href="/">Home</Breadcrumb.Item>
-                                    <Breadcrumb.Item active>Manage Questionnaires</Breadcrumb.Item>
+                                    <Breadcrumb.Item active>Admin Panel</Breadcrumb.Item>
                                 </Breadcrumb>
 
                                 <div style={listStyle}>
                                     <SearchBar questionnaires={currentQuestionnaires} filterSearch={this.filterSearch}/>
 
                                     <ListTitle refresh={this.refresh} />
+
                                     <Questionnaires questionnaires={currentQuestionnaires} delQuestionnaire={this.delQuestionnaire}/>
+
                                     <ListFooter addQuestionnaire={this.addQuestionnaire} indexOfFirstTodo={indexOfFirstTodo} 
                                     indexOfLastTodo={indexOfLastTodo} questionnaires={this.state.questionnaires}/>
                                     
                                     <div style={{marginBottom: '10px'}}>
                                         <PageNumbers states={this.state} handlePageClick={this.handlePageClick} />
-
                                     </div>
 
                                     <br></br>&nbsp;
@@ -146,6 +147,7 @@ export class AdminPanel extends Component {
                                         <Statistics />
                                     </div>
                                 </div>
+                                
                             </div>
                             <Footer />
                         </div>
