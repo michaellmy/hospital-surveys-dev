@@ -1,20 +1,20 @@
 {
   "files": {
     "main.css": "/static/css/main.6b9826d1.chunk.css",
-    "main.js": "/static/js/main.b5dbf4d8.chunk.js",
-    "main.js.map": "/static/js/main.b5dbf4d8.chunk.js.map",
+    "main.js": "/static/js/main.6e1ad0e5.chunk.js",
+    "main.js.map": "/static/js/main.6e1ad0e5.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.f645a79e.js",
     "runtime-main.js.map": "/static/js/runtime-main.f645a79e.js.map",
     "static/css/2.3b9ac855.chunk.css": "/static/css/2.3b9ac855.chunk.css",
     "static/js/2.10e35c7c.chunk.js": "/static/js/2.10e35c7c.chunk.js",
     "static/js/2.10e35c7c.chunk.js.map": "/static/js/2.10e35c7c.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.f1fa4862c10999d8111c180b17dee541.js": "/precache-manifest.f1fa4862c10999d8111c180b17dee541.js",
+    "precache-manifest.ab5e3d7b4dbfa2b2a0d3e13b94b5f4e9.js": "/precache-manifest.ab5e3d7b4dbfa2b2a0d3e13b94b5f4e9.js",
     "service-worker.js": "/service-worker.js",
     "static/css/2.3b9ac855.chunk.css.map": "/static/css/2.3b9ac855.chunk.css.map",
     "static/css/main.6b9826d1.chunk.css.map": "/static/css/main.6b9826d1.chunk.css.map",
     "static/js/2.10e35c7c.chunk.js.LICENSE": "/static/js/2.10e35c7c.chunk.js.LICENSE",
-    "static/media/analyze.png": "/static/media/analyze.36176339.png",
+    "static/media/analyze.png": "/static/media/analyze.8835593c.png",
     "static/media/goshlogo.png": "/static/media/goshlogo.2abc4d49.png",
     "static/media/hospital.jpg": "/static/media/hospital.e411d840.jpg",
     "static/media/hospital2.jpg": "/static/media/hospital2.b5cda209.jpg",
@@ -23,7 +23,7 @@
     "static/media/patientcard.jpg": "/static/media/patientcard.7c6dc819.jpg",
     "static/media/search.png": "/static/media/search.d62c5c32.png",
     "static/media/statisticscard.jpg": "/static/media/statisticscard.133d364e.jpg",
-    "static/media/trends.png": "/static/media/trends.5ad5d156.png",
+    "static/media/trends.png": "/static/media/trends.f45564a8.png",
     "static/media/tumbleweed.png": "/static/media/tumbleweed.37e53ef3.png"
   },
   "entrypoints": [
@@ -31,6 +31,6 @@
     "static/css/2.3b9ac855.chunk.css",
     "static/js/2.10e35c7c.chunk.js",
     "static/css/main.6b9826d1.chunk.css",
-    "static/js/main.b5dbf4d8.chunk.js"
+    "static/js/main.6e1ad0e5.chunk.js"
   ]
 }

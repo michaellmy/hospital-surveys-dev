@@ -37,7 +37,7 @@ class NormalLoginForm extends React.Component {
             <Jumbotron fluid style={{backgroundColor: '#dae4f1'}}>
                 <Container>
                     <Image src={lockAndKey} rounded />
-                    <h1>Login to View and Manage Questionnaires</h1>
+                    <h1 style={{color: '#00264d'}}>Sign in to view and manage questionnaires</h1>
                     <p style={{color: '#52527a'}}>
                     You are seeing this page because you are either not logged in, or your session
                     has expired.
@@ -125,7 +125,7 @@ const containerBox = {
 
 const container = {
     textAlign: 'center',
-    padding: '5px 20px 13px 20px',
+    padding: '5px 20px 35px 20px',
     marginLeft: '20%',
     marginRight: '20%',
 }
