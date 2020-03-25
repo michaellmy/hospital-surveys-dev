@@ -206,7 +206,7 @@ class Edit extends Component {
             );
 
         } else {
-            return <div style={{textAlign: "center", paddingTop: "10%"}}>
+            return <div style={{textAlign: "center", paddingTop: "20%"}}>
                 <Spinner animation="border" variant="primary"/>
             </div>
         }
