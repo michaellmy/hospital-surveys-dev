@@ -12,11 +12,6 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 import dj_database_url
-import configparser
-
-# Read credential file for database information
-config = configparser.ConfigParser()
-config.read('credentials.ini')
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -91,7 +86,7 @@ WSGI_APPLICATION = 'serverTest.wsgi.application'
 
 DATABASES = {
     #'default': None
-    'default': dj_database_url.config(default=config['DATABASE']['url'])
+    'default': dj_database_url.config()
 }
 
 
