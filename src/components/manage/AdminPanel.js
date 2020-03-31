@@ -57,8 +57,6 @@ export class AdminPanel extends Component {
             .catch(function (response) {
                 message.error('Failed to Delete Questionnaire - Could not connect to database')
         });
-        /* this.setState({ questionnaires: [...this.state.questionnaires.filter(questionnaire => questionnaire.uid !== id)] });
-        this.setState({ filteredQuestionnaires: [...this.state.filteredQuestionnaires.filter(questionnaire => questionnaire.uid !== id)] }, () => { this.updatePage() }); */
     }
 
     addQuestionnaire = () => {
@@ -89,9 +87,6 @@ export class AdminPanel extends Component {
         .catch(function (response) {
             message.error('Failed to add new questionnaire - Could not connect to database')
         });
-
-        /* this.setState({ questionnaires: [...this.state.questionnaires, newQuestionnaire] });
-        this.setState({ filteredQuestionnaires: [...this.state.filteredQuestionnaires, newQuestionnaire] }, () => { this.updatePage() }); */
     }
 
     filterSearch = (e) => {

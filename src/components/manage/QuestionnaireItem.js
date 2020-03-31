@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Accordion, Table, Card, Button, OverlayTrigger, Popover} from 'react-bootstrap';
+import { Accordion, Table, Card, Button, OverlayTrigger, Popover, Container, Row, Col} from 'react-bootstrap';
 import Dialog from 'react-bootstrap-dialog';
 import { Link } from 'react-router-dom';
 
@@ -60,7 +60,7 @@ export class QuestionnaireItem extends Component {
                                     <thead>
                                         <tr>
                                             <th>Category</th>
-                                            <th>Category Details</th>
+                                            <th>Details</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -80,15 +80,26 @@ export class QuestionnaireItem extends Component {
                                     </tbody>
                                 </Table>
                                 
-                                <OverlayTrigger trigger="click" placement="top" overlay={popover}> 
-                                    <Button style={rowButtons} variant="info"><b>Share Questionnaire</b></Button>
-                                </OverlayTrigger>
+                                <Container fluid>
+                                    <Row>
+                                        <Col md={12}>
+                                            <OverlayTrigger trigger="click" placement="top" overlay={popover}> 
+                                                <Button style={rowButtons} variant="primary"><b>Share Questionnaire</b></Button>
+                                            </OverlayTrigger>
 
-                                <Link to={viewResponsesLink}><Button style={rowButtons} variant="primary"><b>View Questionanire Responses</b></Button></Link>
+                                            <Link to={viewResponsesLink}><Button style={rowButtons} variant="primary"><b>View Responses</b></Button></Link>
+                                        </Col>
+                                    </Row>
 
-                                <Link to={surveyLink}><Button style={rowButtons}><b>Edit Questionnaire</b></Button></Link>
+                                    <Row>
+                                        <Col md={12}>
+                                            <Link to={surveyLink}><Button style={rowButtons} variant="info"><b>Edit Questionnaire</b></Button></Link>
 
-                                <Button onClick={this.openDialog.bind(this, uid)} variant="danger" style={{float: 'right'}}><b>Delete Questionnaire</b></Button>
+                                            <Button onClick={this.openDialog.bind(this, uid)} variant="danger" style={{marginBottom: '10px', width: '200px'}}><b>Delete Questionnaire</b></Button>
+                                        </Col>
+                                    </Row>
+                                </Container> 
+                        
                             </Card.Body>
                         </Accordion.Collapse>
                     </Card>
@@ -103,6 +114,7 @@ QuestionnaireItem.propTypes = {
 }
 
 const rowButtons = {
+    width: '190px',
     marginRight: '10px',
     marginBottom: '10px'
 }

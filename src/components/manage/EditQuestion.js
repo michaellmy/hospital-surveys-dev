@@ -4,6 +4,7 @@ import { Button, Form, Col } from 'react-bootstrap';
 export class EditQuestion extends Component {
     state = {
         MAX_CHOICES: 8,
+        MIN_CHOICES: 1,
         question: this.props.question,
         qid: this.props.question.qid,
         questionText: this.props.question.questionText,
@@ -30,8 +31,10 @@ export class EditQuestion extends Component {
 
     deleteChoice = () => {
         let choicesCopy = this.state.choices;
-        choicesCopy.pop();
-        this.setState({ choices: choicesCopy})
+        if(choicesCopy.length > this.state.MIN_CHOICES){
+            choicesCopy.pop();
+            this.setState({ choices: choicesCopy})
+        }
         this.props.updateChange("choices", choicesCopy.join(" | "), this.state.qid);
     }
 
@@ -56,6 +59,7 @@ export class EditQuestion extends Component {
                     </Form.Row>
                 </div> 
             )
+
         } else if (answerType === "Slider") {
             return (
                 <div>
@@ -67,6 +71,7 @@ export class EditQuestion extends Component {
                     </Form.Row>
                 </div>
             )
+        
         } else {
             return <div>
                 <Form.Label>
@@ -111,6 +116,7 @@ export class EditQuestion extends Component {
                         <Form.Control as="select" name="answerType" onChange={this.handleChange} defaultValue={this.state.answerType}>
                             <option value="Text Area">Text Area</option>
                             <option value="Selections">Multiple Choice Question</option>
+                            <option value="Checkboxes">Checkboxes</option>
                             <option value="Slider">Slider</option>
                         </Form.Control>
 

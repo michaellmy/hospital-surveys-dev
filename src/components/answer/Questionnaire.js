@@ -20,7 +20,8 @@ class Questionnaire extends Component {
       isReady: false,
       errorMessage: null, // Submit response error
       noQuestionnaireError: null,
-      questionnaireExists: true
+      questionnaireExists: true,
+      buttonLoading: false
     };
   }
 
@@ -34,12 +35,14 @@ class Questionnaire extends Component {
   }
 
   changeErrorState = () => {  
+    this.setState({buttonLoading: false})
     this.setState({errorMessage: 
         <div>
             <Alert variant="danger">
                 <h5 style={{textAlign: 'center'}}>Could Not Submit Answers - Have you filled in all questions?</h5>
             </Alert>
-        </div>})
+        </div>}
+    )
   }
 
   noQuestionnaireError = (e) => {
@@ -66,13 +69,14 @@ class Questionnaire extends Component {
       questionsCopy[questionsCopy.findIndex((index)=> index.qid===questionsData.qid)] = questionsData
     }
     else{
-    questionsCopy.push(questionsData);
+      questionsCopy.push(questionsData);
     }
     this.setState({questionsAnswer: questionsCopy})
   }
   
  
   addQuestionnaireAnswer = () => {
+    this.setState({buttonLoading: true})
     var self = this
     const questionnaireAnswer = {
         "uid":  this.state.questionnaire.uid,
@@ -140,28 +144,25 @@ class Questionnaire extends Component {
             subTitle={this.state.questionnaire.description}
             style={{backgroundColor: "rgb(216, 229, 243)"}}
           />
-          {/* <Jumbotron fluid style={{backgroundColor: "#dae4f1"}}>
-            <Container>
-              <h1 style={{color: '#00264d'}}>{this.state.questionnaire.title}</h1>
-              <p>
-                {this.state.questionnaire.description}
-              </p>
-            </Container>
-          </Jumbotron> */}
 
           <div style={listStyle}>
             <Form onChange={this.handleChange}>                     
-                  <Form.Label>First off, how old are you?</Form.Label>
+                  <Form.Label><strong>First off, how old are you?</strong></Form.Label>
                   <Form.Control as="select" style={formcontrol} >
                     {
                       ages.map((age)=> <option>{age}</option>)
                     }
                   </Form.Control>          
             </Form>
+
             <br></br>
+
             <QuestionnaireComposite questionnaire = {this.state.questionnaire }  l={this.getAllQuestionsData}  />
-            <Button size="lg" block style={{backgroundColor: '#00994d'}}  variant="success"  onClick={this.addQuestionnaireAnswer} ><b>Submit Answers</b></Button>
-            <br></br> 
+
+            <Button disabled={this.state.buttonLoading}  block  variant="success"  onClick={this.addQuestionnaireAnswer}>
+              <b>{this.state.buttonLoading ? 'Loading...' : 'Submit Answers'}</b>
+            </Button>
+            <br></br>
             {this.state.errorMessage}
           </div> 
           <Footer />

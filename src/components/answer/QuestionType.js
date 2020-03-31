@@ -1,6 +1,6 @@
 import React from 'react';
 import { Form } from 'react-bootstrap'
-import { Slider } from 'antd';
+import { Slider, Checkbox, Row, Col } from 'antd';
 import 'antd/dist/antd.css';
 
 const sliderMarks = {
@@ -29,6 +29,23 @@ export class QuestionType extends React.Component {
       this.props.getQuestionData(questionData);
     }
 
+
+    handleChangeCheckboxes = (checkedValues) => {   
+      var answer = checkedValues.join(", ")
+      if(answer === ""){
+        answer = "(None)"
+      }
+      const questionData = {    
+        questionText: this.props.questionnaireContent.questionText , 
+        answer: answer,
+        answerType: this.props.questionnaireContent.answerType,
+        qid: this.props.questionnaireContent.qid
+      }
+      this.setState({ questionData: questionData });
+      this.props.getQuestionData(questionData); 
+    }
+
+
     handleChange = (event) => {   
       const questionData = {    
         questionText: this.props.questionnaireContent.questionText , 
@@ -37,8 +54,7 @@ export class QuestionType extends React.Component {
         qid: this.props.questionnaireContent.qid
       }
       this.setState({ questionData: questionData });
-      this.props.getQuestionData(questionData);
-      
+      this.props.getQuestionData(questionData); 
     }
 
 
@@ -52,7 +68,7 @@ export class QuestionType extends React.Component {
                 <Form.Label><strong>{this.props.questionNum + ') ' + questionText}</strong></Form.Label>
                 <Form.Control as="textarea" rows="3" />
                 {(this.state.questionData.answer === undefined || this.state.questionData.answer.length === 0) && 
-                                    <span style={error}>*Please answer</span>}
+                                    <span style={error}>*Please Answer</span>}
               </Form.Group>
             </Form>
             <hr></hr>
@@ -63,12 +79,31 @@ export class QuestionType extends React.Component {
         return (
           <div>
               <Form.Label><strong>{this.props.questionNum + ') ' + questionText}</strong></Form.Label>
-              <Slider defaultValue={30} marks={sliderMarks} tipFormatter={null} onChange={this.handleChangeSlider}/>
-              <br></br>
+              <Slider defaultValue={50} marks={sliderMarks} tipFormatter={null} onChange={this.handleChangeSlider}/>
               <hr></hr>
           </div>
         )
 
+      } else if (answerType === 'Checkboxes'){
+        return (
+          <div>
+              <Form.Label><strong>{this.props.questionNum + ') ' + questionText}</strong></Form.Label><br></br>
+              <Checkbox.Group style={{width:'100%'}} onChange={this.handleChangeCheckboxes} >
+                <Row>
+                  {
+                    this.state.choices.map((choice) => 
+                    <Col span={24} style={{margin: '0 0 9px 0'}}>
+                      <Checkbox value={choice}>{choice}</Checkbox>
+                    </Col>
+                    )
+                  }
+                </Row>
+              </Checkbox.Group>
+              <br></br>
+              <hr></hr>
+          </div>
+        )
+      
       } else if (answerType ==='Selections') {
         return (
           <React.Fragment>
@@ -82,7 +117,7 @@ export class QuestionType extends React.Component {
                   }               
                   </Form.Control>  
                   {(this.state.questionData.answer === undefined || this.state.questionData.answer.length === 0) && 
-                                  <span style={error}>*Please answer</span>}          
+                                  <span style={error}>*Please Answer</span>}          
                 </Form.Group>
             </Form>
             <hr></hr>

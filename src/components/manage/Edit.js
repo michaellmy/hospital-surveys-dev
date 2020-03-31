@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Form, Col, Breadcrumb, Spinner } from 'react-bootstrap';
+import { message } from 'antd';
 import { Link } from 'react-router-dom';
 
 import uuid from 'uuid';
@@ -16,7 +17,8 @@ class Edit extends Component {
         super(props);
         this.state = {
             questionnaire: {},
-            isReady: false
+            isReady: false,
+            loadingButton: false
         };
     }
 
@@ -91,6 +93,7 @@ class Edit extends Component {
     }
 
     saveChanges = () => {
+        this.setState({loadingButton: true})
         const pageUrl = window.location.origin;
         var bodyFormData = new FormData();
         bodyFormData.append('1', JSON.stringify(this.state.questionnaire));
@@ -100,14 +103,12 @@ class Edit extends Component {
             data: bodyFormData,
             headers: { 'Content-Type': 'multipart/form-data' }
         })
-        .then(function (response) {
-            console.log(response);
-        })
         .then(function () {
             window.location = "/manage"
         })
         .catch(function (response) {
-            console.log(response);
+            this.setState({loadingButton: false})
+            message.error('Could not connect to database')
         });
     }
 
@@ -189,7 +190,9 @@ class Edit extends Component {
 
                             <header style={footerStyle}>
                                 <Button style={{backgroundColor: '#0080ff'}} onClick={this.addQuestion}><b>+ Add Question</b></Button> &nbsp;
-                                <Button style={{backgroundColor: '#00994d'}} onClick={this.saveChanges} variant="success"><b>Save and Exit</b></Button> &nbsp;
+                                <Button style={{backgroundColor: '#00994d'}} disabled={this.state.loadingButton} onClick={this.saveChanges} variant="success">
+                                    <b>{this.state.loadingButton? 'Loading...' : 'Save and Exit'}</b>
+                                </Button>
                                 <a href="/manage"><Button style={{backgroundColor: '#b30000', float: 'right', marginRight: '2%'}} variant="danger"><b>Discard All Changes</b></Button></a>
                             </header>
                         </div>
@@ -214,31 +217,28 @@ class Edit extends Component {
 }
 
 const listStyle = {
-    paddingLeft: '2%',
-    paddingRight: '2%',
-    paddingTop: '2%',
+    padding: '2% 2% 0 2%',
     backgroundColor: 'white',
 }
 
 const containerStyle = {
-    marginLeft: '5%',
-    marginRight: '5%',
-    marginBottom: '2%',
+    margin: '0 5% 2% 5%'
 }
 
 const titleStyle = {
     backgroundColor: '#252574',
-    paddingLeft: '1%',
-    paddingRight: '1%',
-    paddingTop: '1%',
-    color: 'white'
+    padding: '10px 10px 0 10px',
+    color: 'white',
+    borderRadius: '10px'
 }
 
 const footerStyle = {
-    paddingTop: '15px',
-    paddingBottom: '15px',
-    paddingLeft: '35px',
+    padding: '15px 0 15px 35px',
     background: '#252574'
 }
+
+message.config({
+    top: 80
+})
 
 export default Edit;

@@ -51,7 +51,7 @@ class NormalLoginForm extends React.Component {
                 {
                     this.props.loading ?
 
-                    <Spinner animation="border" variant="primary" role="status">
+                    <Spinner style={{marginTop: '30px'}} animation="border" variant="primary" role="status">
                         <span className="sr-only">Loading...</span>
                     </Spinner>
 

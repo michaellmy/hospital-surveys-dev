@@ -14,7 +14,8 @@ export class ViewResponse extends Component {
         super(props);
         this.state = {
             responses: [],
-            isReady: false
+            isReady: false,
+            buttonLoading: false
         }
     }
 
@@ -27,6 +28,7 @@ export class ViewResponse extends Component {
     }
 
     deleteResponses = () => {
+        this.setState({buttonLoading: true})
         const getUrl = window.location.origin + '/api/getAnswerByUid/' + this.props.match.params.uid;
         axios({
             method: 'get',
@@ -35,8 +37,10 @@ export class ViewResponse extends Component {
         })
         .then(() =>
             axios.get(getUrl) 
-                .then(res => this.setState({responses: res.data}))
+            .then(res => this.setState({responses: res.data}))
         )
+        .then(() => this.setState({buttonLoading: false}))
+        .catch(() => this.setState({buttonLoading: false}))
     }
 
     render() {
@@ -56,15 +60,18 @@ export class ViewResponse extends Component {
                                         <AntCol span={8} offset={8}>
                                             <Popconfirm
                                                 placement="bottomRight"
-                                                title="Delete All Responses? This action cannot be undone."
+                                                title="Delete all responses? This action cannot be undone."
                                                 onConfirm={this.deleteResponses}
                                                 okText="Yes"
                                                 cancelText="No"
                                             >
-                                               <Button type="primary" style={{float: 'right', backgroundColor: '#990000', borderColor: '#990000'}}>Delete All Responses</Button>
+                                               <Button disabled={this.state.buttonLoading} style={{float: 'right', backgroundColor: '#990000', borderColor: '#990000'}}>
+                                                    {this.state.buttonLoading ? 'Loading...' : 'Delete All Responses'}
+                                                </Button>
                                             </Popconfirm>
                                         </AntCol>
                                     </AntRow>
+
                                     <hr style={{borderColor: 'grey'}}></hr>
 
                                     <Jumbotron fluid>
@@ -75,7 +82,7 @@ export class ViewResponse extends Component {
                                             </Col>
                                             <h1>No Responses Available</h1>
                                             <p>
-                                                There are no responses for this survey yet.
+                                                There are no responses to this survey yet.
                                             </p>
                                             <p>
                                                 <a href="/manage"><Button variant="primary">Go Back</Button></a>
@@ -98,14 +105,18 @@ export class ViewResponse extends Component {
                                                     okText="Yes"
                                                     cancelText="No"
                                                 >
-                                                <Button type="primary" style={{float: 'right', backgroundColor: '#990000', borderColor: '#990000'}}>Delete All Responses</Button>
+
+                                                    <Button type="primary" disabled={this.state.buttonLoading} style={{float: 'right', backgroundColor: '#990000', borderColor: '#990000'}}>
+                                                        {this.state.buttonLoading ? 'Loading...' : 'Delete All Responses'}
+                                                    </Button>
+
                                                 </Popconfirm>
                                             </AntCol>
                                         </AntRow>
                                         <hr style={{borderColor: 'grey'}}></hr>
 
 
-                                        {this.state.responses.map((response, index) => (
+                                        { this.state.responses.map((response, index) => (
                                             <div>
                                                 <ResponseTable key={response.uid} response={response} responseNum={index + 1}/>      
                                                 <hr style={{borderColor: 'grey', marginTop: '25px', marginBottom: '15px'}}></hr>
