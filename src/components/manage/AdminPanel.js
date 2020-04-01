@@ -117,13 +117,14 @@ export class AdminPanel extends Component {
                         this.props.isAuthenticated ?
 
                         <div>
-                            <div style={{marginLeft: '35px', marginRight: '35px', marginTop: '70px'}}>
+                            <div style={{margin: '70px 35px 0 35px'}}>
+
                                 <Breadcrumb>
                                     <Breadcrumb.Item style={{color: '#3466cb'}} href="/">Home</Breadcrumb.Item>
                                     <Breadcrumb.Item active>Admin Panel</Breadcrumb.Item>
                                 </Breadcrumb>
 
-                                <div style={listStyle}>
+                                <div style={{margin: '1% 5% 0 5%'}}>
                                     <SearchBar questionnaires={currentQuestionnaires} filterSearch={this.filterSearch}/>
 
                                     <ListTitle refresh={this.refresh} />
@@ -138,6 +139,7 @@ export class AdminPanel extends Component {
                                     </div>
 
                                     <br></br>&nbsp;
+
                                     <div style={{marginTop: '10px'}}>
                                         <Statistics />
                                     </div>
@@ -164,12 +166,6 @@ export class AdminPanel extends Component {
             </div>
         }
     }
-}
-
-const listStyle = {
-    marginTop: '1%',
-    marginLeft: '5%',
-    marginRight: '5%',
 }
 
 message.config({

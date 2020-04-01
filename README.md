@@ -39,4 +39,4 @@ $ git push heroku master
 $ heroku run python manage.py createsuperuser
 ```
 
-The web app can now be found at `https://[heroku-project-name].herokuapp.com`. The database is already attached to the web-app during deployment, and the credentials for the database can be found at the **Heroku Project -> Resources -> Heroku Postgres**. 
+The web app can now be found at `https://[heroku-project-name].herokuapp.com`. The database is automatically attached to the web-app during deployment, and the credentials for the database can be found at the **Heroku Project -> Resources -> Heroku Postgres**. 

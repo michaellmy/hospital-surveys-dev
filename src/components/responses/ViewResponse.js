@@ -44,7 +44,6 @@ export class ViewResponse extends Component {
     }
 
     convertToCSV = (data) => {
-        console.log("herere")
         var result = []
         data.forEach((response) => {
             response.questionAnswer.forEach((answer) => {
@@ -65,7 +64,7 @@ export class ViewResponse extends Component {
                             {
                                 this.state.responses.length === 0 ?
                                 
-                                <div style={responseStyle}>
+                                <div style={{padding: '15px 5% 0 5%'}}>
                                     <AntRow>
                                         <AntCol span={24}><h4>Total Responses: {this.state.responses.length}</h4></AntCol>
                                     </AntRow>
@@ -92,7 +91,7 @@ export class ViewResponse extends Component {
                                 :
 
                                 <div>
-                                    <div style={responseStyle}>
+                                    <div style={{padding: '15px 5% 0 5%'}}>
                                         <AntRow>
                                             <AntCol span={8}>
                                                 <h4>Total Responses: {this.state.responses.length}</h4>
@@ -147,10 +146,6 @@ export class ViewResponse extends Component {
             )
         }
     }
-}
-
-const responseStyle = {
-    padding: '15px 5% 0 5%'
 }
 
 const columns = [
