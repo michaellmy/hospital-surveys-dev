@@ -4,7 +4,7 @@ import { Row as AntRow, Col as AntCol, Popconfirm } from 'antd'
 import axios from 'axios';
 import ResponseTable from './ResponseTable';
 import LoggedOut from '../pages/LoggedOut';
-
+import CsvDownloader from 'react-csv-downloader';
 import Footer from '../layout/Footer';
 import tumbleWeed from '../logos/tumbleweed.png';
 
@@ -43,6 +43,17 @@ export class ViewResponse extends Component {
         .catch(() => this.setState({buttonLoading: false}))
     }
 
+    convertToCSV = (data) => {
+        console.log("herere")
+        var result = []
+        data.forEach((response) => {
+            response.questionAnswer.forEach((answer) => {
+                result.push({uid: response.uid, age: response.age, Title: answer.questionText, Answer: answer.answer})
+            })
+        }) 
+        return result
+    } 
+
     render() {
         if (this.state.isReady) {
             return (
@@ -56,20 +67,7 @@ export class ViewResponse extends Component {
                                 
                                 <div style={responseStyle}>
                                     <AntRow>
-                                        <AntCol span={8}><h4>Total Responses: {this.state.responses.length}</h4></AntCol>
-                                        <AntCol span={8} offset={8}>
-                                            <Popconfirm
-                                                placement="bottomRight"
-                                                title="Delete all responses? This action cannot be undone."
-                                                onConfirm={this.deleteResponses}
-                                                okText="Yes"
-                                                cancelText="No"
-                                            >
-                                               <Button disabled={this.state.buttonLoading} style={{float: 'right', backgroundColor: '#990000', borderColor: '#990000'}}>
-                                                    {this.state.buttonLoading ? 'Loading...' : 'Delete All Responses'}
-                                                </Button>
-                                            </Popconfirm>
-                                        </AntCol>
+                                        <AntCol span={24}><h4>Total Responses: {this.state.responses.length}</h4></AntCol>
                                     </AntRow>
 
                                     <hr style={{borderColor: 'grey'}}></hr>
@@ -96,25 +94,27 @@ export class ViewResponse extends Component {
                                 <div>
                                     <div style={responseStyle}>
                                         <AntRow>
-                                            <AntCol span={8}><h4>Total Responses: {this.state.responses.length}</h4></AntCol>
-                                            <AntCol span={8} offset={8}>
+                                            <AntCol span={8}>
+                                                <h4>Total Responses: {this.state.responses.length}</h4>
+                                                <CsvDownloader text="&nbsp; Export as CSV &nbsp;" datas={this.convertToCSV(this.state.responses)} filename={`responses_csv`} columns={columns} wrapColumnChar="'"/>
+                                            </AntCol>
+
+                                            <AntCol span={8} offset={8}>                                                                      
                                                 <Popconfirm
                                                     placement="bottomRight"
                                                     title="Delete All Responses? This action cannot be undone."
                                                     onConfirm={this.deleteResponses}
-                                                    okText="Yes"
-                                                    cancelText="No"
+                                                    okText="Delete"
+                                                    cancelText="Cancel"
                                                 >
-
                                                     <Button type="primary" disabled={this.state.buttonLoading} style={{float: 'right', backgroundColor: '#990000', borderColor: '#990000'}}>
                                                         {this.state.buttonLoading ? 'Loading...' : 'Delete All Responses'}
                                                     </Button>
-
                                                 </Popconfirm>
                                             </AntCol>
                                         </AntRow>
-                                        <hr style={{borderColor: 'grey'}}></hr>
 
+                                        <hr style={{borderColor: 'grey'}}></hr>
 
                                         { this.state.responses.map((response, index) => (
                                             <div>
@@ -152,5 +152,24 @@ export class ViewResponse extends Component {
 const responseStyle = {
     padding: '15px 5% 0 5%'
 }
+
+const columns = [
+    {
+        id: 'uid',
+        displayName: 'Questionnaire ID'
+    },
+    {
+        id: 'age',
+        displayName: 'Respondent Age'
+    },
+    {
+        id: 'Title',
+        displayName: 'Question Title'
+    }, 
+    {
+        id: 'Answer',
+        displayName: 'Question Answer'
+    }
+]
 
 export default ViewResponse

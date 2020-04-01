@@ -15,7 +15,7 @@ export class ResponseTable extends Component {
             return (
                 <div style={tableStyle}>
                     <div>
-                        <strong>Response Info</strong>
+                        <strong>Questionnaire Response Info</strong>
                         <Descriptions>
                             <Descriptions.Item label="Response Number">{this.props.responseNum}</Descriptions.Item>
                             <Descriptions.Item label="Date Submitted">{this.props.response.date}</Descriptions.Item>
