@@ -72,7 +72,6 @@ class NormalLoginForm extends React.Component {
                             )}
                             </Form.Item>
                             
-                            <br></br>
                             <Form.Item>
                             {getFieldDecorator('password', {
                                 rules: [{ required: true, message: 'Please input your password.' }],
@@ -86,7 +85,6 @@ class NormalLoginForm extends React.Component {
                             )}
                             </Form.Item>
                                 
-                            <br></br>
                             <Form.Item>
                                 <Button  style={loginStyle} htmlType="submit" size="large" >
                                     <b>Login</b>
@@ -118,16 +116,14 @@ const mapDispatchToProps = dispatch => {
 }
 
 const containerBox = {
-    padding: '5% 10% 13px 10%',
+    padding: '20px 10% 5px 10%',
     backgroundColor: '#c8d6ea',
     textAlign: 'center',
 }
 
 const container = {
     textAlign: 'center',
-    padding: '0px 20px 35px 20px',
-    marginLeft: '20%',
-    marginRight: '20%',
+    margin: '0 20% 45px 20%'
 }
 
 const loginStyle = {
