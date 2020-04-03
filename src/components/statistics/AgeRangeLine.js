@@ -41,7 +41,7 @@ export class AgeRange extends Component {
                 labels: generateAgeRange(),
                 datasets: [
                   {
-                    label: 'Patient Age',
+                    label: 'Number of Questionnaires',
                     fill: false,
                     lineTension: 0.1,
                     backgroundColor: '#4080bf',
@@ -51,7 +51,7 @@ export class AgeRange extends Component {
                     borderDashOffset: 0.0,
                     borderJoinStyle: 'miter',
                     pointBorderColor: '#4080bf',
-                    pointBackgroundColor: '#fff',
+                    pointBackgroundColor: '#4080bf',
                     pointBorderWidth: 1,
                     pointHoverRadius: 5,
                     pointHoverBackgroundColor: 'rgba(75,192,192,1)',
