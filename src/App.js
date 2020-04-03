@@ -14,6 +14,7 @@ import Trends from './components/statistics/Trends';
 import ViewResponse from './components/responses/ViewResponse';
 import About from './components/pages/About';
 import Answer from './components/pages/Answer';
+import Completion from './components/pages/Completion';
 import NotFound from './components/pages/NotFound';
 
 import AnswerPage from './components/answer/Questionnaire';
@@ -83,6 +84,8 @@ class App extends Component {
             )} />
 
             <Route exact path="/answerSearch" component={Answer} />
+
+            <Route exact path="/completion" component={Completion} />
 
             <Route component={NotFound} />
           </Switch>

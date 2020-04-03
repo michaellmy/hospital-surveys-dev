@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { Spinner, Jumbotron, Container, Button, Col, Image } from 'react-bootstrap';
-import { Row as AntRow, Col as AntCol, Popconfirm } from 'antd'
+import { Row as AntRow, Col as AntCol, Popconfirm } from 'antd';
 import axios from 'axios';
+
 import ResponseTable from './ResponseTable';
 import LoggedOut from '../pages/LoggedOut';
 import CsvDownloader from 'react-csv-downloader';

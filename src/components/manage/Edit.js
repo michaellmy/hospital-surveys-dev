@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Form, Col, Breadcrumb, Spinner } from 'react-bootstrap';
-import { message } from 'antd';
+import { message, Popconfirm } from 'antd';
 import { Link } from 'react-router-dom';
 
 import uuid from 'uuid';
@@ -189,11 +189,21 @@ class Edit extends Component {
 
 
                             <header style={footerStyle}>
-                                <Button style={{backgroundColor: '#0080ff'}} onClick={this.addQuestion}><b>+ Add Question</b></Button> &nbsp;
+                                <Button style={{backgroundColor: '#0080ff'}} onClick={this.addQuestion}><b>+ Question</b></Button> &nbsp;
                                 <Button style={{backgroundColor: '#00994d'}} disabled={this.state.loadingButton} onClick={this.saveChanges} variant="success">
-                                    <b>{this.state.loadingButton? 'Loading...' : 'Save and Exit'}</b>
+                                    <b>{this.state.loadingButton? 'Loading...' : 'Save & Exit'}</b>
                                 </Button>
-                                <a href="/manage"><Button style={{backgroundColor: '#b30000', float: 'right', marginRight: '2%'}} variant="danger"><b>Discard All Changes</b></Button></a>
+
+                                <Popconfirm
+                                    placement="topRight"
+                                    title="Discard All Changes? This action cannot be undone."
+                                    onConfirm={() => window.location="/manage"}
+                                    okText="Discard"
+                                    cancelText="Cancel"
+                                >
+                                    <Button style={{float: 'right', marginRight: '2%'}} variant="danger"><b>Discard Changes</b></Button>
+                                </Popconfirm>
+                                {/* <a href="/manage"><Button style={{backgroundColor: '#b30000', float: 'right', marginRight: '2%'}} variant="danger"><b>Discard All Changes</b></Button></a> */}
                             </header>
                         </div>
                         <Footer />
@@ -233,7 +243,7 @@ const titleStyle = {
 }
 
 const footerStyle = {
-    padding: '15px 0 15px 35px',
+    padding: '15px 0 15px 15px',
     background: '#252574'
 }
 

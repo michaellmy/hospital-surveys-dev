@@ -105,13 +105,12 @@ export class EditQuestion extends Component {
         return (
             <div>
                 <Form.Row>
-
                     <Form.Group as={Col} >
                         <Form.Label><b>Question {parseInt(this.props.questionNum) + 1}.</b></Form.Label>
                         <Form.Control name="questionText" onChange={this.handleChange} defaultValue={this.state.questionText} />
                     </Form.Group>
 
-                    <Form.Group as={Col} controlId="formGridState">
+                    <Form.Group as={Col}>
                         <Form.Label><b>Answer Type</b></Form.Label>
                         <Form.Control as="select" name="answerType" onChange={this.handleChange} defaultValue={this.state.answerType}>
                             <option value="Text Area">Text Area</option>
@@ -119,10 +118,9 @@ export class EditQuestion extends Component {
                             <option value="Checkboxes">Checkboxes</option>
                             <option value="Slider">Slider</option>
                         </Form.Control>
-
                     </Form.Group>
+                    
                     <Button variant="danger" onClick={this.props.delQuestion.bind(this, this.state.qid)}>X</Button>
-
                 </Form.Row>
                 {this.renderSwitch(this.state.answerType)}
                 <br />
@@ -132,25 +130,25 @@ export class EditQuestion extends Component {
 }
 
 const addChoiceStyle = {
-    marginLeft: '10px',
+    margin: '5px',
     backgroundColor: '#009999'
 }
 
 const removeChoiceStyle = {
-    marginLeft: '10px',
+    margin: '5px',
     backgroundColor: '#990000'
 }
 
 const moveDownStyle = {
     backgroundColor: '#252574',
-    marginRight: '10px'
+    margin: '5px'
 }
 
 const moveUpStyle = {
-    marginLeft: '10px',
+    margin: '5px',
     paddingBottom: '5px',
     backgroundColor: '#252574',
-    marginRight: '10px'
+
 }
 
 

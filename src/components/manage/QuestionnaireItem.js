@@ -90,12 +90,12 @@ export class QuestionnaireItem extends Component {
                                             <Link to={viewResponsesLink}><Button style={rowButtons} variant="primary"><b>View Responses</b></Button></Link>
                                         </Col>
                                     </Row>
-
+                                    
                                     <Row>
                                         <Col md={12}>
                                             <Link to={surveyLink}><Button style={rowButtons} variant="info"><b>Edit Questionnaire</b></Button></Link>
 
-                                            <Button onClick={this.openDialog.bind(this, uid)} variant="danger" style={{marginBottom: '10px', width: '200px'}}><b>Delete Questionnaire</b></Button>
+                                            <Button onClick={this.openDialog.bind(this, uid)} variant="danger" style={rowButtons}><b>Delete Questionnaire</b></Button>
                                         </Col>
                                     </Row>
                                 </Container> 
@@ -115,8 +115,7 @@ QuestionnaireItem.propTypes = {
 
 const rowButtons = {
     width: '190px',
-    marginRight: '10px',
-    marginBottom: '10px'
+    margin: '5px'
 }
 
 const cardStyle = {

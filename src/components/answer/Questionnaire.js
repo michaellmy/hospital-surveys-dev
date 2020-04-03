@@ -95,7 +95,7 @@ class Questionnaire extends Component {
         headers: {'Content-Type': 'multipart/form-data' }
     })
     .then(function (response) {
-        window.location = "/"
+        window.location = "/completion"
     })
     .catch(function (response) {
         self.changeErrorState()
