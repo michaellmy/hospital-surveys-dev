@@ -82,7 +82,7 @@ export class QuestionnaireItem extends Component {
                                 
                                 <Container fluid>
                                     <Row>
-                                        <Col md={12}>
+                                        <Col md={12} style={{paddingLeft: '0px'}}>
                                             <OverlayTrigger trigger="click" placement="top" overlay={popover}> 
                                                 <Button style={rowButtons} variant="primary"><b>Share Questionnaire</b></Button>
                                             </OverlayTrigger>
@@ -92,7 +92,7 @@ export class QuestionnaireItem extends Component {
                                     </Row>
                                     
                                     <Row>
-                                        <Col md={12}>
+                                        <Col md={12} style={{paddingLeft: '0px'}}>
                                             <Link to={surveyLink}><Button style={rowButtons} variant="info"><b>Edit Questionnaire</b></Button></Link>
 
                                             <Button onClick={this.openDialog.bind(this, uid)} variant="danger" style={rowButtons}><b>Delete Questionnaire</b></Button>

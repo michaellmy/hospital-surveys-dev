@@ -86,7 +86,7 @@ WSGI_APPLICATION = 'serverTest.wsgi.application'
 
 DATABASES = {
     #'default': None
-    'default': dj_database_url.config(default="postgres://zsarzwcvorljhi:972c19706644921bb60d2fa365d772538fcc9ca3a4a00a65826fff6a5ed93e2b@ec2-54-247-125-38.eu-west-1.compute.amazonaws.com:5432/d8ik3h8ueeegst")
+    'default': dj_database_url.config()
 }
 
 
