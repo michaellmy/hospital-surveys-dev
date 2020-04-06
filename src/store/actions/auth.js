@@ -1,3 +1,5 @@
+// Reference: https://github.com/justdjango/DjReact
+
 import * as actionTypes from './actionTypes';
 import axios from 'axios';
 
